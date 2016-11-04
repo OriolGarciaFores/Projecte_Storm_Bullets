@@ -1,0 +1,138 @@
+package principal.maquinaestado.estados.menuinicial;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import principal.Constantes;
+import principal.control.GestorControles;
+import principal.herramientas.CargadorRecursos;
+import principal.herramientas.DibujoDebug;
+import principal.maquinaestado.EstadoJuego;
+import principal.maquinaestado.estados.menujuego.EstructuraMenu;
+import principal.maquinaestado.estados.menujuego.MenuConfigurar;
+import principal.maquinaestado.estados.menujuego.SeccionMenu;
+public class GestorTitulo implements EstadoJuego {
+
+    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_PORTADA);
+
+    private final EstructuraMenu estructuraMenu;
+
+    private final SeccionMenu[] secciones;
+
+    private SeccionMenu seccionActual;
+    
+
+    public GestorTitulo() {
+        estructuraMenu = new EstructuraMenu();
+        secciones = new SeccionMenu[4];
+
+        final Rectangle etiquetaPlay = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+
+        secciones[0] = new Jugar("Jugar", etiquetaPlay);
+
+        final Rectangle etiquetaTop = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaPlay.y + etiquetaPlay.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+
+        secciones[1] = new MenuTop("Top List", etiquetaTop);
+
+        final Rectangle etiquetaConfigurar = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaTop.y + etiquetaTop.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+
+        secciones[2] = new MenuConfigurar("Configuración", etiquetaConfigurar);
+
+        final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaConfigurar.y + etiquetaConfigurar.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+
+        secciones[3] = new Exit("Salir", etiquetaSalir);
+
+        seccionActual = secciones[0];
+        Constantes.m.reproducir();
+    }
+
+    public void actualizar() {
+        for (int i = 0; i < secciones.length; i++) {
+            if (GestorControles.teclado.abajo.estaPulsada() && seccionActual == secciones[0]) {
+                seccionActual = secciones[1];
+                GestorControles.teclado.abajo.teclaLiberada();
+            }
+            if (GestorControles.teclado.abajo.estaPulsada() && seccionActual == secciones[1]) {
+                seccionActual = secciones[2];
+                GestorControles.teclado.abajo.teclaLiberada();
+            }
+
+            if (GestorControles.teclado.abajo.estaPulsada() && seccionActual == secciones[2]) {
+                seccionActual = secciones[3];
+                GestorControles.teclado.abajo.teclaLiberada();
+            }
+
+            if (GestorControles.teclado.arriba.estaPulsada() && seccionActual == secciones[3]) {
+                seccionActual = secciones[2];
+                GestorControles.teclado.arriba.teclaLiberada();
+            }
+            if (GestorControles.teclado.arriba.estaPulsada() && seccionActual == secciones[2]) {
+                seccionActual = secciones[1];
+                GestorControles.teclado.arriba.teclaLiberada();
+            }
+            if (GestorControles.teclado.arriba.estaPulsada() && seccionActual == secciones[1]) {
+                seccionActual = secciones[0];
+                GestorControles.teclado.arriba.teclaLiberada();
+
+            }
+        }
+    }
+
+    public void dibujar(Graphics g) {
+        DibujoDebug.dibujarImagen(g, image, 0, 0);
+        estructuraMenu.dibujar(g);
+        for (int i = 0; i < secciones.length; i++) {
+            if (seccionActual == secciones[i]) {
+                secciones[i].dibujarEtiquetaActiva(g);
+                 
+                
+                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                    GestorControles.teclado.tituloActivo = false;
+                    Constantes.m.pararReproducir();
+                }
+                if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
+                   GestorControles.teclado.config = true;
+                   GestorControles.teclado.accion.teclaLiberada();
+                }
+                
+                if (seccionActual == secciones[3] && GestorControles.teclado.accion.estaPulsada()) {
+                    seccionActual.actualizar();
+                }
+                
+                
+            } else {
+                secciones[i].dibujarEtiquetaInactiva(g);
+            }
+            
+            
+
+        }
+        
+    }
+
+   /* private void reproducir() {
+        try {
+            InputStream musica = getClass().getResourceAsStream(Constantes.RUTA_AUDIO_TITULO);
+            InputStream bufferedIn = new BufferedInputStream(musica);
+            AudioInputStream audio = AudioSystem.getAudioInputStream(bufferedIn);
+            mi_reproductor.AbrirControl(audio);
+            mi_reproductor.Play();
+            mi_reproductor.setGain(Constantes.volumen);
+            mi_reproductor.setPan();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
+
+    private void pararReproducir() {
+        try {
+            mi_reproductor.Stop();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }*/
+    
+  
+   
+
+}
