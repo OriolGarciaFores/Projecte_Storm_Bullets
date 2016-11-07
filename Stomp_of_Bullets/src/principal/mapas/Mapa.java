@@ -26,8 +26,8 @@ public class Mapa {
 
     private final int[] sprites;
 
-    private final int MARGEN_X = Constantes.ANCHO_VENTANA / 2 - Constantes.LADO_SPRITE / 2;
-    private final int MARGEN_Y = Constantes.ALTO_VENTANA / 2 - Constantes.LADO_SPRITE / 2;
+    private final int MARGEN_X = Constantes.ANCHO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
+    private final int MARGEN_Y = Constantes.ALTO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
 
     public Mapa(final String ruta) {
         String contenido = CargadorRecursos.leerArchivoTexto(ruta);
@@ -142,16 +142,21 @@ public class Mapa {
     }
 
     public void dibujar(Graphics g, final int posicionX, final int posicionY) {
-
+       // int intentosDibujo = 0;
         for (int y = 0; y < this.alto; y++) {
             for (int x = 0; x < this.ancho; x++) {
                 BufferedImage imagen = paleta[sprites[x + y * this.ancho]].obtenerImagen();
 
                 int puntoX = x * Constantes.LADO_SPRITE - posicionX + MARGEN_X;
                 int puntoY = y * Constantes.LADO_SPRITE - posicionY + MARGEN_Y;
+                //Este if evita cargar todas las imagenes que no se muestran por pantalla.
+               if(puntoX < 0 - Constantes.LADO_SPRITE || puntoX > Constantes.ANCHO_JUEGO || puntoY < 0 - Constantes.LADO_SPRITE || puntoY > Constantes.ALTO_JUEGO - 65){
+                   continue;
+                }
+               // intentosDibujo++;
                 DibujoDebug.dibujarImagen(g, imagen, puntoX, puntoY);
                 
-               /* g.setColor(Color.green);
+               /* g.setColor(Color.green);                  Comprobación de margen de colisiones.
                 
                 for(int r = 0; r<areasColision.size(); r++){
                     Rectangle area = areasColision.get(r);
@@ -159,6 +164,7 @@ public class Mapa {
                 }*/
             }
         }
+        //System.out.println(intentosDibujo);
     }
 
     public Rectangle obtenerBordes(final int posicionX, final int posicionY, final int anchoJugador, final int altoJugador) {

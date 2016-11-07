@@ -14,7 +14,7 @@ public class Musicas {
 
     public Musicas() {
         mi_reproductor = new Reproductor();
-        volumen = 0.5;
+        volumen = 0.3;
     }
 
     public void reproducir() {

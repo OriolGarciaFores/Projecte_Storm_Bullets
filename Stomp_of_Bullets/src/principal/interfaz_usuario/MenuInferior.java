@@ -20,7 +20,7 @@ public class MenuInferior {
     public MenuInferior(final Jugador jugador){
         
         int altoMenu = 64;
-        areaInventario = new Rectangle(0, Constantes.ALTO_VENTANA - altoMenu, Constantes.ANCHO_VENTANA, altoMenu);
+        areaInventario = new Rectangle(0, Constantes.ALTO_JUEGO - altoMenu, Constantes.ANCHO_JUEGO, altoMenu);
         bordeAreaInventario = new Rectangle(areaInventario.x, areaInventario.y - 1, areaInventario.width, 1);
         
         negroDesaturado = new Color(23, 23, 23);
@@ -55,7 +55,7 @@ public class MenuInferior {
         final int numeroRanuras = 1;
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
-        final int xInicial = Constantes.ANCHO_VENTANA - anchoTotal;
+        final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
         final int anchoRanuraYespacio = anchoRanura + espacioRanuras;
         
         g.setColor(Color.WHITE);

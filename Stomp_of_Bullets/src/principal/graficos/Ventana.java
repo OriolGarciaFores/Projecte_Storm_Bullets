@@ -1,10 +1,7 @@
 package principal.graficos;
 
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import principal.herramientas.CargadorRecursos;
 
 public class Ventana extends JFrame {
 
@@ -28,7 +25,7 @@ public class Ventana extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
         add(sd, BorderLayout.CENTER);
-        //setUndecorated(true);
+        setUndecorated(true);//Sin bordes la ventana.
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
