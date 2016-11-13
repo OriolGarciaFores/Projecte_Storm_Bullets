@@ -23,7 +23,8 @@ public class MenuInferior {
     //Fin de pruebas.
     private Color negroDesaturado;
     private Color rojoOscuro;
-    private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_AVATAR);
+    private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_AVATAR);
+    private static final BufferedImage controles = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_CONTROLES);
     public MenuInferior(final Jugador jugador){
         
         int altoMenu = 64;
@@ -39,6 +40,7 @@ public class MenuInferior {
         dibujarBarraVitalidad(g, jugador);
         dibujarRanurasObjetos(g);
         dibujarAvatar(g);
+        dibujarControles(g);
     }
     
     private void dibujarAreaInventario(final Graphics g){
@@ -57,7 +59,7 @@ public class MenuInferior {
         DibujoDebug.dibujarString(g, "Jugador", areaInventario.x + 5 , areaInventario.y + 54);
         DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 150, areaInventario.y + medidaVertical * 2);
         try {
-            DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 50, areaInventario.y + medidaVertical * 4);
+            DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);
         } catch (InterruptedException ex) {
             Logger.getLogger(MenuInferior.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,9 +87,13 @@ public class MenuInferior {
         
         final int anchoRanura = 32;
         final int espacioRanura = 10;
-        Rectangle avatar = new Rectangle(espacioRanura, areaInventario.y + 4, anchoRanura, anchoRanura);
-        DibujoDebug.dibujarRectanguloRelleno(g, avatar);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(img, anchoRanura, anchoRanura), espacioRanura, areaInventario.y + 4);
+    }
+    
+    private void dibujarControles(final Graphics g){
+        final int anchoRanura = 32;
+        //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(controles, 50, 50), Constantes.ANCHO_JUEGO - 100, areaInventario.y);
     }
     
     private String tiempo() throws InterruptedException{
