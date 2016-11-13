@@ -16,7 +16,7 @@ import principal.reproductor.Reproductor;
 
 public class Configuracion implements EstadoJuego {
 
-    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_PORTADA);
+    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
 
     private final EstructuraMenu estructuraMenu;
 

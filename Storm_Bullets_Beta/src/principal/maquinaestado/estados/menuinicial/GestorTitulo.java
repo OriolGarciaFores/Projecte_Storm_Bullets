@@ -13,7 +13,7 @@ import principal.maquinaestado.estados.menujuego.MenuConfigurar;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
 public class GestorTitulo implements EstadoJuego {
 
-    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_PORTADA);
+    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
 
     private final EstructuraMenu estructuraMenu;
 
@@ -109,30 +109,5 @@ public class GestorTitulo implements EstadoJuego {
         }
         
     }
-
-   /* private void reproducir() {
-        try {
-            InputStream musica = getClass().getResourceAsStream(Constantes.RUTA_AUDIO_TITULO);
-            InputStream bufferedIn = new BufferedInputStream(musica);
-            AudioInputStream audio = AudioSystem.getAudioInputStream(bufferedIn);
-            mi_reproductor.AbrirControl(audio);
-            mi_reproductor.Play();
-            mi_reproductor.setGain(Constantes.volumen);
-            mi_reproductor.setPan();
-        } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
-    }
-
-    private void pararReproducir() {
-        try {
-            mi_reproductor.Stop();
-        } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
-    }*/
-    
-  
-   
 
 }

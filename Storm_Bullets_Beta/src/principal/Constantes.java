@@ -25,7 +25,7 @@ public class Constantes {
    
    public static final String RUTA_MAPA = "/texto/prueba.map";
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/portada2.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    
