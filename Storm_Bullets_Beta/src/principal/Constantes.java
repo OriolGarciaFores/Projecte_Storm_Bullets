@@ -29,6 +29,7 @@ public class Constantes {
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_IMAGEN_CONTROLES = "/imagenes/fondos/wasd.png";
+   public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc.jpg";
    
    public static Musicas m = new Musicas();
    

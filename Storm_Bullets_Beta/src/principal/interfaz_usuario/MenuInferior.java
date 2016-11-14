@@ -25,6 +25,7 @@ public class MenuInferior {
     private Color rojoOscuro;
     private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_AVATAR);
     private static final BufferedImage controles = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_CONTROLES);
+    private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
     public MenuInferior(final Jugador jugador){
         
         int altoMenu = 64;
@@ -94,6 +95,9 @@ public class MenuInferior {
         final int anchoRanura = 32;
         //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(controles, 50, 50), Constantes.ANCHO_JUEGO - 100, areaInventario.y);
+        DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 100, areaInventario.y + 60);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, 32, 32), Constantes.ANCHO_JUEGO - 150, areaInventario.y + 10);
+        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 250, areaInventario.y + 30);
     }
     
     private String tiempo() throws InterruptedException{
