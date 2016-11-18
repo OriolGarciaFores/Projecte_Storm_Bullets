@@ -13,7 +13,7 @@ import principal.maquinaestado.estados.menujuego.MenuConfigurar;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
 public class GestorTitulo implements EstadoJuego {
 
-    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_PORTADA);
+    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
 
     private final EstructuraMenu estructuraMenu;
 

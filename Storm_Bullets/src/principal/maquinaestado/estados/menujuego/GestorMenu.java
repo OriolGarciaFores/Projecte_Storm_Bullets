@@ -2,8 +2,11 @@ package principal.maquinaestado.estados.menujuego;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.control.GestorControles;
+import principal.herramientas.CargadorRecursos;
+import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
 
 public class GestorMenu implements EstadoJuego {
@@ -13,7 +16,8 @@ public class GestorMenu implements EstadoJuego {
     private final SeccionMenu[] secciones;
 
     private SeccionMenu seccionActual;
-
+     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
+    
     public GestorMenu() {
         estructuraMenu = new EstructuraMenu();
         secciones = new SeccionMenu[2];
@@ -35,6 +39,7 @@ public class GestorMenu implements EstadoJuego {
 
     public void dibujar(Graphics g) {
         estructuraMenu.dibujar(g);
+        DibujoDebug.dibujarImagen(g, image, 0, 0);
         cambiarseccion();
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {

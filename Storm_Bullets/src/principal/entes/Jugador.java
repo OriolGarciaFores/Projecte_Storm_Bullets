@@ -35,6 +35,7 @@ public class Jugador {
     private int estado;
     
     private int vidaJugador;
+    private int puntuacion;
 
     private Mapa mapa;
 
@@ -52,7 +53,7 @@ public class Jugador {
         estado = 1;
         
         vidaJugador = 300;
-
+        puntuacion = 0;
         this.mapa = mapa;
     }
 
@@ -317,8 +318,14 @@ public class Jugador {
     public String obtenerVidaJugador(){
         String vidajugador;
         
-        vidajugador = String.valueOf(vidaJugador);
         vidajugador = Integer.toString(vidaJugador);
         return vidajugador;
+    }
+    
+    public String obtenerPuntuacionJugador(){
+        String puntos;
+        
+        puntos = Integer.toString(puntuacion);
+        return puntos;
     }
 }

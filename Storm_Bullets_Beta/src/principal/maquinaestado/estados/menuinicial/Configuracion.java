@@ -12,7 +12,6 @@ import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
-import principal.reproductor.Reproductor;
 
 public class Configuracion implements EstadoJuego {
 

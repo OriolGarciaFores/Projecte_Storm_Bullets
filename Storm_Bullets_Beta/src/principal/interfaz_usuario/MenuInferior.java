@@ -24,7 +24,10 @@ public class MenuInferior {
     private Color negroDesaturado;
     private Color rojoOscuro;
     private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_AVATAR);
-    private static final BufferedImage controles = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_CONTROLES);
+    private static final BufferedImage w = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_W);
+    private static final BufferedImage a = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_A);
+    private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
+    private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
     public MenuInferior(final Jugador jugador){
         
@@ -40,6 +43,7 @@ public class MenuInferior {
         dibujarAreaInventario(g);
         dibujarBarraVitalidad(g, jugador);
         dibujarRanurasObjetos(g);
+        dibujarPuntuaciones(g, jugador);
         dibujarAvatar(g);
         dibujarControles(g);
     }
@@ -53,17 +57,22 @@ public class MenuInferior {
         final int medidaVertical = 10;
         final int anchoTotal = 200;
        
-        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 50, areaInventario.y + medidaVertical, anchoTotal, medidaVertical, rojoOscuro);
+        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 60, areaInventario.y + medidaVertical, anchoTotal, medidaVertical, rojoOscuro);
         
         g.setColor(Color.white);
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2);
         DibujoDebug.dibujarString(g, "Jugador", areaInventario.x + 5 , areaInventario.y + 54);
-        DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 150, areaInventario.y + medidaVertical * 2);
+        DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 160, areaInventario.y + medidaVertical * 2);
        /* try {
             DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);
         } catch (InterruptedException ex) {
             Logger.getLogger(MenuInferior.class.getName()).log(Level.SEVERE, null, ex);
         }*/
+    }
+    
+    private void dibujarPuntuaciones(final Graphics g, Jugador jugador){
+        DibujoDebug.dibujarString(g, "Puntuación: " + jugador.obtenerPuntuacionJugador(), areaInventario.x + 60 , areaInventario.y + 35);
+        DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60 , areaInventario.y + 50);
     }
     
     private void dibujarRanurasObjetos(final Graphics g){
@@ -77,9 +86,9 @@ public class MenuInferior {
         g.setColor(Color.WHITE);
         for(int i = 0; i < numeroRanuras; i++){
             int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
-            Rectangle ranura = new Rectangle(xActual, areaInventario.y + 4, anchoRanura, anchoRanura);
+            Rectangle ranura = new Rectangle(xActual - 140, areaInventario.y + 4, anchoRanura, anchoRanura);
             DibujoDebug.dibujarRectanguloRelleno(g, ranura);
-            DibujoDebug.dibujarString(g, "Q", xActual + 13, areaInventario.y + 54);
+            DibujoDebug.dibujarString(g, "Q", xActual - 130, areaInventario.y + 54);
         }
         
     }
@@ -92,12 +101,15 @@ public class MenuInferior {
     }
     
     private void dibujarControles(final Graphics g){
-        final int anchoRanura = 32;
+        final int anchoTecla = 32;
         //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
-        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(controles, 50, 50), Constantes.ANCHO_JUEGO - 100, areaInventario.y);
-        DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 100, areaInventario.y + 60);
-        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, 32, 32), Constantes.ANCHO_JUEGO - 150, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 250, areaInventario.y + 30);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(w, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 220, areaInventario.y + 10);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(a, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 180, areaInventario.y+ 10);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(s, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 140, areaInventario.y + 10);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(d, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 100, areaInventario.y + 10);
+        DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 300, areaInventario.y + 10);
+        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 330, areaInventario.y + 55);
     }
     
     private String tiempo() throws InterruptedException{

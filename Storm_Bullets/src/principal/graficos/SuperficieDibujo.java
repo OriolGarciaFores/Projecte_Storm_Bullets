@@ -47,6 +47,7 @@ public class SuperficieDibujo extends Canvas {
            g.scale(Constantes.FACTOR_ESCALADO_X, Constantes.FACTOR_ESCALADO_Y);
            
         }
+        
         ge.dibujar(g);
         g.setColor(Color.green);
         g.drawString("FPS: " + GestorPrincipal.obtenerFPS(), 20, 60);

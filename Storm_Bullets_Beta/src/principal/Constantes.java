@@ -9,8 +9,8 @@ public class Constantes {
    public static final int LADO_SPRITE = 32; 
    public static final int LADO_TILE = 32;
    
-   public static final int ANCHO_JUEGO = 896;//850  896
-   public static final int ALTO_JUEGO = 504;//480  504
+   public static final int ANCHO_JUEGO = 896;//  896
+   public static final int ALTO_JUEGO = 504;// 504
    
    private static Dimension sizeScreen = Toolkit.getDefaultToolkit().getScreenSize();
    public static int ANCHO_PANTALLA_COMPLETA = sizeScreen.width; //Resolucion del monitor.
@@ -25,11 +25,18 @@ public class Constantes {
    
    public static final String RUTA_MAPA = "/texto/prueba.map";
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/portada2.jpg";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
-   public static final String RUTA_IMAGEN_CONTROLES = "/imagenes/fondos/wasd.png";
-   public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc.jpg";
+   
+   
+   
+   //Imagenes de los controles del juego.
+   public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";
+   public static final String RUTA_IMAGEN_A = "/imagenes/fondos/a.jpg";
+   public static final String RUTA_IMAGEN_S = "/imagenes/fondos/s.jpg";
+   public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
+   public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
    
    public static Musicas m = new Musicas();
    

@@ -2,8 +2,10 @@ package principal.herramientas;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 public class DibujoDebug {
@@ -18,6 +20,17 @@ public class DibujoDebug {
     public static void dibujarImagen(final Graphics g, final BufferedImage img, final Point p) {
         objetosDibujados++;
         g.drawImage(img, p.x, p.y, null);
+    }
+    
+     public static BufferedImage imagenRedimensionada(BufferedImage bufferedImage, int newW, int newH) {
+        int w = bufferedImage.getWidth();
+        int h = bufferedImage.getHeight();
+        BufferedImage bufim = new BufferedImage(newW, newH, bufferedImage.getType());
+        Graphics2D g = bufim.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.drawImage(bufferedImage, 0, 0, newW, newH, 0, 0, w, h, null);
+        g.dispose();
+        return bufim;
     }
 
     public static void dibujarString(final Graphics g, final String s, final int x, final int y) {
