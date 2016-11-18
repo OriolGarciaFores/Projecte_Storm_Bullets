@@ -19,7 +19,7 @@ public class MenuInferior {
     //Pruebas.
     private Integer minutos = 0 , segundos = 0;
     private String min="00", seg="00";
-    private int NS_POR_SEGUNDO;
+    private int MILISEC;
     //Fin de pruebas.
     private Color negroDesaturado;
     private Color rojoOscuro;
@@ -59,11 +59,11 @@ public class MenuInferior {
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2);
         DibujoDebug.dibujarString(g, "Jugador", areaInventario.x + 5 , areaInventario.y + 54);
         DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 150, areaInventario.y + medidaVertical * 2);
-        try {
+       /* try {
             DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);
         } catch (InterruptedException ex) {
             Logger.getLogger(MenuInferior.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     
     private void dibujarRanurasObjetos(final Graphics g){
@@ -101,17 +101,17 @@ public class MenuInferior {
     }
     
     private String tiempo() throws InterruptedException{
-                
+                //Arreglar el metodo. En vez de dibujarlo, coger el el tiempo local y cuando termine la partida o muera volver a coger otro y restar. Dar valor del tiempo transcurrido.
                       
                 //Incrementamos 4 milesimas de segundo
                 
-                 NS_POR_SEGUNDO++;
+                 MILISEC++;
                  
                 //Cuando llega a 1000 osea 1 segundo aumenta 1 segundo
                 //y las milesimas de segundo de nuevo a 0
-                if( NS_POR_SEGUNDO == 700)
+                if( MILISEC == 1000)
                 {
-                    NS_POR_SEGUNDO = 0;
+                    MILISEC = 0;
                     segundos += 1;
                     if(segundos < 10){
                         seg = "0" + String.valueOf(segundos);
@@ -134,8 +134,7 @@ public class MenuInferior {
                         }
                     }
                 }
-                 
-                
+           
         return min + ":" + seg ;
     
             
