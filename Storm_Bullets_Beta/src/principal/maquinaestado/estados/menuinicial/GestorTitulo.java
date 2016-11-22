@@ -14,7 +14,7 @@ import principal.maquinaestado.estados.menujuego.SeccionMenu;
 public class GestorTitulo implements EstadoJuego {
 
     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
-    private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_TITOL);
+    private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     private final EstructuraMenu estructuraMenu;
 
@@ -80,7 +80,7 @@ public class GestorTitulo implements EstadoJuego {
     }
 
     public void dibujar(Graphics g) {
-        DibujoDebug.dibujarImagen(g, image, 0, 0);
+       // DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
         estructuraMenu.dibujar(g);
         for (int i = 0; i < secciones.length; i++) {
