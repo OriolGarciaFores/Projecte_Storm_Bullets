@@ -80,7 +80,7 @@ public class GestorTitulo implements EstadoJuego {
     }
 
     public void dibujar(Graphics g) {
-       // DibujoDebug.dibujarImagen(g, image, 0, 0);
+        DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
         estructuraMenu.dibujar(g);
         for (int i = 0; i < secciones.length; i++) {
