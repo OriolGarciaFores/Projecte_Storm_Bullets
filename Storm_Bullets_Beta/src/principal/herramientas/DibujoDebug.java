@@ -1,6 +1,7 @@
 package principal.herramientas;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -36,6 +37,7 @@ public class DibujoDebug {
 
     public static void dibujarString(final Graphics g, final String s, final int x, final int y) {
         objetosDibujados++;
+       // g.setFont(new Font("TimesRoman", Font.PLAIN, 8));
         g.drawString(s, x, y);
     }
 
@@ -48,6 +50,15 @@ public class DibujoDebug {
         objetosDibujados++;
         g.setColor(c);
         g.drawString(s, x, y);
+        
+    }
+    
+    public static void dibujarStringTamanyo(final Graphics g, final String s, final int x, final int y, final Color c, final int tamanyo){
+        objetosDibujados++;
+        g.setColor(c);
+        //g.setFont(new Font("TimesRoman", Font.PLAIN, tamanyo));
+        g.drawString(s, x, y);
+        
     }
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final Color c) {

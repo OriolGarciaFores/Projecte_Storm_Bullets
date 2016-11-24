@@ -10,6 +10,7 @@ import java.awt.image.BufferStrategy;
 import principal.Constantes;
 import principal.GestorPrincipal;
 import principal.control.GestorControles;
+import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.GestorEstados;
 
 public class SuperficieDibujo extends Canvas {
