@@ -12,8 +12,8 @@ public class EstructuraMenu {
     public EstructuraMenu() {
         MARGEN_HORIZONTAL_ETIQUETAS = 20;
         MARGEN_VERTICAL_ETIQUETAS = 20;
-        ANCHO_ETIQUETAS = 100;
-        ALTO_ETIQUETAS = 20;
+        ANCHO_ETIQUETAS = 200;
+        ALTO_ETIQUETAS = 60;
     }
     
     

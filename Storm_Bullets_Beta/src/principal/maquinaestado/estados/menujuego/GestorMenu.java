@@ -17,6 +17,7 @@ public class GestorMenu implements EstadoJuego {
 
     private SeccionMenu seccionActual;
     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
+    private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     public GestorMenu() {
         estructuraMenu = new EstructuraMenu();
@@ -40,6 +41,7 @@ public class GestorMenu implements EstadoJuego {
     public void dibujar(Graphics g) {
         estructuraMenu.dibujar(g);
         DibujoDebug.dibujarImagen(g, image, 0, 0);
+        DibujoDebug.dibujarImagen(g, titol, 120, 0);
         cambiarseccion();
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {

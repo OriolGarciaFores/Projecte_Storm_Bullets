@@ -35,31 +35,26 @@ public class DibujoDebug {
         return bufim;
     }
 
-    public static void dibujarString(final Graphics g, final String s, final int x, final int y) {
+    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final int mida) {
         objetosDibujados++;
-       // g.setFont(new Font("TimesRoman", Font.PLAIN, 8));
+        g.setFont(new Font("Times New Roman", Font.PLAIN, mida));
         g.drawString(s, x, y);
     }
 
-    public static void dibujarString(final Graphics g, final String s, final Point p) {
+    public static void dibujarString(final Graphics g, final String s, final Point p, final int mida) {
         objetosDibujados++;
+         g.setFont(new Font("Times New Roman", Font.PLAIN, mida));
         g.drawString(s, p.x, p.y);
     }
 
-    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c) {
+    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c, final int mida) {
         objetosDibujados++;
+        g.setFont(new Font("Almonte Snow", Font.PLAIN, mida));
         g.setColor(c);
         g.drawString(s, x, y);
         
     }
     
-    public static void dibujarStringTamanyo(final Graphics g, final String s, final int x, final int y, final Color c, final int tamanyo){
-        objetosDibujados++;
-        g.setColor(c);
-        //g.setFont(new Font("TimesRoman", Font.PLAIN, tamanyo));
-        g.drawString(s, x, y);
-        
-    }
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final Color c) {
         objetosDibujados++;
