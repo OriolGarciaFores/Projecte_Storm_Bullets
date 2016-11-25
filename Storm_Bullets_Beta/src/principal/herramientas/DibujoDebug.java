@@ -38,13 +38,13 @@ public class DibujoDebug {
 
     public static void dibujarString(final Graphics g, final String s, final int x, final int y, final int mida) {
         objetosDibujados++;
-        g.setFont(new Font("Times New Roman", Font.PLAIN, mida));
+        g.setFont(new Font("Arial", Font.PLAIN, mida));
         g.drawString(s, x, y);
     }
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final int mida) {
         objetosDibujados++;
-         g.setFont(new Font("Times New Roman", Font.PLAIN, mida));
+         g.setFont(new Font("Arial", Font.PLAIN, mida));
         g.drawString(s, p.x, p.y);
     }
 
