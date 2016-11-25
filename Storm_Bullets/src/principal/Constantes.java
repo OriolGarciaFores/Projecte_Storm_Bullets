@@ -2,7 +2,9 @@
 package principal;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import principal.herramientas.CargadorRecursos;
 import principal.reproductor.Musicas;
 
 public class Constantes {
@@ -28,6 +30,7 @@ public class Constantes {
    public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
+   public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
    
    //Imagenes de los controles del juego.
@@ -39,4 +42,5 @@ public class Constantes {
    
    public static Musicas m = new Musicas();
    
+   public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
 }

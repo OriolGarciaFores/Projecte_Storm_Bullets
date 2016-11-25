@@ -12,18 +12,17 @@ import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
-import principal.reproductor.Reproductor;
 
 public class Configuracion implements EstadoJuego {
 
-    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_PORTADA);
-
+    private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
+    private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
+    
     private final EstructuraMenu estructuraMenu;
 
     private final SeccionMenu[] secciones;
 
     private SeccionMenu seccionActual;
-    
 
     public Configuracion() {
         estructuraMenu = new EstructuraMenu();
@@ -31,7 +30,7 @@ public class Configuracion implements EstadoJuego {
 
         final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new Volumen("Volumen "+ Constantes.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
+        secciones[0] = new Volumen("Volumen " + Constantes.m.obtenerPorcentajeVolumen() + "%", etiquetaVolumen);
 
         final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
@@ -60,6 +59,7 @@ public class Configuracion implements EstadoJuego {
 
     public void dibujar(Graphics g) {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
+        DibujoDebug.dibujarImagen(g, titol, 120, 0);
         estructuraMenu.dibujar(g);
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
@@ -71,7 +71,7 @@ public class Configuracion implements EstadoJuego {
                     } catch (Exception ex) {
                         Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {

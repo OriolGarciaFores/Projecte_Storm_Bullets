@@ -26,7 +26,7 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-        //System.setProperty("sun.java2d.opengl", "true"); //Para mejorar rendimiento en portatiles. Obliga a usar la tarjeta grafica en vez de la integrada.
+       //System.setProperty("sun.java2d.opengl", "true"); //Para mejorar rendimiento en portatiles. Obliga a usar la tarjeta grafica en vez de la integrada.
         //Crear una excepcion en caso de no tener opengl.
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 

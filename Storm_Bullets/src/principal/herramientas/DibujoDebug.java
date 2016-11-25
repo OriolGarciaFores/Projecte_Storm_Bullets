@@ -1,12 +1,14 @@
 package principal.herramientas;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import principal.Constantes;
 
 public class DibujoDebug {
 
@@ -33,20 +35,24 @@ public class DibujoDebug {
         return bufim;
     }
 
-    public static void dibujarString(final Graphics g, final String s, final int x, final int y) {
+    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final int mida) {
         objetosDibujados++;
+        g.setFont(new Font("Arial", Font.PLAIN, mida));
         g.drawString(s, x, y);
     }
 
-    public static void dibujarString(final Graphics g, final String s, final Point p) {
+    public static void dibujarString(final Graphics g, final String s, final Point p, final int mida) {
         objetosDibujados++;
+         g.setFont(new Font("Arial", Font.PLAIN, mida));
         g.drawString(s, p.x, p.y);
     }
 
-    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c) {
+    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c, final int mida) {
         objetosDibujados++;
+        g.setFont(Constantes.FUENTE_ALMOSNOW);
         g.setColor(c);
         g.drawString(s, x, y);
+        
     }
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final Color c) {

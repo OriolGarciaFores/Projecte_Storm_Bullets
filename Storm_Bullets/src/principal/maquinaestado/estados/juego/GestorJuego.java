@@ -25,8 +25,8 @@ public class GestorJuego implements EstadoJuego {
         jugador.dibujar(g);
         menuInferior.dibujar(g, jugador);
         g.setColor(Color.red);
-        DibujoDebug.dibujarString(g, "X = " + jugador.obtenerPosicionX(), 20, 20);
-        DibujoDebug.dibujarString(g, "Y = " + jugador.obtenerPosicionY(), 20, 30);
+        DibujoDebug.dibujarString(g, "X = " + jugador.obtenerPosicionX(), 20, 20, 10);
+        DibujoDebug.dibujarString(g, "Y = " + jugador.obtenerPosicionY(), 20, 30, 10);
     }
 
 }

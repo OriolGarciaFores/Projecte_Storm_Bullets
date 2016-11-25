@@ -11,16 +11,17 @@ import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.MenuConfigurar;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
+
 public class GestorTitulo implements EstadoJuego {
 
     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
+    private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     private final EstructuraMenu estructuraMenu;
 
     private final SeccionMenu[] secciones;
 
     private SeccionMenu seccionActual;
-    
 
     public GestorTitulo() {
         estructuraMenu = new EstructuraMenu();
@@ -80,59 +81,31 @@ public class GestorTitulo implements EstadoJuego {
 
     public void dibujar(Graphics g) {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
+        DibujoDebug.dibujarImagen(g, titol, 120, 0);
         estructuraMenu.dibujar(g);
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
-                 
-                
+
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.tituloActivo = false;
                     Constantes.m.pararReproducir();
                 }
                 if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
-                   GestorControles.teclado.config = true;
-                   GestorControles.teclado.accion.teclaLiberada();
+                    GestorControles.teclado.config = true;
+                    GestorControles.teclado.accion.teclaLiberada();
                 }
-                
+
                 if (seccionActual == secciones[3] && GestorControles.teclado.accion.estaPulsada()) {
                     seccionActual.actualizar();
                 }
-                
-                
+
             } else {
                 secciones[i].dibujarEtiquetaInactiva(g);
             }
-            
-            
 
         }
-        
+
     }
-
-   /* private void reproducir() {
-        try {
-            InputStream musica = getClass().getResourceAsStream(Constantes.RUTA_AUDIO_TITULO);
-            InputStream bufferedIn = new BufferedInputStream(musica);
-            AudioInputStream audio = AudioSystem.getAudioInputStream(bufferedIn);
-            mi_reproductor.AbrirControl(audio);
-            mi_reproductor.Play();
-            mi_reproductor.setGain(Constantes.volumen);
-            mi_reproductor.setPan();
-        } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
-    }
-
-    private void pararReproducir() {
-        try {
-            mi_reproductor.Stop();
-        } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
-    }*/
-    
-  
-   
 
 }

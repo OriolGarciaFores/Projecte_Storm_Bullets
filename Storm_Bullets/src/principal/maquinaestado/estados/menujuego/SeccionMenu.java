@@ -19,14 +19,14 @@ public abstract class SeccionMenu {
 
     public abstract void dibujar(final Graphics g);
 
-    public void dibujarEtiquetaInactiva(final Graphics g) {
-        DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.WHITE);
-        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 12, Color.BLACK);
+     public void dibujarEtiquetaInactiva(final Graphics g) {
+       // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.WHITE);
+        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x - 100, etiquetaMenu.y + 20, Color.WHITE, 45);
     }
 
     public void dibujarEtiquetaActiva(final Graphics g) {
-        DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.RED);
-        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 12, Color.BLACK);
+       // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.RED);
+        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x - 100, etiquetaMenu.y + 20, Color.YELLOW, 45);
     }
 
     public String obtenerNombreSeccion() {

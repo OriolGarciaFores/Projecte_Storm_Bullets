@@ -3,7 +3,7 @@ package principal.graficos;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
@@ -49,6 +49,7 @@ public class SuperficieDibujo extends Canvas {
         }
         
         ge.dibujar(g);
+        g.setFont(new Font("Arial", Font.PLAIN, 10));
         g.setColor(Color.green);
         g.drawString("FPS: " + GestorPrincipal.obtenerFPS(), 20, 60);
         g.drawString("APS: " + GestorPrincipal.obtenerAPS(), 20, 75);

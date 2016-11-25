@@ -1,5 +1,7 @@
 package principal.herramientas;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -10,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class CargadorRecursos {
@@ -85,5 +89,24 @@ public class CargadorRecursos {
         }
 
         return contenido;
+    }
+    
+     public static Font cargarFuente(final String ruta){
+        Font fuente = null;
+        
+        InputStream entradaBytes = ClassLoader.class.getResourceAsStream(ruta);
+        
+        try {
+            fuente = Font.createFont(Font.TRUETYPE_FONT, entradaBytes);
+            
+        } catch (FontFormatException ex) {
+            System.out.println("Error de formato: " + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CargadorRecursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        fuente = fuente.deriveFont(45f);
+        
+        return fuente;
     }
 }

@@ -3,7 +3,6 @@ package principal.maquinaestado.estados.menujuego;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import principal.Constantes;
 import principal.herramientas.DibujoDebug;
 
 public abstract class SeccionMenu {
