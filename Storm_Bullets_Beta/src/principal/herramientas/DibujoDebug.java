@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import principal.Constantes;
 
 public class DibujoDebug {
 
@@ -49,7 +50,8 @@ public class DibujoDebug {
 
     public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c, final int mida) {
         objetosDibujados++;
-        g.setFont(new Font("Almonte Snow", Font.PLAIN, mida));
+        g.setFont(Constantes.FUENTE_ALMOSNOW);
+        
         g.setColor(c);
         g.drawString(s, x, y);
         

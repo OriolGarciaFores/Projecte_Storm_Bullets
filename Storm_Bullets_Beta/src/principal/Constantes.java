@@ -2,7 +2,9 @@
 package principal;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import principal.herramientas.CargadorRecursos;
 import principal.reproductor.Musicas;
 
 public class Constantes {
@@ -40,5 +42,7 @@ public class Constantes {
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
    
    public static Musicas m = new Musicas();
+   
+   public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
    
 }
