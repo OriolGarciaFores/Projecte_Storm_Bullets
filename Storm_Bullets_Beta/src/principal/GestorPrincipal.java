@@ -89,16 +89,19 @@ public class GestorPrincipal {
     }
 
     private void actualizar() {
-        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
+        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(1);
 
-        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo) {
+        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(2);
         }
-        if(GestorControles.teclado.tituloActivo && GestorControles.teclado.config){
+        if(GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
             ge.cambiarEstadoActual(3);
-        } else if(GestorControles.teclado.tituloActivo && !GestorControles.teclado.config){
+        } else if(GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
             ge.cambiarEstadoActual(0);
+        }
+        if(GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config){
+            ge.cambiarEstadoActual(4);
         }
         
         ge.actualizar();

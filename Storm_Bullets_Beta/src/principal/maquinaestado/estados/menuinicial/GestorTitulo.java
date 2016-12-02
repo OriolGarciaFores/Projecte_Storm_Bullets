@@ -89,6 +89,7 @@ public class GestorTitulo implements EstadoJuego {
                  
                 
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                    GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;
                     Constantes.m.pararReproducir();
                 }

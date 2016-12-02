@@ -16,6 +16,7 @@ public class Teclado implements KeyListener {
     public boolean menuActivo = false;
     public boolean tituloActivo = true;
     public boolean config = false;
+    public boolean nombrarJugador = false;
 
    
     public void keyPressed(KeyEvent e) {
