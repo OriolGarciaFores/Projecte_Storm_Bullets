@@ -11,6 +11,7 @@ import principal.Constantes;
 import principal.entes.Jugador;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
+import principal.maquinaestado.estados.menuinicial.NombrarJugador;
 
 
 public class MenuInferior {
@@ -36,7 +37,7 @@ public class MenuInferior {
         bordeAreaInventario = new Rectangle(areaInventario.x, areaInventario.y - 1, areaInventario.width, 1);
         
         negroDesaturado = new Color(23, 23, 23);
-        rojoOscuro = new Color(150, 0, 0);
+        rojoOscuro = new Color(150, 0, 0); 
     }
     
     public void dibujar(final Graphics g, final Jugador jugador) {
@@ -61,7 +62,7 @@ public class MenuInferior {
         
         g.setColor(Color.white);
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2 - 1, 12);
-        DibujoDebug.dibujarString(g, "Jugador", areaInventario.x + 5 , areaInventario.y + 54, 12);
+        DibujoDebug.dibujarString(g, jugador.getNomJugador(), areaInventario.x + 5 , areaInventario.y + 54, 12);
         DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 160, areaInventario.y + medidaVertical * 2 - 1, 12);
        /* try {
             DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);

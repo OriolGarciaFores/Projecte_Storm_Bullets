@@ -5,11 +5,10 @@
  */
 package principal.maquinaestado.estados.menuinicial;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import principal.Constantes;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
@@ -28,20 +27,17 @@ public class NombrarJugador implements EstadoJuego {
     private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     private final EstructuraMenu estructuraMenu;
-
+    private final Rectangle r = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, 100, 25);
     private final SeccionMenu[] secciones;
-
+    private static String lletra = "";
     private SeccionMenu seccionActual;
 
     public NombrarJugador() {
         estructuraMenu = new EstructuraMenu();
         secciones = new SeccionMenu[1];
 
-        final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
-
-        secciones[0] = new Volumen("Continuar", etiquetaVolumen);
-
         
+        secciones[0] = new Volumen("Continuar", null);
 
         seccionActual = secciones[0];
     }
@@ -53,26 +49,51 @@ public class NombrarJugador implements EstadoJuego {
                 GestorControles.teclado.accion.teclaLiberada();
             }
         }
+
     }
 
     public void dibujar(Graphics g) {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
-        estructuraMenu.dibujar(g);
+        DibujoDebug.dibujarRectanguloRelleno(g, r, Color.white);
+        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 10, Color.BLACK, 12);
+        Constantes.nomJugador = nombre();
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
-                secciones[i].dibujarEtiquetaActiva(g);
+
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.nombrarJugador = false;
+                    GestorControles.teclado.menuActivo = false;
                     GestorControles.teclado.accion.teclaLiberada();
 
                 }
 
-            } else {
-                secciones[i].dibujarEtiquetaInactiva(g);
             }
 
         }
+
+    }
+
+    public String escribir() {
+        if (GestorControles.teclado.abajo.estaPulsada()) {
+            lletra += "S";
+            GestorControles.teclado.abajo.teclaLiberada();
+        }
+        if (GestorControles.teclado.arriba.estaPulsada()) {
+            lletra += "W";
+            GestorControles.teclado.arriba.teclaLiberada();
+        }
+        if (GestorControles.teclado.Ñ.estaPulsada()) {
+            lletra += "Ñ";
+            GestorControles.teclado.Ñ.teclaLiberada();
+        }
+        
+        return lletra;
+    }
+    
+    public static String nombre(){
+        
+        return lletra;
     }
 
 }

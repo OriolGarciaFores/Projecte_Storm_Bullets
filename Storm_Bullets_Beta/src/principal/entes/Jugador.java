@@ -36,6 +36,7 @@ public class Jugador {
     
     private int vidaJugador;
     private int puntuacion;
+    private String nomJugador;
 
     private Mapa mapa;
 
@@ -54,7 +55,8 @@ public class Jugador {
         
         vidaJugador = 300;
         puntuacion = 0;
-
+        nomJugador = "HGGG";
+   
         this.mapa = mapa;
     }
 
@@ -329,4 +331,15 @@ public class Jugador {
         puntos = Integer.toString(puntuacion);
         return puntos;
     }
+
+    public String getNomJugador() {
+        return nomJugador;
+    }
+
+    public void setNomJugador(String nomJugador) {
+        this.nomJugador = nomJugador;
+    }
+
+    
+    
 }
