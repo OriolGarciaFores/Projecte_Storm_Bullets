@@ -36,7 +36,6 @@ public class NombrarJugador implements EstadoJuego {
         estructuraMenu = new EstructuraMenu();
         secciones = new SeccionMenu[1];
 
-        
         secciones[0] = new Volumen("Continuar", null);
 
         seccionActual = secciones[0];
@@ -75,24 +74,133 @@ public class NombrarJugador implements EstadoJuego {
     }
 
     public String escribir() {
-        if (GestorControles.teclado.abajo.estaPulsada()) {
-            lletra += "S";
-            GestorControles.teclado.abajo.teclaLiberada();
+
+        if (lletra.length() <= 6) {
+            if (GestorControles.teclado.Q.estaPulsada()) {
+                lletra += "Q";
+                GestorControles.teclado.Q.teclaLiberada();
+            }
+            if (GestorControles.teclado.arriba.estaPulsada()) {
+                lletra += "W";
+                GestorControles.teclado.arriba.teclaLiberada();
+            }
+            if (GestorControles.teclado.E.estaPulsada()) {
+                lletra += "E";
+                GestorControles.teclado.E.teclaLiberada();
+            }
+            if (GestorControles.teclado.R.estaPulsada()) {
+                lletra += "R";
+                GestorControles.teclado.R.teclaLiberada();
+            }
+            if (GestorControles.teclado.T.estaPulsada()) {
+                lletra += "T";
+                GestorControles.teclado.T.teclaLiberada();
+            }
+            if (GestorControles.teclado.Y.estaPulsada()) {
+                lletra += "Y";
+                GestorControles.teclado.Y.teclaLiberada();
+            }
+            if (GestorControles.teclado.U.estaPulsada()) {
+                lletra += "U";
+                GestorControles.teclado.U.teclaLiberada();
+            }
+            if (GestorControles.teclado.I.estaPulsada()) {
+                lletra += "I";
+                GestorControles.teclado.I.teclaLiberada();
+            }
+            if (GestorControles.teclado.O.estaPulsada()) {
+                lletra += "O";
+                GestorControles.teclado.O.teclaLiberada();
+            }
+            if (GestorControles.teclado.P.estaPulsada()) {
+                lletra += "P";
+                GestorControles.teclado.P.teclaLiberada();
+            }
+            if (GestorControles.teclado.izquierda.estaPulsada()) {
+                lletra += "A";
+                GestorControles.teclado.izquierda.teclaLiberada();
+            }
+            if (GestorControles.teclado.abajo.estaPulsada()) {
+                lletra += "S";
+                GestorControles.teclado.abajo.teclaLiberada();
+            }
+            if (GestorControles.teclado.derecha.estaPulsada()) {
+                lletra += "D";
+                GestorControles.teclado.derecha.teclaLiberada();
+            }
+            if (GestorControles.teclado.F.estaPulsada()) {
+                lletra += "F";
+                GestorControles.teclado.F.teclaLiberada();
+            }
+            if (GestorControles.teclado.G.estaPulsada()) {
+                lletra += "G";
+                GestorControles.teclado.G.teclaLiberada();
+            }
+            if (GestorControles.teclado.H.estaPulsada()) {
+                lletra += "H";
+                GestorControles.teclado.H.teclaLiberada();
+            }
+            if (GestorControles.teclado.J.estaPulsada()) {
+                lletra += "J";
+                GestorControles.teclado.J.teclaLiberada();
+            }
+            if (GestorControles.teclado.K.estaPulsada()) {
+                lletra += "K";
+                GestorControles.teclado.K.teclaLiberada();
+            }
+            if (GestorControles.teclado.L.estaPulsada()) {
+                lletra += "L";
+                GestorControles.teclado.L.teclaLiberada();
+            }
+            if (GestorControles.teclado.Ñ.estaPulsada()) {
+                lletra += "Ñ";
+                GestorControles.teclado.Ñ.teclaLiberada();
+            }
+            if (GestorControles.teclado.Z.estaPulsada()) {
+                lletra += "Z";
+                GestorControles.teclado.Z.teclaLiberada();
+            }
+            if (GestorControles.teclado.X.estaPulsada()) {
+                lletra += "X";
+                GestorControles.teclado.X.teclaLiberada();
+            }
+            if (GestorControles.teclado.C.estaPulsada()) {
+                lletra += "C";
+                GestorControles.teclado.C.teclaLiberada();
+            }
+            if (GestorControles.teclado.V.estaPulsada()) {
+                lletra += "V";
+                GestorControles.teclado.V.teclaLiberada();
+            }
+            if (GestorControles.teclado.B.estaPulsada()) {
+                lletra += "B";
+                GestorControles.teclado.B.teclaLiberada();
+            }
+            if (GestorControles.teclado.N.estaPulsada()) {
+                lletra += "N";
+                GestorControles.teclado.N.teclaLiberada();
+            }
+            if (GestorControles.teclado.M.estaPulsada()) {
+                lletra += "M";
+                GestorControles.teclado.M.teclaLiberada();
+            }
+
         }
-        if (GestorControles.teclado.arriba.estaPulsada()) {
-            lletra += "W";
-            GestorControles.teclado.arriba.teclaLiberada();
+
+        if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() > 0) {
+            int largo;
+            largo = lletra.length(); //maxim seran 6.
+
+            lletra = lletra.substring(0, largo - 1);
+
+            GestorControles.teclado.borrar.teclaLiberada();
         }
-        if (GestorControles.teclado.Ñ.estaPulsada()) {
-            lletra += "Ñ";
-            GestorControles.teclado.Ñ.teclaLiberada();
-        }
-        
+
         return lletra;
     }
-    
-    public static String nombre(){
-        
+
+    public static String nombre() {
+
         return lletra;
     }
 

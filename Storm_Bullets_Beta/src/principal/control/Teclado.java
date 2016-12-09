@@ -12,7 +12,7 @@ public class Teclado implements KeyListener {
     public Tecla flechaArriba = new Tecla();
     public Tecla flechaAbajo = new Tecla();
     public Tecla accion = new Tecla();
-   
+
     //Teclas de escribir.
     public Tecla Q = new Tecla();
     public Tecla E = new Tecla();
@@ -37,14 +37,13 @@ public class Teclado implements KeyListener {
     public Tecla B = new Tecla();
     public Tecla N = new Tecla();
     public Tecla M = new Tecla();
-    
-    
+    public Tecla borrar = new Tecla();
+
     public boolean menuActivo = false;
     public boolean tituloActivo = true;
     public boolean config = false;
     public boolean nombrarJugador = false;
 
-   
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -60,7 +59,7 @@ public class Teclado implements KeyListener {
                 derecha.teclaPulsada();
                 break;
             case KeyEvent.VK_ESCAPE:
-                menuActivo =! menuActivo;
+                menuActivo = !menuActivo;
                 break;
             case KeyEvent.VK_ENTER:
                 accion.teclaPulsada();
@@ -71,81 +70,84 @@ public class Teclado implements KeyListener {
             case KeyEvent.VK_DOWN:
                 flechaAbajo.teclaPulsada();
                 break;
-                case KeyEvent.VK_Q:
+            case KeyEvent.VK_Q:
                 Q.teclaPulsada();
                 break;
-                case KeyEvent.VK_E:
+            case KeyEvent.VK_E:
                 E.teclaPulsada();
                 break;
-                case KeyEvent.VK_R:
+            case KeyEvent.VK_R:
                 R.teclaPulsada();
                 break;
-                case KeyEvent.VK_T:
+            case KeyEvent.VK_T:
                 T.teclaPulsada();
                 break;
-                case KeyEvent.VK_Y:
+            case KeyEvent.VK_Y:
                 Y.teclaPulsada();
                 break;
-                case KeyEvent.VK_U:
+            case KeyEvent.VK_U:
                 U.teclaPulsada();
                 break;
-                case KeyEvent.VK_I:
+            case KeyEvent.VK_I:
                 I.teclaPulsada();
                 break;
-                case KeyEvent.VK_O:
+            case KeyEvent.VK_O:
                 O.teclaPulsada();
                 break;
-                case KeyEvent.VK_P:
+            case KeyEvent.VK_P:
                 P.teclaPulsada();
                 break;
-                case KeyEvent.VK_F:
+            case KeyEvent.VK_F:
                 F.teclaPulsada();
                 break;
-                case KeyEvent.VK_G:
+            case KeyEvent.VK_G:
                 G.teclaPulsada();
                 break;
-                case KeyEvent.VK_H:
+            case KeyEvent.VK_H:
                 H.teclaPulsada();
                 break;
-                case KeyEvent.VK_J:
+            case KeyEvent.VK_J:
                 J.teclaPulsada();
                 break;
-                case KeyEvent.VK_K:
+            case KeyEvent.VK_K:
                 K.teclaPulsada();
                 break;
-                case KeyEvent.VK_L:
+            case KeyEvent.VK_L:
                 L.teclaPulsada();
                 break;
-                case KeyEvent.VK_Z:
+            case KeyEvent.VK_Z:
                 Z.teclaPulsada();
                 break;
-                case KeyEvent.VK_X:
+            case KeyEvent.VK_X:
                 X.teclaPulsada();
                 break;
-                case KeyEvent.VK_C:
+            case KeyEvent.VK_C:
                 C.teclaPulsada();
                 break;
-                case KeyEvent.VK_V:
+            case KeyEvent.VK_V:
                 V.teclaPulsada();
                 break;
-                case KeyEvent.VK_B:
+            case KeyEvent.VK_B:
                 B.teclaPulsada();
                 break;
-                case KeyEvent.VK_N:
+            case KeyEvent.VK_N:
                 N.teclaPulsada();
                 break;
-                case KeyEvent.VK_M:
+            case KeyEvent.VK_M:
                 M.teclaPulsada();
                 break;
-                case KeyEvent.VK_UNDEFINED:
+            case KeyEvent.VK_UNDEFINED:
                 Ñ.teclaPulsada();
+                break;
+            case KeyEvent.VK_BACK_SPACE:
+                borrar.teclaPulsada();
                 break;
 
         }
     }
 
     public void keyReleased(KeyEvent e) {
-         switch (e.getKeyCode()) {
+        switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
                 arriba.teclaLiberada();
                 break;
