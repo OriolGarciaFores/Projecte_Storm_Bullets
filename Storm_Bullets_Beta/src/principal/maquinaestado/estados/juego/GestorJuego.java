@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import principal.Constantes;
 import principal.entes.Jugador;
+import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.DibujoDebug;
 import principal.interfaz_usuario.MenuInferior;
 import principal.mapas.Mapa;

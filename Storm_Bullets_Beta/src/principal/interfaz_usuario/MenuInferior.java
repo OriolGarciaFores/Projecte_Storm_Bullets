@@ -5,13 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import principal.Constantes;
 import principal.entes.Jugador;
+import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
-import principal.maquinaestado.estados.menuinicial.NombrarJugador;
 
 
 public class MenuInferior {

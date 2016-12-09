@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.control.GestorControles;
+import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
@@ -44,7 +45,7 @@ public class NombrarJugador implements EstadoJuego {
     public void actualizar() {
         for (int i = 0; i < secciones.length; i++) {
             if (GestorControles.teclado.accion.estaPulsada() && seccionActual == secciones[0]) {
-
+                GuardarPartida.crearSave();
                 GestorControles.teclado.accion.teclaLiberada();
             }
         }
@@ -75,7 +76,7 @@ public class NombrarJugador implements EstadoJuego {
 
     public String escribir() {
 
-        if (lletra.length() <= 6) {
+        if (lletra.length() < 6) {
             if (GestorControles.teclado.Q.estaPulsada()) {
                 lletra += "Q";
                 GestorControles.teclado.Q.teclaLiberada();
@@ -185,15 +186,29 @@ public class NombrarJugador implements EstadoJuego {
                 GestorControles.teclado.M.teclaLiberada();
             }
 
+            if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() > 0) {
+                int largo;
+                largo = lletra.length(); //maxim seran 6.
+
+                lletra = lletra.substring(0, largo - 1);
+
+                GestorControles.teclado.borrar.teclaLiberada();
+            }
+
         }
 
-        if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() > 0) {
+        if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() == 6) {
             int largo;
             largo = lletra.length(); //maxim seran 6.
 
             lletra = lletra.substring(0, largo - 1);
 
             GestorControles.teclado.borrar.teclaLiberada();
+        }
+
+        if (lletra.length() > 6) {
+
+            lletra = lletra.substring(0, 5);
         }
 
         return lletra;
