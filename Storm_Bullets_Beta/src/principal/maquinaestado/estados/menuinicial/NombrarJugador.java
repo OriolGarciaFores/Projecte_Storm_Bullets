@@ -28,7 +28,7 @@ public class NombrarJugador implements EstadoJuego {
     private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     private final EstructuraMenu estructuraMenu;
-    private final Rectangle r = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, 100, 25);
+    private final Rectangle r = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, 110, 45);
     private final SeccionMenu[] secciones;
     private static String lletra = "";
     private SeccionMenu seccionActual;
@@ -56,12 +56,13 @@ public class NombrarJugador implements EstadoJuego {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
         DibujoDebug.dibujarRectanguloRelleno(g, r, Color.white);
-        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 10, Color.BLACK, 12);
+        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.BLACK, 12);
+        DibujoDebug.dibujarString(g, "Nombre de Usuario: ", Constantes.CENTRO_VENTANA_X - 350, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE, 12);
         Constantes.nomJugador = nombre();
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
 
-                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada() && !"".equals(Constantes.nomJugador)) {
                     GestorControles.teclado.nombrarJugador = false;
                     GestorControles.teclado.menuActivo = false;
                     GestorControles.teclado.accion.teclaLiberada();
@@ -186,18 +187,10 @@ public class NombrarJugador implements EstadoJuego {
                 GestorControles.teclado.M.teclaLiberada();
             }
 
-            if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() > 0) {
-                int largo;
-                largo = lletra.length(); //maxim seran 6.
-
-                lletra = lletra.substring(0, largo - 1);
-
-                GestorControles.teclado.borrar.teclaLiberada();
-            }
 
         }
 
-        if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() == 6) {
+        if (GestorControles.teclado.borrar.estaPulsada() && lletra.length() > 0 && lletra.length() <= 6) {
             int largo;
             largo = lletra.length(); //maxim seran 6.
 

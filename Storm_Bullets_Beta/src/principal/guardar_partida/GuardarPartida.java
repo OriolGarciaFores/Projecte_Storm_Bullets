@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import principal.entes.Jugador;
+import principal.Constantes;
 
 public class GuardarPartida {
 
@@ -60,7 +60,7 @@ public class GuardarPartida {
                     bw.newLine();
 
                 }
-             bw.write("jugador" + ";" + "punts" + ";" + "temps");
+             bw.write(Constantes.nomJugador + ";" + "punts" + ";" + "temps");
              bw.newLine();
             bw.close();
             br.close();
