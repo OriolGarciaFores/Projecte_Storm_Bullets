@@ -43,4 +43,6 @@ public class Constantes {
    public static Musicas m = new Musicas();
    
    public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
+   
+   public static String nomJugador = "";
 }

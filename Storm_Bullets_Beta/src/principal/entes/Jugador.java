@@ -55,7 +55,7 @@ public class Jugador {
         
         vidaJugador = 300;
         puntuacion = 0;
-        nomJugador = "HGGG";
+        nomJugador = "";
    
         this.mapa = mapa;
     }

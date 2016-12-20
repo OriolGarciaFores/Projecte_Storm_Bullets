@@ -26,7 +26,8 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-       // System.setProperty("sun.java2d.opengl", "true"); //Para mejorar rendimiento en portatiles. Obliga a usar la tarjeta grafica en vez de la integrada.
+       //System.setProperty("sun.java2d.opengl", "true"); //Para mejorar rendimiento en portatiles. Obliga a usar la tarjeta grafica en vez de la integrada.
+        //Crear una excepcion en caso de no tener opengl.
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 
         gp.iniciarJuego();
@@ -88,16 +89,19 @@ public class GestorPrincipal {
     }
 
     private void actualizar() {
-        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
+        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(1);
 
-        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo) {
+        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(2);
         }
-        if(GestorControles.teclado.tituloActivo && GestorControles.teclado.config){
+        if(GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
             ge.cambiarEstadoActual(3);
-        } else if(GestorControles.teclado.tituloActivo && !GestorControles.teclado.config){
+        } else if(GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
             ge.cambiarEstadoActual(0);
+        }
+        if(GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config){
+            ge.cambiarEstadoActual(4);
         }
         
         ge.actualizar();

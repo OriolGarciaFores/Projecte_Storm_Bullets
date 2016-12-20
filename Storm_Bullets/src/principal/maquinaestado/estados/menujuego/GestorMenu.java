@@ -5,9 +5,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.control.GestorControles;
+import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
+
+
 
 public class GestorMenu implements EstadoJuego {
 
@@ -31,7 +34,7 @@ public class GestorMenu implements EstadoJuego {
 
         secciones[1] = new MenuSalir("Salir", etiquetaSalir);
 
-        seccionActual = secciones[0];
+        seccionActual = secciones[0];       
     }
 
     public void actualizar() {
@@ -47,6 +50,7 @@ public class GestorMenu implements EstadoJuego {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
+                    GuardarPartida.modificarSave();
                     System.exit(0);
                 }
             } else {
@@ -69,5 +73,4 @@ public class GestorMenu implements EstadoJuego {
             seccionActual = secciones[0];
         }
     }
-
 }

@@ -22,7 +22,7 @@ public class GestorTitulo implements EstadoJuego {
     private final SeccionMenu[] secciones;
 
     private SeccionMenu seccionActual;
-
+    
     public GestorTitulo() {
         estructuraMenu = new EstructuraMenu();
         secciones = new SeccionMenu[4];
@@ -86,26 +86,27 @@ public class GestorTitulo implements EstadoJuego {
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
-
+                              
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                    GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;
                     Constantes.m.pararReproducir();
                 }
                 if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
-                    GestorControles.teclado.config = true;
-                    GestorControles.teclado.accion.teclaLiberada();
+                   GestorControles.teclado.config = true;
+                   GestorControles.teclado.accion.teclaLiberada();
                 }
-
+                
                 if (seccionActual == secciones[3] && GestorControles.teclado.accion.estaPulsada()) {
                     seccionActual.actualizar();
                 }
-
+                              
             } else {
                 secciones[i].dibujarEtiquetaInactiva(g);
             }
-
+            
         }
-
+        
     }
 
 }

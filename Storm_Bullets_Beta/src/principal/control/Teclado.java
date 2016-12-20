@@ -169,6 +169,78 @@ public class Teclado implements KeyListener {
             case KeyEvent.VK_ENTER:
                 accion.teclaLiberada();
                 break;
+            case KeyEvent.VK_Q:
+                Q.teclaLiberada();
+                break;
+            case KeyEvent.VK_E:
+                E.teclaLiberada();
+                break;
+            case KeyEvent.VK_R:
+                R.teclaLiberada();
+                break;
+            case KeyEvent.VK_T:
+                T.teclaLiberada();
+                break;
+            case KeyEvent.VK_Y:
+                Y.teclaLiberada();
+                break;
+            case KeyEvent.VK_U:
+                U.teclaLiberada();
+                break;
+            case KeyEvent.VK_I:
+                I.teclaLiberada();
+                break;
+            case KeyEvent.VK_O:
+                O.teclaLiberada();
+                break;
+            case KeyEvent.VK_P:
+                P.teclaLiberada();
+                break;
+            case KeyEvent.VK_F:
+                F.teclaLiberada();
+                break;
+            case KeyEvent.VK_G:
+                G.teclaLiberada();
+                break;
+            case KeyEvent.VK_H:
+                H.teclaLiberada();
+                break;
+            case KeyEvent.VK_J:
+                J.teclaLiberada();
+                break;
+            case KeyEvent.VK_K:
+                K.teclaLiberada();
+                break;
+            case KeyEvent.VK_L:
+                L.teclaLiberada();
+                break;
+            case KeyEvent.VK_Z:
+                Z.teclaLiberada();
+                break;
+            case KeyEvent.VK_X:
+                X.teclaLiberada();
+                break;
+            case KeyEvent.VK_C:
+                C.teclaLiberada();
+                break;
+            case KeyEvent.VK_V:
+                V.teclaLiberada();
+                break;
+            case KeyEvent.VK_B:
+                B.teclaLiberada();
+                break;
+            case KeyEvent.VK_N:
+                N.teclaLiberada();
+                break;
+            case KeyEvent.VK_M:
+                M.teclaLiberada();
+                break;
+            case KeyEvent.VK_UNDEFINED:
+                Ñ.teclaLiberada();
+                break;
+            case KeyEvent.VK_BACK_SPACE:
+                borrar.teclaLiberada();
+                break;
 
         }
 
