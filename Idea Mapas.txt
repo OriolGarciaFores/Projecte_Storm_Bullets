@@ -1,0 +1,7 @@
+Multimapas. 5 llaves. Y al obtener las llaves poder acceder al boss.
+
+Siempre hay k eliminar a todos los enemigos.
+
+3 niveles de min 5-6 mapas. Los niveles son randoms.
+
+1r Mapa inicial el mismo para todos.

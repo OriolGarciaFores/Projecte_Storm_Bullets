@@ -29,8 +29,12 @@ public class Constantes {
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
    public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
+   public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
+   
+   //Enemigos
+   public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
    
    
    //Imagenes de los controles del juego.
@@ -40,9 +44,7 @@ public class Constantes {
    public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
    
-   public static Musicas m = new Musicas();
    
    public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
    
-   public static String nomJugador = "";
 }

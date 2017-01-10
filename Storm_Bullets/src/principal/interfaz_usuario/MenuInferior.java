@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.entes.Jugador;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -27,7 +28,7 @@ public class MenuInferior {
     private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
-    public MenuInferior(final Jugador jugador){
+    public MenuInferior(){
         
         int altoMenu = 64;
         areaInventario = new Rectangle(0, Constantes.ALTO_JUEGO - altoMenu, Constantes.ANCHO_JUEGO, altoMenu);
@@ -37,11 +38,11 @@ public class MenuInferior {
         rojoOscuro = new Color(150, 0, 0); 
     }
     
-    public void dibujar(final Graphics g, final Jugador jugador) {
+    public void dibujar(final Graphics g) {
         dibujarAreaInventario(g);
-        dibujarBarraVitalidad(g, jugador);
+        dibujarBarraVitalidad(g);
         dibujarRanurasObjetos(g);
-        dibujarPuntuaciones(g, jugador);
+        dibujarPuntuaciones(g);
         dibujarAvatar(g);
         dibujarControles(g);
     }
@@ -51,7 +52,7 @@ public class MenuInferior {
         DibujoDebug.dibujarRectanguloRelleno(g, bordeAreaInventario, Color.white);
     }
     
-    private void dibujarBarraVitalidad(final Graphics g, Jugador jugador) {
+    private void dibujarBarraVitalidad(final Graphics g) {
         final int medidaVertical = 10;
         final int anchoTotal = 200;
        
@@ -59,8 +60,8 @@ public class MenuInferior {
         
         g.setColor(Color.white);
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2 - 1, 12);
-        DibujoDebug.dibujarString(g, jugador.getNomJugador(), areaInventario.x + 5 , areaInventario.y + 54, 12);
-        DibujoDebug.dibujarString(g, jugador.obtenerVidaJugador(), areaInventario.x + 160, areaInventario.y + medidaVertical * 2 - 1, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.jugador.getNomJugador(), areaInventario.x + 5 , areaInventario.y + 54, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.jugador.obtenerVidaJugador(), areaInventario.x + 160, areaInventario.y + medidaVertical * 2 - 1, 12);
        /* try {
             DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);
         } catch (InterruptedException ex) {
@@ -68,8 +69,8 @@ public class MenuInferior {
         }*/
     }
     
-    private void dibujarPuntuaciones(final Graphics g, Jugador jugador){
-        DibujoDebug.dibujarString(g, "Puntuación: " + jugador.obtenerPuntuacionJugador(), areaInventario.x + 60 , areaInventario.y + 35, 12);
+    private void dibujarPuntuaciones(final Graphics g){
+        DibujoDebug.dibujarString(g, "Puntuación: " + ElementosPrincipales.jugador.obtenerPuntuacionJugador(), areaInventario.x + 60 , areaInventario.y + 35, 12);
         DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60 , areaInventario.y + 50, 12);
     }
     

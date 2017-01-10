@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -17,7 +18,7 @@ public class Configuracion implements EstadoJuego {
 
     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
     private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
-    
+
     private final EstructuraMenu estructuraMenu;
 
     private final SeccionMenu[] secciones;
@@ -30,7 +31,7 @@ public class Configuracion implements EstadoJuego {
 
         final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new Volumen("Volumen " + Constantes.m.obtenerPorcentajeVolumen() + "%", etiquetaVolumen);
+        secciones[0] = new Volumen("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%", etiquetaVolumen);
 
         final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
@@ -58,7 +59,7 @@ public class Configuracion implements EstadoJuego {
     }
 
     public void dibujar(Graphics g) {
-        DibujoDebug.dibujarImagen(g, image, 0, 0);
+           DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
         estructuraMenu.dibujar(g);
         for (int i = 0; i < secciones.length; i++) {
@@ -66,18 +67,18 @@ public class Configuracion implements EstadoJuego {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.derecha.estaPulsada()) {
                     try {
-                        Constantes.m.cambiarVolumen(Constantes.m.subirvolumen());
-                        seccionActual.ModificarNombre("Volumen " + Constantes.m.obtenerPorcentajeVolumen() + "%");
+                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
+                        seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     } catch (Exception ex) {
                         Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                    
                     //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {
                     try {
-                        Constantes.m.cambiarVolumen(Constantes.m.bajarVolumen());
-                        seccionActual.ModificarNombre("Volumen " + Constantes.m.obtenerPorcentajeVolumen() + "%");
+                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());
+                        seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     } catch (Exception ex) {
                         Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.DibujoDebug;
-import principal.mapas.Mapa;
 import principal.sprites.HojaSprites;
 
 public class Jugador {
@@ -33,14 +33,13 @@ public class Jugador {
     private final int velocidad = 1;
     private int animacion;
     private int estado;
-    
+
     private int vidaJugador;
     private int puntuacion;
     private String nomJugador;
 
-    private Mapa mapa;
 
-    public Jugador(double posicionX, double posicionY, Mapa mapa) {
+    public Jugador(double posicionX, double posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
 
@@ -52,12 +51,12 @@ public class Jugador {
         imagenActual = hs.obtenerSprite(1, 0).obtenerImagen();
         animacion = 0;
         estado = 1;
-        
+
         vidaJugador = 300;
         puntuacion = 0;
         nomJugador = "";
-   
-        this.mapa = mapa;
+
+        
     }
 
     public void actualizar() {
@@ -189,8 +188,8 @@ public class Jugador {
     }
 
     private boolean enColisionArriba(int velocidadY) {
-        for (int r = 0; r < mapa.areasColision.size(); r++) {
-            final Rectangle area = mapa.areasColision.get(r);
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x;
             int origenY = area.y + velocidadY * (int) velocidad + 3 * (int) velocidad;
@@ -206,8 +205,8 @@ public class Jugador {
     }
 
     private boolean enColisionAbajo(int velocidadY) {
-        for (int r = 0; r < mapa.areasColision.size(); r++) {
-            final Rectangle area = mapa.areasColision.get(r);
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x;
             int origenY = area.y + velocidadY * (int) velocidad - 3 * (int) velocidad;
@@ -223,8 +222,8 @@ public class Jugador {
     }
 
     private boolean enColisionIzquierda(int velocidadX) {
-        for (int r = 0; r < mapa.areasColision.size(); r++) {
-            final Rectangle area = mapa.areasColision.get(r);
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
             int origenY = area.y;
@@ -240,8 +239,8 @@ public class Jugador {
     }
 
     private boolean enColisionDerecha(int velocidadX) {
-        for (int r = 0; r < mapa.areasColision.size(); r++) {
-            final Rectangle area = mapa.areasColision.get(r);
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
             int origenY = area.y;
@@ -260,7 +259,7 @@ public class Jugador {
         int posicionFuturaX = (int) posicionX + velocidadX * velocidad;
         int posicionFuturaY = (int) posicionY + velocidadY * velocidad;
 
-        final Rectangle bordesMapa = mapa.obtenerBordes(posicionFuturaX, posicionFuturaY, ANCHO_JUGADOR, ALTO_JUGADOR);
+        final Rectangle bordesMapa = ElementosPrincipales.mapa.obtenerBordes(posicionFuturaX, posicionFuturaY);
 
         final boolean fuera;
 
@@ -295,8 +294,8 @@ public class Jugador {
 
         g.setColor(Color.green);
         DibujoDebug.dibujarImagen(g, imagenActual, centroX, centroY);
-       
-       /* g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
+
+        /* g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
         g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
         g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
         g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);*/
@@ -317,17 +316,25 @@ public class Jugador {
     public double obtenerPosicionY() {
         return posicionY;
     }
-    
-    public String obtenerVidaJugador(){
+
+    public int obtenerPosicionXint() {
+        return (int) posicionX;
+    }
+
+    public int obtenerPosicionYint() {
+        return (int) posicionY;
+    }
+
+    public String obtenerVidaJugador() {
         String vidajugador;
-        
+
         vidajugador = Integer.toString(vidaJugador);
         return vidajugador;
     }
-    
-    public String obtenerPuntuacionJugador(){
+
+    public String obtenerPuntuacionJugador() {
         String puntos;
-        
+
         puntos = Integer.toString(puntuacion);
         return puntos;
     }
@@ -339,7 +346,13 @@ public class Jugador {
     public void setNomJugador(String nomJugador) {
         this.nomJugador = nomJugador;
     }
+    
+    public int obtenerAncho(){
+    return ANCHO_JUGADOR;
+    }
+    
+    public int obtenerAlto(){
+    return ALTO_JUGADOR;
+    }
 
-    
-    
 }

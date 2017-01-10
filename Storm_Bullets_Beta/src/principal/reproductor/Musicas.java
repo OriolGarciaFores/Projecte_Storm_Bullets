@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import principal.Constantes;
 
 public class Musicas {
 
@@ -17,9 +16,9 @@ public class Musicas {
         volumen = 0.3;
     }
 
-    public void reproducir() {
+    public void reproducir(String ruta) {
         try {
-            InputStream musica = getClass().getResourceAsStream(Constantes.RUTA_AUDIO_TITULO);
+            InputStream musica = getClass().getResourceAsStream(ruta);
             InputStream bufferedIn = new BufferedInputStream(musica);
             AudioInputStream audio = AudioSystem.getAudioInputStream(bufferedIn);
             mi_reproductor.AbrirControl(audio);

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -44,7 +45,7 @@ public class GestorTitulo implements EstadoJuego {
         secciones[3] = new Exit("Salir", etiquetaSalir);
 
         seccionActual = secciones[0];
-        Constantes.m.reproducir();
+        ElementosPrincipales.m.reproducir(Constantes.RUTA_AUDIO_TITULO);
     }
 
     public void actualizar() {
@@ -90,7 +91,8 @@ public class GestorTitulo implements EstadoJuego {
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;
-                    Constantes.m.pararReproducir();
+                    ElementosPrincipales.m.pararReproducir();
+                    ElementosPrincipales.musicaIngame.reproducir(Constantes.RUTA_AUDIO_INGAME);
                 }
                 if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
                    GestorControles.teclado.config = true;

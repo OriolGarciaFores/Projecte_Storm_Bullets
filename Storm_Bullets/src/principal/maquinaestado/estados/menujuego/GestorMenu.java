@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.CargadorRecursos;
@@ -50,6 +51,7 @@ public class GestorMenu implements EstadoJuego {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
+                    ElementosPrincipales.musicaIngame.pararReproducir();
                     GuardarPartida.modificarSave();
                     System.exit(0);
                 }

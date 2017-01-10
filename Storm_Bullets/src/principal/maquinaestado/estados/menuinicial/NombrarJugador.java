@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.guardar_partida.GuardarPartida;
 import principal.herramientas.CargadorRecursos;
@@ -58,11 +59,11 @@ public class NombrarJugador implements EstadoJuego {
         DibujoDebug.dibujarRectanguloRelleno(g, r, Color.DARK_GRAY);
         DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.BLACK, 12);
         DibujoDebug.dibujarString(g, "Nombre de Usuario: ", Constantes.CENTRO_VENTANA_X - 350, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE, 12);
-        Constantes.nomJugador = nombre();
+        ElementosPrincipales.jugador.setNomJugador(nombre());
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
 
-                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada() && !"".equals(Constantes.nomJugador)) {
+                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada() && !"".equals(ElementosPrincipales.jugador.getNomJugador())) {
                     GestorControles.teclado.nombrarJugador = false;
                     GestorControles.teclado.menuActivo = false;
                     GestorControles.teclado.accion.teclaLiberada();
