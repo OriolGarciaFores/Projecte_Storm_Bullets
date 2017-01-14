@@ -194,7 +194,7 @@ public class Mapa {
             for(Enemigo enemigo : enemigos){
             final int puntoX = (int)enemigo.obtenerPosicionX() * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionXint() + MARGEN_X;
             final int puntoY = (int)enemigo.obtenerPosicionY() * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionYint() + MARGEN_Y;
-            
+      
              enemigo.dibujar(g, puntoX, puntoY);
             }
         }
