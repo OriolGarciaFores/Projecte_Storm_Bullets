@@ -8,6 +8,7 @@ import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.DibujoDebug;
+import principal.mapas.MapaTiled;
 import principal.sprites.HojaSprites;
 
 public class Jugador {
@@ -38,7 +39,6 @@ public class Jugador {
     private int puntuacion;
     private String nomJugador;
 
-
     public Jugador() {
         this.posicionX = ElementosPrincipales.mapa.obtenerPosicionInicial().getX();
         this.posicionY = ElementosPrincipales.mapa.obtenerPosicionInicial().getY();
@@ -56,7 +56,6 @@ public class Jugador {
         puntuacion = 0;
         nomJugador = "";
 
-        
     }
 
     public void actualizar() {
@@ -164,7 +163,7 @@ public class Jugador {
 
         imagenActual = hs.obtenerSprite(estado, direccion).obtenerImagen();
     }
-
+//CODIGO PRUEBAS
     private void mover(final int velocidadX, final int velocidadY) {
         enMovimiento = true;
 
@@ -183,14 +182,53 @@ public class Jugador {
             if (velocidadY == 1 && !enColisionAbajo(velocidadY)) {
                 posicionY += velocidadY * velocidad;
             }
+            //CODIGO PRUEBAS
+            //CAMBIO DE MAPA CHAPUZERO.
+            for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
+                if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {
+                    if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                            && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
+                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+
+                    }
+                    if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                            && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+                        
+                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
+                        i--;//SE TIENE K MEJORAR. NECESARIO OBTENER LA POSICION CORRECTA SEGUN EL MAPA. YA K ES POSIBLE QUE EL SIGUIENTE MAPA EL ARRAY SEA MAS PEQUEÑO.
+                        //POSIBLE ARREGLO. MAPAS TANTAS SALIDAS COMO LA ULTIMA POSICION DEL ARRAY.
+                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                        
+                    }
+                }
+                
+ 
+
+            }
+
+            for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
+                if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa2.csv")) {
+                    if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                            && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
+                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+
+                    }
+                }
+            }
+
         }
 
     }
-//CODIGO PRUEBAS
+    //FI CODIGO PRUEBAS.
     private boolean enColisionArriba(int velocidadY) {
-        
-        
-        
+
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
@@ -223,7 +261,7 @@ public class Jugador {
     }
 
     private boolean enColisionAbajo(int velocidadY) {
-         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
             int origenX = area.x;
@@ -237,7 +275,7 @@ public class Jugador {
         }
 
         return false;
-       /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+        /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x;
@@ -254,7 +292,7 @@ public class Jugador {
     }
 
     private boolean enColisionIzquierda(int velocidadX) {
-        
+
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
@@ -269,7 +307,7 @@ public class Jugador {
         }
 
         return false;
-       /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+        /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
@@ -286,7 +324,7 @@ public class Jugador {
     }
 
     private boolean enColisionDerecha(int velocidadX) {
-         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
@@ -332,7 +370,7 @@ public class Jugador {
         return fuera;
 
     }
-//FI PRUEBAS
+
     private void cambiarDireccion(final int velocidadX, final int velocidadY) {
         if (velocidadX == -1) {
             direccion = 1;
@@ -407,13 +445,13 @@ public class Jugador {
     public void setNomJugador(String nomJugador) {
         this.nomJugador = nomJugador;
     }
-    
-    public int obtenerAncho(){
-    return ANCHO_JUGADOR;
+
+    public int obtenerAncho() {
+        return ANCHO_JUGADOR;
     }
-    
-    public int obtenerAlto(){
-    return ALTO_JUGADOR;
+
+    public int obtenerAlto() {
+        return ALTO_JUGADOR;
     }
 
 }

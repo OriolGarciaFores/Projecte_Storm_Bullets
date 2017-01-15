@@ -8,7 +8,7 @@ import principal.reproductor.Musicas;
 
 public class ElementosPrincipales {
     //CODIGO PRUEBAS
-    public static MapaTiled mapa = new MapaTiled("/texto/mapa1.csv");
+    public static MapaTiled mapa = new MapaTiled(Constantes.RUTA_MAPA);
     
     //public static Mapa mapa = new Mapa(Constantes.RUTA_MAPA);
     public static Jugador jugador = new Jugador();

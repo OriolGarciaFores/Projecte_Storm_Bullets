@@ -21,6 +21,7 @@ public class MapaTiled {
 
     private int anchoMapaTiles;
     private int altoMapaTiles;
+    private String rutaMapa;
 
     private Point puntoInicial;
 
@@ -29,13 +30,15 @@ public class MapaTiled {
 
     private ArrayList<Rectangle> areasColisionesOriginales;
     public ArrayList<Rectangle> areasColisionPorActualizacion;
+    public ArrayList<PuertaSalida> puertas;
 
     private Sprite[] paletaSprites;
     
     private ArrayList<Enemigo> enemigosMapa;
 
-    public MapaTiled(final String ruta) {
-        String contenido = CargadorRecursos.leerArchivoTexto(ruta);
+    public MapaTiled(String ruta) {
+        this.rutaMapa = ruta;
+        String contenido = CargadorRecursos.leerArchivoTexto(this.rutaMapa);
 
         //ANCHO, ALTO del Mapa.
         JSONObject globalJSON = obtenerObjetoJSON(contenido);
@@ -170,6 +173,36 @@ public class MapaTiled {
             
             enemigosMapa.add(enemigo);
         }
+        //CODIGO PRUEBAS
+        //ZONAS SALIDA DE MAPA. Y APARICIONES DEL MAPA.
+        puertas = new ArrayList<>();
+        JSONArray coleccionSalidas = obtenerArrayJSON(globalJSON.get("salidas").toString());
+        for(int i = 0; i < coleccionSalidas.size(); i++){
+            JSONObject datosSalida = obtenerObjetoJSON(coleccionSalidas.get(i).toString());
+            
+            String nomMapa = datosSalida.get("mapa").toString();
+            int xInicial = obtenerIntDesdeJSON(datosSalida, "xinicial");
+            int yInicial = obtenerIntDesdeJSON(datosSalida, "yinicial");
+            int xFinal = obtenerIntDesdeJSON(datosSalida, "xfinal");
+            int yFinal = obtenerIntDesdeJSON(datosSalida, "yfinal");
+            int xAparicion = obtenerIntDesdeJSON(datosSalida, "xaparicion");
+            int yAparicion = obtenerIntDesdeJSON(datosSalida, "yaparicion");
+            
+            Point posicionSalidaInicial = new Point(xInicial, yInicial);
+            Point posicionSalidaFinal = new Point(xFinal, yFinal);
+            Point pAparicion = new Point(xAparicion, yAparicion);
+            
+            PuertaSalida ps = new PuertaSalida(nomMapa, posicionSalidaInicial, posicionSalidaFinal, pAparicion);
+            puertas.add(ps);
+            
+           
+        }
+        System.out.println(puertas.size());
+
+        
+        
+        
+     //FI CODIGO PRUEBAS.   
         areasColisionPorActualizacion = new ArrayList<>();
     }
     
@@ -258,4 +291,9 @@ public class MapaTiled {
 
         return new Rectangle(x, y, ancho, alto);
     }
+   //CODIGO PRUEBAS 
+    public String obtenerMapaActual(){
+        return rutaMapa;
+    }
+    //FI CODIGO PRUEBAS.
 }

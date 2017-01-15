@@ -23,11 +23,16 @@ public class Constantes {
    
    public static final int CENTRO_VENTANA_X = ANCHO_JUEGO / 2;
    public static final int CENTRO_VENTANA_Y = ALTO_JUEGO / 2;
-   //CODIGO PRUEBAS
+
    public static int MARGEN_X = ANCHO_JUEGO / 2 - LADO_SPRITE / 2;
    public static int MARGEN_Y = ALTO_JUEGO / 2 - LADO_SPRITE / 2;
-   //FI
-   public static final String RUTA_MAPA = "/texto/prueba.map";
+//CODIGO PRUEBAS
+   //MAPAS
+   public static final String RUTA_MAPA = "/texto/mapa1.csv";
+   public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
+   
+   //FI MAPAS.
+   //FI CODIGO PRUEBAS
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
    public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";

@@ -210,5 +210,26 @@
     "x": 608,
     "y": 224
 }
+],
+"salidas":
+[
+{
+    "mapa":"mapa1.csv",
+    "xinicial": 475,
+    "yinicial": 111,
+    "xfinal": 510,
+    "yfinal": 111,
+    "xaparicion": 483,
+    "yaparicion": 130
+},
+{
+    "mapa":"mapa1.csv",
+    "xinicial": 254,
+    "yinicial": 180,
+    "xfinal": 254,
+    "yfinal": 231,
+    "xaparicion": 483,
+    "yaparicion": 130
+}
 ]
 }
