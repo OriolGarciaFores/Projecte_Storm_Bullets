@@ -2,9 +2,11 @@ package principal.entes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import principal.Constantes;
 import principal.ElementosPrincipales;
+import principal.herramientas.CalculadoraDistancia;
 import principal.herramientas.DibujoDebug;
 
 public class Enemigo {
@@ -31,18 +33,31 @@ public class Enemigo {
     public void actualizar() {
     }
 // CODIGO PRUEBAS
+
     public void dibujar(final Graphics g, final int puntoX, final int puntoY) {
-        if(vidaActual <= 0){
+        if (vidaActual <= 0) {
             return;
         }
         dibujarBarraVida(g, puntoX, puntoY);
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
+        dibujarDistancia(g, puntoX, puntoY);
     }
-    
-    private void dibujarBarraVida(final Graphics g, final int puntoX, final int puntoY){
+
+    private void dibujarBarraVida(final Graphics g, final int puntoX, final int puntoY) {
         g.setColor(Color.red);
-        DibujoDebug.dibujarRectanguloRelleno(g, puntoX, puntoY - 5, Constantes.LADO_SPRITE * (int)vidaActual/vidaMaxima, 2);
+        DibujoDebug.dibujarRectanguloRelleno(g, puntoX, puntoY - 5, Constantes.LADO_SPRITE * (int) vidaActual / vidaMaxima, 2);
     }
     
+    private void dibujarDistancia(final Graphics g, final int puntoX, final int puntoY){
+    Point puntoJugador = new Point(ElementosPrincipales.jugador.obtenerPosicionXint() / Constantes.LADO_SPRITE, ElementosPrincipales.jugador.obtenerPosicionYint() / Constantes.LADO_SPRITE);
+    Point puntoEnemigo = new Point((int) posicionX, (int) posicionY);
+    
+    Double distancia = CalculadoraDistancia.obtenerDistanciaEntrePuntos(puntoJugador, puntoEnemigo);
+    
+    DibujoDebug.dibujarString(g, String.format("%.2f",distancia), puntoX, puntoY - 8, 12);
+
+    }
+
 // FI DE CODIGO PRUEBAS
     public void establecerPosicion(final double posicionX, final double posicionY) {
         this.posicionX = posicionX;
@@ -56,20 +71,21 @@ public class Enemigo {
     public double obtenerPosicionY() {
         return posicionY;
     }
-    
-    public int obtenerIdEnemigo(){
+
+    public int obtenerIdEnemigo() {
         return idEnemigo;
     }
-    
-    public float obtenerVidaActual(){
+
+    public float obtenerVidaActual() {
         return vidaActual;
     }
-    
+
     //CODIGO DE PRUEBAS
-    public Rectangle obtenerArea(){
-        final int puntoX = (int)posicionX * Constantes.LADO_SPRITE - (int) ElementosPrincipales.jugador.obtenerPosicionX() + Constantes.MARGEN_X;
-    return null;
+    public Rectangle obtenerArea() {
+        final int puntoX = (int) posicionX * Constantes.LADO_SPRITE -  ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY * Constantes.LADO_SPRITE -  ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+        return new Rectangle(puntoX, puntoY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
     }
-    //https://www.youtube.com/watch?v=x3nu8bxgrLU&list=PLN9W6BC54TJJr3erMptodGOQFX7gWfKTM&index=112   10:11
+
     //FI CODIGO DE PRUEBAS
 }

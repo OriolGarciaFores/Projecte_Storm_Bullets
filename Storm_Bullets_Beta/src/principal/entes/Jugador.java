@@ -39,9 +39,9 @@ public class Jugador {
     private String nomJugador;
 
 
-    public Jugador(double posicionX, double posicionY) {
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+    public Jugador() {
+        this.posicionX = ElementosPrincipales.mapa.obtenerPosicionInicial().getX();
+        this.posicionY = ElementosPrincipales.mapa.obtenerPosicionInicial().getY();
 
         direccion = 0;
         enMovimiento = false;
@@ -186,8 +186,26 @@ public class Jugador {
         }
 
     }
-
+//CODIGO PRUEBAS
     private boolean enColisionArriba(int velocidadY) {
+        
+        
+        
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
+
+            int origenX = area.x;
+            int origenY = area.y + velocidadY * (int) velocidad + 3 * (int) velocidad;
+
+            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
+
+            if (LIMITE_ARRIBA.intersects(areaFutura)) {
+                return true;
+            }
+        }
+
+        return false;
+        /*
         for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
@@ -201,11 +219,25 @@ public class Jugador {
             }
         }
 
-        return false;
+        return false;*/
     }
 
     private boolean enColisionAbajo(int velocidadY) {
-        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
+
+            int origenX = area.x;
+            int origenY = area.y + velocidadY * (int) velocidad - 3 * (int) velocidad;
+
+            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
+
+            if (LIMITE_ABAJO.intersects(areaFutura)) {
+                return true;
+            }
+        }
+
+        return false;
+       /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x;
@@ -218,11 +250,26 @@ public class Jugador {
             }
         }
 
-        return false;
+        return false;*/
     }
 
     private boolean enColisionIzquierda(int velocidadX) {
-        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+        
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
+
+            int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
+            int origenY = area.y;
+
+            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
+
+            if (LIMITE_IZQUIERDA.intersects(areaFutura)) {
+                return true;
+            }
+        }
+
+        return false;
+       /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
@@ -235,11 +282,25 @@ public class Jugador {
             }
         }
 
-        return false;
+        return false;*/
     }
 
     private boolean enColisionDerecha(int velocidadX) {
-        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
+         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
+
+            int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
+            int origenY = area.y;
+
+            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
+
+            if (LIMITE_DERECHA.intersects(areaFutura)) {
+                return true;
+            }
+        }
+
+        return false;
+        /*for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
 
             int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
@@ -252,7 +313,7 @@ public class Jugador {
             }
         }
 
-        return false;
+        return false;*/
     }
 
     private boolean fueraMapa(final int velocidadX, final int velocidadY) {
@@ -271,7 +332,7 @@ public class Jugador {
         return fuera;
 
     }
-
+//FI PRUEBAS
     private void cambiarDireccion(final int velocidadX, final int velocidadY) {
         if (velocidadX == -1) {
             direccion = 1;

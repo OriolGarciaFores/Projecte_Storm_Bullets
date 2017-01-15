@@ -2,14 +2,16 @@
 package principal;
 
 import principal.entes.Jugador;
-import principal.mapas.Mapa;
+import principal.mapas.MapaTiled;
 import principal.reproductor.Musicas;
 
 
 public class ElementosPrincipales {
+    //CODIGO PRUEBAS
+    public static MapaTiled mapa = new MapaTiled("/texto/mapa1.csv");
     
-    public static Mapa mapa = new Mapa(Constantes.RUTA_MAPA);
-    public static Jugador jugador = new Jugador(160, 170);
+    //public static Mapa mapa = new Mapa(Constantes.RUTA_MAPA);
+    public static Jugador jugador = new Jugador();
     public static Musicas m = new Musicas();
     public static Musicas musicaIngame = new Musicas();
     

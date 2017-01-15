@@ -10,7 +10,11 @@ import principal.maquinaestado.EstadoJuego;
 public class GestorJuego implements EstadoJuego {
 
 
-    MenuInferior menuInferior = new MenuInferior();
+    MenuInferior menuInferior;
+    
+    public GestorJuego(){
+    menuInferior = new MenuInferior();
+    }
 
     public void actualizar() {
         ElementosPrincipales.jugador.actualizar();
