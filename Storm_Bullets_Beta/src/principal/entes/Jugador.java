@@ -63,6 +63,7 @@ public class Jugador {
         enMovimiento = false;
         determinarDireccion();
         animar();
+        salirMapa();
     }
 
     private void cambiarAnimacionEstado() {
@@ -163,7 +164,7 @@ public class Jugador {
 
         imagenActual = hs.obtenerSprite(estado, direccion).obtenerImagen();
     }
-//CODIGO PRUEBAS
+
     private void mover(final int velocidadX, final int velocidadY) {
         enMovimiento = true;
 
@@ -183,49 +184,72 @@ public class Jugador {
                 posicionY += velocidadY * velocidad;
             }
             //CODIGO PRUEBAS
-            //CAMBIO DE MAPA CHAPUZERO.
-            for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
-                if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {
-                    if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                            && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
-
-                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
-                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-
-                    }
-                    if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                            && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
-                        
-                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
-                        i--;//SE TIENE K MEJORAR. NECESARIO OBTENER LA POSICION CORRECTA SEGUN EL MAPA. YA K ES POSIBLE QUE EL SIGUIENTE MAPA EL ARRAY SEA MAS PEQUEÑO.
-                        //POSIBLE ARREGLO. MAPAS TANTAS SALIDAS COMO LA ULTIMA POSICION DEL ARRAY.
-                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                        
-                    }
-                }
-                
- 
-
-            }
-
-            for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
-                if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa2.csv")) {
-                    if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                            && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
-
-                        ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
-                        this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                        this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-
-                    }
-                }
-            }
 
         }
 
     }
+
+    private void salirMapa() {
+        //CAMBIO DE MAPA CHAPUZERO.
+        for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
+            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {
+                //SALIDA 1.
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
+                    continue;
+
+                }
+                //SALIDA 2.
+                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA3);
+                    
+                    continue;//ROMPE EL BUCLE.
+                    //SE TIENE K MEJORAR. NECESARIO OBTENER LA POSICION CORRECTA SEGUN EL MAPA. YA K ES POSIBLE QUE EL SIGUIENTE MAPA EL ARRAY SEA MAS PEQUEÑO.
+                    //POSIBLE ARREGLO. MAPAS TANTAS SALIDAS COMO LA ULTIMA POSICION DEL ARRAY.
+                    
+
+                }
+            }
+
+            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa2.csv")) {
+                //SALIDA 1
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
+                    continue;
+                    
+
+                }
+            }
+            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa3.csv")) {
+                //SALIDA 1
+                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
+                    continue;
+
+                }
+            }
+            
+
+        }
+
+    }
+
     //FI CODIGO PRUEBAS.
     private boolean enColisionArriba(int velocidadY) {
 

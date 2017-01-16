@@ -197,7 +197,7 @@ public class MapaTiled {
             
            
         }
-        System.out.println(puertas.size());
+        System.out.println("Cantidad de salidas (Array): " + puertas.size());
 
         
         

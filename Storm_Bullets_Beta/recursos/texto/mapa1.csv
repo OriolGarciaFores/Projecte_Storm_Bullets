@@ -219,8 +219,8 @@
     "yinicial": 111,
     "xfinal": 510,
     "yfinal": 111,
-    "xaparicion": 483,
-    "yaparicion": 130
+    "xaparicion": 530,
+    "yaparicion": 373
 },
 {
     "mapa":"mapa1.csv",
@@ -228,8 +228,8 @@
     "yinicial": 180,
     "xfinal": 254,
     "yfinal": 231,
-    "xaparicion": 483,
-    "yaparicion": 130
+    "xaparicion": 646,
+    "yaparicion": 200
 }
 ]
 }

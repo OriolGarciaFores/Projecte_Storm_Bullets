@@ -30,6 +30,7 @@ public class Constantes {
    //MAPAS
    public static final String RUTA_MAPA = "/texto/mapa1.csv";
    public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
+   public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
    
    //FI MAPAS.
    //FI CODIGO PRUEBAS
