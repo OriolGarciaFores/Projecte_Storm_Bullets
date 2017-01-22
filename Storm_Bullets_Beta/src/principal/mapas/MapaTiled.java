@@ -173,7 +173,7 @@ public class MapaTiled {
             
             enemigosMapa.add(enemigo);
         }
-        //CODIGO PRUEBAS
+        
         //ZONAS SALIDA DE MAPA. Y APARICIONES DEL MAPA.
         puertas = new ArrayList<>();
         JSONArray coleccionSalidas = obtenerArrayJSON(globalJSON.get("salidas").toString());
@@ -201,13 +201,22 @@ public class MapaTiled {
 
         
         
-        
-     //FI CODIGO PRUEBAS.   
+             
         areasColisionPorActualizacion = new ArrayList<>();
     }
     
     public void actualizar(){
-        actualizarAreasColision();  
+        actualizarAreasColision(); 
+        actualizarEnemigos();
+    }
+    
+    private void actualizarEnemigos(){
+     if(!enemigosMapa.isEmpty()){
+            for(Enemigo enemigo : enemigosMapa){
+            
+             enemigo.actualizar();
+            }
+        }
     }
     
     private void actualizarAreasColision(){
@@ -242,6 +251,14 @@ public class MapaTiled {
                     }
                 }
             }
+        }
+        
+        for(int i = 0; i < enemigosMapa.size(); i++){
+            Enemigo enemigo = enemigosMapa.get(i);
+            
+            final int puntoX = (int)enemigo.obtenerPosicionX() - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+            final int puntoY = (int)enemigo.obtenerPosicionY() - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+            enemigo.dibujar(g, puntoX, puntoY);
         }
     }
 
@@ -291,9 +308,14 @@ public class MapaTiled {
 
         return new Rectangle(x, y, ancho, alto);
     }
-   //CODIGO PRUEBAS 
+   
     public String obtenerMapaActual(){
         return rutaMapa;
     }
-    //FI CODIGO PRUEBAS.
+
+    public ArrayList<Enemigo> getEnemigosMapa() {
+        return enemigosMapa;
+    }
+    
+    
 }

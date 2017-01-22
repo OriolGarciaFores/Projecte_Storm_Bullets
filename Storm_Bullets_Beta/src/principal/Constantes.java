@@ -26,14 +26,14 @@ public class Constantes {
 
    public static int MARGEN_X = ANCHO_JUEGO / 2 - LADO_SPRITE / 2;
    public static int MARGEN_Y = ALTO_JUEGO / 2 - LADO_SPRITE / 2;
-//CODIGO PRUEBAS
+
    //MAPAS
    public static final String RUTA_MAPA = "/texto/mapa1.csv";
    public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
    public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
    
    //FI MAPAS.
-   //FI CODIGO PRUEBAS
+
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
    public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
@@ -43,7 +43,7 @@ public class Constantes {
    
    //Enemigos
    public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
-   
+   public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
    
    //Imagenes de los controles del juego.
    public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";

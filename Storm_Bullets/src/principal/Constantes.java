@@ -23,8 +23,12 @@ public class Constantes {
 
     public static final int CENTRO_VENTANA_X = ANCHO_JUEGO / 2;
     public static final int CENTRO_VENTANA_Y = ALTO_JUEGO / 2;
+    
+    public static final String RUTA_MAPA = "/texto/mapa1.csv";
+   public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
+   public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
 
-    public static final String RUTA_MAPA = "/texto/prueba.map";
+   // public static final String RUTA_MAPA = "/texto/prueba.map";
     public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
     public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
     public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
@@ -37,7 +41,7 @@ public class Constantes {
 
     //Enemigos
     public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
-
+    public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
     //Imagenes de los controles del juego.
     public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";
     public static final String RUTA_IMAGEN_A = "/imagenes/fondos/a.jpg";

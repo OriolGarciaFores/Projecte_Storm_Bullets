@@ -7,7 +7,7 @@ import principal.reproductor.Musicas;
 
 
 public class ElementosPrincipales {
-    //CODIGO PRUEBAS
+    
     public static MapaTiled mapa = new MapaTiled(Constantes.RUTA_MAPA);
     
     //public static Mapa mapa = new Mapa(Constantes.RUTA_MAPA);

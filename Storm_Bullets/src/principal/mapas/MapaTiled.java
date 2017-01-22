@@ -21,7 +21,8 @@ public class MapaTiled {
 
     private int anchoMapaTiles;
     private int altoMapaTiles;
-
+    private String rutaMapa;
+    
     private Point puntoInicial;
 
     private ArrayList<CapaSprites> capasSprites;
@@ -29,13 +30,15 @@ public class MapaTiled {
 
     private ArrayList<Rectangle> areasColisionesOriginales;
     public ArrayList<Rectangle> areasColisionPorActualizacion;
+    public ArrayList<PuertaSalida> puertas;
 
     private Sprite[] paletaSprites;
     
     private ArrayList<Enemigo> enemigosMapa;
 
     public MapaTiled(final String ruta) {
-        String contenido = CargadorRecursos.leerArchivoTexto(ruta);
+        this.rutaMapa = ruta;
+        String contenido = CargadorRecursos.leerArchivoTexto(this.rutaMapa);
 
         //ANCHO, ALTO del Mapa.
         JSONObject globalJSON = obtenerObjetoJSON(contenido);
@@ -170,11 +173,44 @@ public class MapaTiled {
             
             enemigosMapa.add(enemigo);
         }
+        //ZONAS SALIDA DE MAPA. Y APARICIONES DEL MAPA.
+        puertas = new ArrayList<>();
+        JSONArray coleccionSalidas = obtenerArrayJSON(globalJSON.get("salidas").toString());
+        for(int i = 0; i < coleccionSalidas.size(); i++){
+            JSONObject datosSalida = obtenerObjetoJSON(coleccionSalidas.get(i).toString());
+            
+            String nomMapa = datosSalida.get("mapa").toString();
+            int xInicial = obtenerIntDesdeJSON(datosSalida, "xinicial");
+            int yInicial = obtenerIntDesdeJSON(datosSalida, "yinicial");
+            int xFinal = obtenerIntDesdeJSON(datosSalida, "xfinal");
+            int yFinal = obtenerIntDesdeJSON(datosSalida, "yfinal");
+            int xAparicion = obtenerIntDesdeJSON(datosSalida, "xaparicion");
+            int yAparicion = obtenerIntDesdeJSON(datosSalida, "yaparicion");
+            
+            Point posicionSalidaInicial = new Point(xInicial, yInicial);
+            Point posicionSalidaFinal = new Point(xFinal, yFinal);
+            Point pAparicion = new Point(xAparicion, yAparicion);
+            
+            PuertaSalida ps = new PuertaSalida(nomMapa, posicionSalidaInicial, posicionSalidaFinal, pAparicion);
+            puertas.add(ps);
+            
+           
+        }
         areasColisionPorActualizacion = new ArrayList<>();
     }
     
     public void actualizar(){
-        actualizarAreasColision();  
+        actualizarAreasColision(); 
+        actualizarEnemigos();
+    }
+    
+        private void actualizarEnemigos(){
+     if(!enemigosMapa.isEmpty()){
+            for(Enemigo enemigo : enemigosMapa){
+            
+             enemigo.actualizar();
+            }
+        }
     }
     
     private void actualizarAreasColision(){
@@ -209,6 +245,14 @@ public class MapaTiled {
                     }
                 }
             }
+        }
+        
+         for(int i = 0; i < enemigosMapa.size(); i++){
+            Enemigo enemigo = enemigosMapa.get(i);
+            
+            final int puntoX = (int)enemigo.obtenerPosicionX() - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+            final int puntoY = (int)enemigo.obtenerPosicionY() - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+            enemigo.dibujar(g, puntoX, puntoY);
         }
     }
 
@@ -257,5 +301,13 @@ public class MapaTiled {
         int alto = this.altoMapaTiles * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerAlto() * 2;
 
         return new Rectangle(x, y, ancho, alto);
+    }
+    
+     public String obtenerMapaActual(){
+        return rutaMapa;
+    }
+     
+         public ArrayList<Enemigo> getEnemigosMapa() {
+        return enemigosMapa;
     }
 }

@@ -32,7 +32,6 @@ public class Enemigo {
 
     public void actualizar() {
     }
-// CODIGO PRUEBAS
 
     public void dibujar(final Graphics g, final int puntoX, final int puntoY) {
         if (vidaActual <= 0) {
@@ -49,7 +48,7 @@ public class Enemigo {
     }
     
     private void dibujarDistancia(final Graphics g, final int puntoX, final int puntoY){
-    Point puntoJugador = new Point(ElementosPrincipales.jugador.obtenerPosicionXint() / Constantes.LADO_SPRITE, ElementosPrincipales.jugador.obtenerPosicionYint() / Constantes.LADO_SPRITE);
+    Point puntoJugador = new Point(ElementosPrincipales.jugador.obtenerPosicionXint(), ElementosPrincipales.jugador.obtenerPosicionYint());
     Point puntoEnemigo = new Point((int) posicionX, (int) posicionY);
     
     Double distancia = CalculadoraDistancia.obtenerDistanciaEntrePuntos(puntoJugador, puntoEnemigo);
@@ -58,7 +57,6 @@ public class Enemigo {
 
     }
 
-// FI DE CODIGO PRUEBAS
     public void establecerPosicion(final double posicionX, final double posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
@@ -80,12 +78,12 @@ public class Enemigo {
         return vidaActual;
     }
 
-    //CODIGO DE PRUEBAS
+    
     public Rectangle obtenerArea() {
         final int puntoX = (int) posicionX * Constantes.LADO_SPRITE -  ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY * Constantes.LADO_SPRITE -  ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
     }
 
-    //FI CODIGO DE PRUEBAS
+    
 }
