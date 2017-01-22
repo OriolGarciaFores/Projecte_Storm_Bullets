@@ -44,8 +44,8 @@ public class Reproductor {
     public void setPan() throws BasicPlayerException {
         control.setPan(0.0);
     }
+    
+
 
    
-
-
 }

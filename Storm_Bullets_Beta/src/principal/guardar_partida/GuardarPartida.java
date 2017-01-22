@@ -61,8 +61,8 @@ public class GuardarPartida {
                     bw.newLine();
 
                 }
-             bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + "punts" + ";" + "temps");
-             bw.newLine();
+            bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + ElementosPrincipales.jugador.obtenerPuntuacionJugador() + ";" + "temps");
+            bw.newLine();
             bw.close();
             br.close();
 

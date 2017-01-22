@@ -27,8 +27,11 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-       //System.setProperty("sun.java2d.opengl", "true"); //Para mejorar rendimiento en portatiles. Obliga a usar la tarjeta grafica en vez de la integrada.
-        //Crear una excepcion en caso de no tener opengl.
+        if (!System.getProperty("os.name").startsWith("Windows")) {
+            System.setProperty("sun.java2d.opengl", "true");
+        }
+        //Para mejorar rendimiento en sistemas operativos como en Linux que no usan direx y con eso ejecutamos la grafica.
+
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 
         gp.iniciarJuego();
@@ -96,15 +99,22 @@ public class GestorPrincipal {
         } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(2);
         }
-        if(GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
+        if (GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador
+                || !GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(3);
-        } else if(GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador){
+            if (!GestorControles.teclado.menuActivo) {
+                GestorControles.teclado.menuActivo = true;
+            }
+        } else if (GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
             ge.cambiarEstadoActual(0);
+            if(GestorControles.teclado.menuActivo){
+                GestorControles.teclado.menuActivo = false;
+            }
         }
-        if(GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config){
+        if (GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
             ge.cambiarEstadoActual(4);
         }
-        
+
         ge.actualizar();
     }
 

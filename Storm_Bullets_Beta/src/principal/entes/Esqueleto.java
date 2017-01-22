@@ -20,7 +20,7 @@ public class Esqueleto extends Enemigo {
     }
     
     public void dibujar(final Graphics g, final int puntoX, final int puntoY){
-        DibujoDebug.dibujarImagen(g, hojaEsqueleto.obtenerSprite(0).obtenerImagen(), puntoX, puntoY);
+        DibujoDebug.dibujarImagen(g, hojaEsqueleto.obtenerSprite(1).obtenerImagen(), puntoX, puntoY);
         super.dibujar(g, puntoX, puntoY);
     }
     

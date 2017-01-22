@@ -34,7 +34,7 @@ public class SuperficieDibujo extends Canvas {
         BufferStrategy buffer = getBufferStrategy();
 
         if (buffer == null) {
-            createBufferStrategy(4);
+            createBufferStrategy(3);
             return;
         }
 

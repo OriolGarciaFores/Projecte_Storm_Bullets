@@ -48,6 +48,11 @@ public class GestorMenu implements EstadoJuego {
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
+                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                    GestorControles.teclado.config = true;
+                   GestorControles.teclado.accion.teclaLiberada();
+                    
+                }
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
                     ElementosPrincipales.musicaIngame.pararReproducir();
                     GuardarPartida.modificarSave();

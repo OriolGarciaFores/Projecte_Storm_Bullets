@@ -127,14 +127,6 @@
     "x": 512,
     "y": 288
 },
-"enemigos":
-[
-{
-    "id": 1,
-    "x": 609,
-    "y": 117
-}
-],
 "salidas":
 [
 {
@@ -143,7 +135,7 @@
     "yinicial": 192,
     "xfinal": 671,
     "yfinal": 224,
-    "xaparicion": 295,
+    "xaparicion": 262,
     "yaparicion": 207
 }
 ]

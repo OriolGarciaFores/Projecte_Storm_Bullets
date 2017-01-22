@@ -22,7 +22,7 @@ public class MapaTiled {
     private int anchoMapaTiles;
     private int altoMapaTiles;
     private String rutaMapa;
-    
+
     private Point puntoInicial;
 
     private ArrayList<CapaSprites> capasSprites;
@@ -33,7 +33,7 @@ public class MapaTiled {
     public ArrayList<PuertaSalida> puertas;
 
     private Sprite[] paletaSprites;
-    
+
     private ArrayList<Enemigo> enemigosMapa;
 
     public MapaTiled(final String ruta) {
@@ -156,29 +156,37 @@ public class MapaTiled {
             }
         }
         //OBJETOS QUE ESTARAN EN EL MAPA. MEJORA MAS ADELANTE.
-        
+
         //ENEMIGOS EN EL MAPA.
         enemigosMapa = new ArrayList<>();
-        JSONArray coleccionEnemigos = obtenerArrayJSON(globalJSON.get("enemigos").toString());
-        for(int i = 0; i < coleccionEnemigos.size(); i++){
-            JSONObject datosEnemigo = obtenerObjetoJSON(coleccionEnemigos.get(i).toString());
-            
-            int idEnemigo = obtenerIntDesdeJSON(datosEnemigo, "id");
-            int xEnemigo = obtenerIntDesdeJSON(datosEnemigo, "x");
-            int yEnemigo = obtenerIntDesdeJSON(datosEnemigo, "y");
-            
-            Point posicionEnemigo = new Point(xEnemigo, yEnemigo);
-            Enemigo enemigo = RegistroEnemigos.obtenerEnemigo(idEnemigo);
-            enemigo.establecerPosicion(posicionEnemigo.x, posicionEnemigo.y);
-            
-            enemigosMapa.add(enemigo);
+        JSONArray coleccionEnemigos = null;
+        //BUSCA Y LEE EN JSON EL APARTADO enemigos SI NO LO ENCUENTRA, PUES SALTA UN NULL, PERO CONTINUA EL PROGRAMA. EN ESTE CASO NO SE CREARAN ENEMIGOS.
+        try {
+            coleccionEnemigos = obtenerArrayJSON(globalJSON.get("enemigos").toString());
+        } catch (Exception ex) {
+            System.out.println("No hay enemigos.");
+        }
+        if (coleccionEnemigos != null) {
+            for (int i = 0; i < coleccionEnemigos.size(); i++) {
+                JSONObject datosEnemigo = obtenerObjetoJSON(coleccionEnemigos.get(i).toString());
+
+                int idEnemigo = obtenerIntDesdeJSON(datosEnemigo, "id");
+                int xEnemigo = obtenerIntDesdeJSON(datosEnemigo, "x");
+                int yEnemigo = obtenerIntDesdeJSON(datosEnemigo, "y");
+
+                Point posicionEnemigo = new Point(xEnemigo, yEnemigo);
+                Enemigo enemigo = RegistroEnemigos.obtenerEnemigo(idEnemigo);
+                enemigo.establecerPosicion(posicionEnemigo.x, posicionEnemigo.y);
+
+                enemigosMapa.add(enemigo);
+            }
         }
         //ZONAS SALIDA DE MAPA. Y APARICIONES DEL MAPA.
         puertas = new ArrayList<>();
         JSONArray coleccionSalidas = obtenerArrayJSON(globalJSON.get("salidas").toString());
-        for(int i = 0; i < coleccionSalidas.size(); i++){
+        for (int i = 0; i < coleccionSalidas.size(); i++) {
             JSONObject datosSalida = obtenerObjetoJSON(coleccionSalidas.get(i).toString());
-            
+
             String nomMapa = datosSalida.get("mapa").toString();
             int xInicial = obtenerIntDesdeJSON(datosSalida, "xinicial");
             int yInicial = obtenerIntDesdeJSON(datosSalida, "yinicial");
@@ -186,72 +194,80 @@ public class MapaTiled {
             int yFinal = obtenerIntDesdeJSON(datosSalida, "yfinal");
             int xAparicion = obtenerIntDesdeJSON(datosSalida, "xaparicion");
             int yAparicion = obtenerIntDesdeJSON(datosSalida, "yaparicion");
-            
+
             Point posicionSalidaInicial = new Point(xInicial, yInicial);
             Point posicionSalidaFinal = new Point(xFinal, yFinal);
             Point pAparicion = new Point(xAparicion, yAparicion);
-            
+
             PuertaSalida ps = new PuertaSalida(nomMapa, posicionSalidaInicial, posicionSalidaFinal, pAparicion);
             puertas.add(ps);
-            
-           
+
         }
         areasColisionPorActualizacion = new ArrayList<>();
     }
-    
-    public void actualizar(){
-        actualizarAreasColision(); 
+
+    public void actualizar() {
+        actualizarAreasColision();
         actualizarEnemigos();
     }
-    
-        private void actualizarEnemigos(){
-     if(!enemigosMapa.isEmpty()){
-            for(Enemigo enemigo : enemigosMapa){
-            
-             enemigo.actualizar();
+
+    private void actualizarEnemigos() {
+        if (!enemigosMapa.isEmpty()) {
+            for (Enemigo enemigo : enemigosMapa) {
+
+                enemigo.actualizar();
             }
         }
     }
-    
-    private void actualizarAreasColision(){
-        if(!areasColisionPorActualizacion.isEmpty()){
-        areasColisionPorActualizacion.clear();
+
+    private void actualizarAreasColision() {
+        if (!areasColisionPorActualizacion.isEmpty()) {
+            areasColisionPorActualizacion.clear();
         }
-        
-        for(int i = 0; i < areasColisionesOriginales.size(); i++){
-           Rectangle rInicial = areasColisionesOriginales.get(i);
-           
-           int puntoX = rInicial.x - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
-           int puntoY = rInicial.y - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
-        
-           final Rectangle rFinal = new Rectangle(puntoX, puntoY, rInicial.width, rInicial.height);
-           
-           areasColisionPorActualizacion.add(rFinal);
+
+        for (int i = 0; i < areasColisionesOriginales.size(); i++) {
+            Rectangle rInicial = areasColisionesOriginales.get(i);
+
+            int puntoX = rInicial.x - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+            int puntoY = rInicial.y - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+
+            final Rectangle rFinal = new Rectangle(puntoX, puntoY, rInicial.width, rInicial.height);
+
+            areasColisionPorActualizacion.add(rFinal);
         }
     }
-    
-    public void dibujar(Graphics g){
-        for(int i = 0; i < capasSprites.size(); i++){
+
+    public void dibujar(Graphics g) {
+        for (int i = 0; i < capasSprites.size(); i++) {
             int[] spritesCapa = capasSprites.get(i).obtenerArraySprites();
-            
-            for(int y = 0; y < altoMapaTiles; y++){
-                for(int x = 0; x < anchoMapaTiles; x++){
+
+            for (int y = 0; y < altoMapaTiles; y++) {
+                for (int x = 0; x < anchoMapaTiles; x++) {
                     int idSpriteActual = spritesCapa[x + y * anchoMapaTiles];
-                    if(idSpriteActual != -1){
+                    if (idSpriteActual != -1) {
                         int puntoX = x * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
                         int puntoY = y * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
-                        
+
+                        //Evitar dibujar sprites que no se muestran, para ganar rendimiento.
+                        if (puntoX < 0 - Constantes.LADO_SPRITE || puntoX > Constantes.ANCHO_JUEGO || puntoY < 0 - Constantes.LADO_SPRITE || puntoY > Constantes.ALTO_JUEGO - 65) {
+                            continue;
+                        }
+
                         DibujoDebug.dibujarImagen(g, paletaSprites[idSpriteActual].obtenerImagen(), puntoX, puntoY);
                     }
                 }
             }
         }
-        
-         for(int i = 0; i < enemigosMapa.size(); i++){
+
+        for (int i = 0; i < enemigosMapa.size(); i++) {
             Enemigo enemigo = enemigosMapa.get(i);
-            
-            final int puntoX = (int)enemigo.obtenerPosicionX() - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
-            final int puntoY = (int)enemigo.obtenerPosicionY() - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+
+            final int puntoX = (int) enemigo.obtenerPosicionX() - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+            final int puntoY = (int) enemigo.obtenerPosicionY() - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+            //Evitar dibujar sprites que no se muestran, para ganar rendimiento.
+            if (puntoX < 0 - Constantes.LADO_SPRITE || puntoX > Constantes.ANCHO_JUEGO || puntoY < 0 - Constantes.LADO_SPRITE || puntoY > Constantes.ALTO_JUEGO - 65) {
+                continue;
+            }
             enemigo.dibujar(g, puntoX, puntoY);
         }
     }
@@ -289,12 +305,12 @@ public class MapaTiled {
     private int obtenerIntDesdeJSON(final JSONObject objetoJSON, final String clave) {
         return (int) Double.parseDouble(objetoJSON.get(clave).toString());
     }
-    
-    public Point obtenerPosicionInicial(){
+
+    public Point obtenerPosicionInicial() {
         return puntoInicial;
     }
-    
-    public Rectangle obtenerBordes(final int posicionX, final int posicionY){
+
+    public Rectangle obtenerBordes(final int posicionX, final int posicionY) {
         int x = Constantes.MARGEN_X - posicionX + ElementosPrincipales.jugador.obtenerAncho();
         int y = Constantes.MARGEN_Y - posicionY + ElementosPrincipales.jugador.obtenerAlto();
         int ancho = this.anchoMapaTiles * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerAncho() * 2;
@@ -302,12 +318,12 @@ public class MapaTiled {
 
         return new Rectangle(x, y, ancho, alto);
     }
-    
-     public String obtenerMapaActual(){
+
+    public String obtenerMapaActual() {
         return rutaMapa;
     }
-     
-         public ArrayList<Enemigo> getEnemigosMapa() {
+
+    public ArrayList<Enemigo> getEnemigosMapa() {
         return enemigosMapa;
     }
 }

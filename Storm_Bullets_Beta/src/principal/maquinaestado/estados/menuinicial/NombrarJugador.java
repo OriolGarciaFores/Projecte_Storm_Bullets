@@ -47,7 +47,7 @@ public class NombrarJugador implements EstadoJuego {
         for (int i = 0; i < secciones.length; i++) {
             if (GestorControles.teclado.accion.estaPulsada() && seccionActual == secciones[0]) {
                 GuardarPartida.crearSave();
-                GestorControles.teclado.accion.teclaLiberada();
+               // GestorControles.teclado.accion.teclaLiberada();
             }
         }
 

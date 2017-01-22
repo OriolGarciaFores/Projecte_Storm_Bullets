@@ -3,6 +3,9 @@ package principal.maquinaestado.estados.menuinicial;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
@@ -89,7 +92,7 @@ public class GestorTitulo implements EstadoJuego {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
                  
-                
+
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;

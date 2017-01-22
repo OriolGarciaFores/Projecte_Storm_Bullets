@@ -11,8 +11,6 @@ import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
 
-
-
 public class GestorMenu implements EstadoJuego {
 
     private final EstructuraMenu estructuraMenu;
@@ -35,7 +33,7 @@ public class GestorMenu implements EstadoJuego {
 
         secciones[1] = new MenuSalir("Salir", etiquetaSalir);
 
-        seccionActual = secciones[0];       
+        seccionActual = secciones[0];
     }
 
     public void actualizar() {
@@ -50,6 +48,11 @@ public class GestorMenu implements EstadoJuego {
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
+                if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
+                    GestorControles.teclado.config = true;
+                    GestorControles.teclado.accion.teclaLiberada();
+
+                }
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
                     ElementosPrincipales.musicaIngame.pararReproducir();
                     GuardarPartida.modificarSave();

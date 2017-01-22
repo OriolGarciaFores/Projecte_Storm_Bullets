@@ -68,8 +68,10 @@ public class Configuracion implements EstadoJuego {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.derecha.estaPulsada()) {
                     try {
-                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
+                        
+                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());                       
                         seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
+                        ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
                     } catch (Exception ex) {
                         Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -78,8 +80,10 @@ public class Configuracion implements EstadoJuego {
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {
                     try {
-                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());
+                        
+                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());                      
                         seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
+                        ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
                     } catch (Exception ex) {
                         Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
                     }
