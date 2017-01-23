@@ -183,7 +183,6 @@ public class Jugador {
             if (velocidadY == 1 && !enColisionAbajo(velocidadY)) {
                 posicionY += velocidadY * velocidad;
             }
-            //CODIGO PRUEBAS
 
         }
 
@@ -355,7 +354,7 @@ public class Jugador {
             int origenY = area.y;
 
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
-
+            
             if (LIMITE_DERECHA.intersects(areaFutura)) {
                 return true;
             }
