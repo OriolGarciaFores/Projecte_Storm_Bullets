@@ -6,7 +6,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import principal.Constantes;
 import principal.ElementosPrincipales;
-import principal.control.GestorControles;
 import principal.herramientas.CalculadoraDistancia;
 import principal.herramientas.DibujoDebug;
 
@@ -16,75 +15,115 @@ public class Enemigo {
     private double posicionX;
     private double posicionY;
 
-    private double velocidad = 0.5;
-
-    private final int ANCHO_ENEMIGO = 30;
-    private final int ALTO_ENEMIGO = 16;
-
-    //CUADRADO DE COLISION DEL CUERPO ENEMIGO.
-    private final Rectangle LIMITE_ARRIBA = new Rectangle(Constantes.CENTRO_VENTANA_X - ANCHO_ENEMIGO / 2, Constantes.CENTRO_VENTANA_Y, ANCHO_ENEMIGO, 1);
-    private final Rectangle LIMITE_ABAJO = new Rectangle(Constantes.CENTRO_VENTANA_X - ANCHO_ENEMIGO / 2, Constantes.CENTRO_VENTANA_Y + ALTO_ENEMIGO, ANCHO_ENEMIGO, 1);
-    private final Rectangle LIMITE_IZQUIERDA = new Rectangle(Constantes.CENTRO_VENTANA_X - ANCHO_ENEMIGO / 2, Constantes.CENTRO_VENTANA_Y, 1, ALTO_ENEMIGO);
-    private final Rectangle LIMITE_DERECHA = new Rectangle(Constantes.CENTRO_VENTANA_X + ANCHO_ENEMIGO / 2, Constantes.CENTRO_VENTANA_Y, 1, ALTO_ENEMIGO);
-
+    private double velocidad;
+ 
     private String nombre;
     private int vidaMaxima;
     private float vidaActual;
+    private int animacion;
+    public int estado;
+    
+    public char direccion;
+    
+    private boolean enMovimiento;
 
-    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima) {
+    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad) {
         this.idEnemigo = idEnemigo;
-
         this.posicionX = 0;
         this.posicionY = 0;
-
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.vidaActual = vidaMaxima;
+        this.velocidad = velocidad;  
+        
+        animacion = 0;
+        estado = 1;
+        enMovimiento = false;
+        direccion = 0;
     }
 
     public void actualizar() {
+        cambiarAnimacionEstado();
+        enMovimiento = false;
         mover();
+        animar();
+    }
+    
+     private void cambiarAnimacionEstado() {
+        if (animacion < 40) {
+            animacion++;
+        } else {
+            animacion = 0;
+        }
+
+        if (animacion > 10 && animacion <= 20) {
+            estado = 0;
+        } else if (animacion > 20 && animacion <= 30) {
+            estado = 1;
+        } else if (animacion > 30 && animacion <= 40) {
+            estado = 2;
+        } else {
+            estado = 0;
+        }
+
+    }
+     
+         private void animar() {
+        if (!enMovimiento) {
+            estado = 1;
+            animacion = 0;
+        }
     }
 
     public void dibujar(final Graphics g, final int puntoX, final int puntoY) {
         if (vidaActual <= 0) {
             return;
         }
-        dibujarBarraVida(g, puntoX, puntoY);
-        DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
-        dibujarDistancia(g, puntoX, puntoY);
+       // dibujarBarraVida(g, puntoX, puntoY);
+        /*DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ARRIBA());
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_DERECHA());*/
+       // dibujarDistancia(g, puntoX, puntoY);
     }
 
     private void mover() {
-        // enMovimiento = true;
+         enMovimiento = true;
 
-        // cambiarDireccion(velocidadX, velocidadY);
-        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda((int) velocidad)) {
+        //DERECHA
+        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigo()){
             posicionX += velocidad;
+           direccion = 2;
         }
-        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha((int) velocidad)) {
+       //IZQUIERDA
+        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigo()) {
             posicionX -= velocidad;
+            direccion = 1;
         }
-        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionArriba((int) velocidad)) {
+      //ABAJO
+        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigo()) {
             posicionY += velocidad;
+            direccion = 0;
         }
-        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo((int) velocidad)) {
+      //ARRIBA
+        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigo()) {
             posicionY -= velocidad;
+            direccion = 3;
         }
 
     }
-
-    private boolean enColisionArriba(int velocidadY) {
+    
+     private boolean enColisionArriba() {
 
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
             int origenX = area.x;
-            int origenY = area.y + velocidadY * (int) velocidad + 3 * (int) velocidad;
+            int origenY = area.y;
 
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
 
-            if (LIMITE_ARRIBA.intersects(areaFutura)) {
+            if (obtenerLIMITE_ARRIBA().intersects(areaFutura)) {
                 return true;
             }
         }
@@ -92,55 +131,75 @@ public class Enemigo {
         return false;
     }
 
-    private boolean enColisionAbajo(int velocidadY) {
+    private boolean enColisionAbajo() {
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
             int origenX = area.x;
-            int origenY = area.y + velocidadY * (int) velocidad - 3 * (int) velocidad;
-
-            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
-
-            if (LIMITE_ABAJO.intersects(areaFutura)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean enColisionIzquierda(int velocidadX) {
-
-        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
-            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
-
-            int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
             int origenY = area.y;
 
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
 
-            if (LIMITE_IZQUIERDA.intersects(areaFutura)) {
+            if (obtenerLIMITE_ABAJO().intersects(areaFutura)) {
                 return true;
             }
         }
 
         return false;
+
     }
 
-    private boolean enColisionDerecha(int velocidadX) {
+    private boolean enColisionIzquierda() {
+
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
 
-            int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
+            int origenX = area.x;
             int origenY = area.y;
+
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
 
-            if (LIMITE_DERECHA.intersects(areaFutura)) {
+            if (obtenerLIMITE_IZQUIERDA().intersects(areaFutura)) {
                 return true;
             }
         }
 
         return false;
+
+    }
+
+    private boolean enColisionDerecha() {
+        for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
+            final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
+
+            int origenX = area.x;
+            int origenY = area.y;
+
+            final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
+            
+            if (obtenerLIMITE_DERECHA().intersects(areaFutura)) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+    
+    private boolean enColisionEnemigo() {
+        
+      /*   for (int i = 0; i < ElementosPrincipales.mapa.getEnemigosMapa().size(); i++) {
+             if(i == 1){
+            final Rectangle area = ElementosPrincipales.mapa.getEnemigosMapa().get(i).obtenerArea();
+             
+            if(obtenerArea().intersects(area)){
+                return true;
+            }
+             }
+        }*/
+
+        return false;
+
     }
 
     private void dibujarBarraVida(final Graphics g, final int puntoX, final int puntoY) {
@@ -157,7 +216,7 @@ public class Enemigo {
         DibujoDebug.dibujarString(g, String.format("%.2f", distancia), puntoX, puntoY - 8, 12);
 
     }
-
+    
     public void establecerPosicion(final double posicionX, final double posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
@@ -179,10 +238,37 @@ public class Enemigo {
         return vidaActual;
     }
 
-    public Rectangle obtenerArea() {
-        final int puntoX = (int) posicionX * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
-        final int puntoY = (int) posicionY * Constantes.LADO_SPRITE - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+    public Rectangle obtenerLIMITE_DERECHA() {
+        //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
+        final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+        return new Rectangle(puntoX + 30, puntoY + 15, 1, 16);
+    }
+    
+     public Rectangle obtenerLIMITE_ABAJO() {
+        //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
+        final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+        return new Rectangle(puntoX, puntoY + 30, 30, 1);
+    }
+      public Rectangle obtenerLIMITE_ARRIBA() {
+        //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
+        final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+        return new Rectangle(puntoX, puntoY + 15, 30, 1);
+    }
+      
+       public Rectangle obtenerLIMITE_IZQUIERDA() {
+        //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
+        final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
+        return new Rectangle(puntoX, puntoY + 15, 1, 16);
+    }
+       
+        public Rectangle obtenerArea() {
+        final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
+        final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
     }
-
+    
 }

@@ -24,12 +24,14 @@ public class MapaTiled {
     private int altoMapaTiles;
     private String rutaMapa;
 
+    private int contador = 0;
+    
     private Point puntoInicial;
 
     private ArrayList<CapaSprites> capasSprites;
     private ArrayList<CapaColisiones> capasColisiones;
 
-    private ArrayList<Rectangle> areasColisionesOriginales;
+    public ArrayList<Rectangle> areasColisionesOriginales;
     public ArrayList<Rectangle> areasColisionPorActualizacion;
     public ArrayList<PuertaSalida> puertas;
 
@@ -212,6 +214,16 @@ public class MapaTiled {
     public void actualizar() {
         actualizarAreasColision();
         actualizarEnemigos();
+        contador++;
+        if(contador == 60){
+            contador = 0;
+            Constantes.segundos += 1;
+            if(Constantes.segundos == 60){
+                Constantes.segundos = 0;
+                Constantes.minutos += 1;
+                
+            }
+        }
     }
 
     private void actualizarEnemigos() {

@@ -27,9 +27,9 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-        if (!System.getProperty("os.name").startsWith("Windows")) {
-            System.setProperty("sun.java2d.opengl", "true");
-        }
+      //  if (!System.getProperty("os.name").startsWith("Windows")) {
+            System.setProperty("sun.java2d.opengl", "True");
+       // }
         //Para mejorar rendimiento en sistemas operativos como en Linux que no usan direx y con eso ejecutamos la grafica.
 
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);

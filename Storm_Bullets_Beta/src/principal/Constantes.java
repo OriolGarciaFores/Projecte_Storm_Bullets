@@ -55,5 +55,7 @@ public class Constantes {
     
    public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
    
+   public static int segundos = 0;
+   public static int minutos = 0;
    
 }
