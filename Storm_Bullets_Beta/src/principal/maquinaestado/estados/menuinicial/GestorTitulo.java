@@ -37,7 +37,7 @@ public class GestorTitulo implements EstadoJuego {
 
         final Rectangle etiquetaTop = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaPlay.y + etiquetaPlay.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[1] = new MenuTop("Top List", etiquetaTop);
+        secciones[1] = new MenuTop("Ranking", etiquetaTop);
 
         final Rectangle etiquetaConfigurar = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaTop.y + etiquetaTop.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
@@ -98,6 +98,10 @@ public class GestorTitulo implements EstadoJuego {
                     GestorControles.teclado.tituloActivo = false;
                     ElementosPrincipales.m.pararReproducir();
                     ElementosPrincipales.musicaIngame.reproducir(Constantes.RUTA_AUDIO_INGAME);
+                }
+                if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
+                   GestorControles.teclado.ranking = true;
+                   GestorControles.teclado.accion.teclaLiberada();
                 }
                 if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
                    GestorControles.teclado.config = true;

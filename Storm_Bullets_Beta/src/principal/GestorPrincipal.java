@@ -27,9 +27,9 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-      //  if (!System.getProperty("os.name").startsWith("Windows")) {
-           // System.setProperty("sun.java2d.opengl", "True");
-       // }
+        //  if (!System.getProperty("os.name").startsWith("Windows")) {
+        // System.setProperty("sun.java2d.opengl", "True");
+        // }
         //Para mejorar rendimiento en sistemas operativos como en Linux que no usan direx y con eso ejecutamos la grafica.
 
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
@@ -93,25 +93,32 @@ public class GestorPrincipal {
     }
 
     private void actualizar() {
-        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
+        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(1);
 
-        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador) {
+        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(2);
         }
-        if (GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador
-                || !GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
+        if (GestorControles.teclado.ranking && !GestorControles.teclado.nombrarJugador && GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
+
+            ge.cambiarEstadoActual(5);
+            if (GestorControles.teclado.menuActivo) {
+                GestorControles.teclado.menuActivo = false;
+            }
+        }
+        if (GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking
+                || !GestorControles.teclado.tituloActivo && GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(3);
             if (!GestorControles.teclado.menuActivo) {
                 GestorControles.teclado.menuActivo = true;
             }
-        } else if (GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador) {
+        } else if (GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(0);
-            if(GestorControles.teclado.menuActivo){
+            if (GestorControles.teclado.menuActivo) {
                 GestorControles.teclado.menuActivo = false;
             }
         }
-        if (GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
+        if (GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(4);
         }
 

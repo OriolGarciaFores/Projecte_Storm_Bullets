@@ -44,6 +44,7 @@ public class Teclado implements KeyListener {
     public boolean config = false;
     public boolean nombrarJugador = false;
     public boolean datosJuego = false;
+    public boolean ranking = false;
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
