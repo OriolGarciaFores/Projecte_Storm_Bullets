@@ -31,7 +31,7 @@ public class Constantes {
    public static final String RUTA_MAPA = "/texto/mapa1.csv";
    public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
    public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
-   
+   public static final String RUTA_MAPA4 = "/texto/mapa4.csv";
    //FI MAPAS.
 
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
