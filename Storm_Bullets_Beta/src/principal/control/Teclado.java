@@ -43,6 +43,7 @@ public class Teclado implements KeyListener {
     public boolean tituloActivo = true;
     public boolean config = false;
     public boolean nombrarJugador = false;
+    public boolean datosJuego = false;
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -141,6 +142,9 @@ public class Teclado implements KeyListener {
                 break;
             case KeyEvent.VK_BACK_SPACE:
                 borrar.teclaPulsada();
+                break;
+            case KeyEvent.VK_F1:
+                datosJuego = !datosJuego;
                 break;
 
         }

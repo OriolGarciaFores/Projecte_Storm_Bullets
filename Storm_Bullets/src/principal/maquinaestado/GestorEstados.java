@@ -21,7 +21,6 @@ public class GestorEstados {
     private void iniciarEstados() {
         estados = new EstadoJuego[5];
         estados[0] = new GestorTitulo();
-       // Añadir un estado para poner una ID y un nombre al Jugador.
         estados[1] = new GestorJuego();
         estados[2] = new GestorMenu();
         estados[3] = new Configuracion();

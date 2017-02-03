@@ -8,10 +8,10 @@ public class RegistroEnemigos {
         
         switch(idEnemigo){
             case 1:
-                enemigo = new Esqueleto(idEnemigo, "Esqueleto", 10);
+                enemigo = new Esqueleto(idEnemigo, "Esqueleto", 10, 0.5);
                 break;
             case 2:
-                enemigo = new Slime(idEnemigo, "Slime", 50);
+                enemigo = new Slime(idEnemigo, "Slime", 50, 0.3);
                 break;
         }
         

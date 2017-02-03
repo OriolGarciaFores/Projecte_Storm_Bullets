@@ -128,7 +128,7 @@ public class MapaTiled {
             JSONObject datosGrupo = obtenerObjetoJSON(coleccionesSprites.get(i).toString());
             totalSprites += obtenerIntDesdeJSON(datosGrupo, "tilecount");
         }
-        paletaSprites = new Sprite[totalSprites];
+        paletaSprites = new Sprite[totalSprites];//ASSIGNO EL TAMAÑO DEL ARRAY QUE TIENE QUE SER.
         //ASIGNAR SPRITES NECESARIOS A LA PALETA A PARTIR DE LAS CAPAS.
         for (int i = 0; i < coleccionesSprites.size(); i++) {
             JSONObject datosGrupo = obtenerObjetoJSON(coleccionesSprites.get(i).toString());

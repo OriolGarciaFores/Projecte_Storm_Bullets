@@ -15,11 +15,6 @@ import principal.herramientas.DibujoDebug;
 public class MenuInferior {
     private Rectangle areaInventario;
     private Rectangle bordeAreaInventario;
-    //Pruebas.
-    private Integer minutos = 0 , segundos = 0;
-    private String min="00", seg="00";
-    private int MILISEC;
-    //Fin de pruebas.
     private Color negroDesaturado;
     private Color rojoOscuro;
     private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_AVATAR);
@@ -41,7 +36,7 @@ public class MenuInferior {
     public void dibujar(final Graphics g) {
         dibujarAreaInventario(g);
         dibujarBarraVitalidad(g);
-        dibujarRanurasObjetos(g);
+       // dibujarRanurasObjetos(g);
         dibujarPuntuaciones(g);
         dibujarAvatar(g);
         dibujarControles(g);
@@ -74,7 +69,7 @@ public class MenuInferior {
         DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60 , areaInventario.y + 50, 12);
     }
     
-    private void dibujarRanurasObjetos(final Graphics g){
+   /* private void dibujarRanurasObjetos(final Graphics g){
         final int anchoRanura = 32;
         final int numeroRanuras = 1;
         final int espacioRanuras = 10;
@@ -90,7 +85,7 @@ public class MenuInferior {
             DibujoDebug.dibujarString(g, "Q", xActual - 130, areaInventario.y + 54, 12);
         }
         
-    }
+    }*/
     
     private void dibujarAvatar(final Graphics g){
         

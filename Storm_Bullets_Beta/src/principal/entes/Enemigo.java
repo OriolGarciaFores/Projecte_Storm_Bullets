@@ -68,7 +68,7 @@ public class Enemigo {
 
     }
      
-         private void animar() {
+    private void animar() {
         if (!enMovimiento) {
             estado = 1;
             animacion = 0;
