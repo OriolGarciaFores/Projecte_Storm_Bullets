@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Top {
 
-    public ArrayList<Partida> partidas = new ArrayList<>();
+    public static ArrayList<Partida> partidas = new ArrayList<>();
 
     private static Partida partida;
 
@@ -30,6 +30,7 @@ public class Top {
             while ((linea = br.readLine()) != null) {
                 info = linea.split(";");
                 partida = new Partida(info[0], Integer.parseInt(info[1]), info[2]);
+                partidas.add(partida);
 
             }
 
