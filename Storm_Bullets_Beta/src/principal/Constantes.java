@@ -34,8 +34,8 @@ public class Constantes {
    public static final String RUTA_MAPA4 = "/texto/mapa4.csv";
    //FI MAPAS.
 
-   public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
+   public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/portada2.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";

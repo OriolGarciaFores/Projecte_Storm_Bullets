@@ -37,7 +37,7 @@ public class MapaTiled {
 
     private Sprite[] paletaSprites;
 
-    private ArrayList<Enemigo> enemigosMapa;
+    public ArrayList<Enemigo> enemigosMapa;
 
     public MapaTiled(String ruta) {
         this.rutaMapa = ruta;
@@ -230,7 +230,7 @@ public class MapaTiled {
         if (!enemigosMapa.isEmpty()) {
             for (Enemigo enemigo : enemigosMapa) {
 
-                enemigo.actualizar();
+                enemigo.actualizar(enemigosMapa);
             }
         }
     }

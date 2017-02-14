@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.herramientas.CalculadoraDistancia;
@@ -42,10 +43,10 @@ public class Enemigo {
         direccion = 0;
     }
 
-    public void actualizar() {
+    public void actualizar(ArrayList<Enemigo> enemigos) {
         cambiarAnimacionEstado();
         enMovimiento = false;
-        mover();
+        mover(enemigos);
         animar();
     }
     
@@ -87,26 +88,26 @@ public class Enemigo {
        // dibujarDistancia(g, puntoX, puntoY);
     }
 
-    private void mover() {
+    private void mover(ArrayList<Enemigo> enemigos) {
          enMovimiento = true;
-
+         
         //DERECHA
-        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigo()){
+        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)){
             posicionX += velocidad;
            direccion = 2;
         }
        //IZQUIERDA
-        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigo()) {
+        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)) {
             posicionX -= velocidad;
             direccion = 1;
         }
       //ABAJO
-        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigo()) {
+        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
             posicionY += velocidad;
             direccion = 0;
         }
       //ARRIBA
-        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigo()) {
+        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigoArriba(enemigos)) {
             posicionY -= velocidad;
             direccion = 3;
         }
@@ -269,6 +270,71 @@ public class Enemigo {
         final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+    }
+        
+        public Rectangle obtenerAreaPosicional(){
+        return new Rectangle((int) posicionX, (int) posicionY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+        }
+
+    private boolean enColisionEnemigoDerecha(ArrayList<Enemigo> enemigos) {
+         for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_DERECHA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
+        
+    }
+
+    private boolean enColisionEnemigoIzquierda(ArrayList<Enemigo> enemigos) {
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_IZQUIERDA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
+    }
+
+    private boolean enColisionEnemigoAbajo(ArrayList<Enemigo> enemigos) {
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_ABAJO().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
+    }
+
+    private boolean enColisionEnemigoArriba(ArrayList<Enemigo> enemigos) {
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_ARRIBA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
     }
     
 }

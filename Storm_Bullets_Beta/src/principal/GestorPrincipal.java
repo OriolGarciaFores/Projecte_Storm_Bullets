@@ -32,7 +32,7 @@ public class GestorPrincipal {
         // }
         //Para mejorar rendimiento en sistemas operativos como en Linux que no usan direx y con eso ejecutamos la grafica.
 
-        GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
+        GestorPrincipal gp = new GestorPrincipal("Storm Bullets Beta", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 
         gp.iniciarJuego();
         gp.iniciarBuclePrincipal();
