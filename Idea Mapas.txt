@@ -1,4 +1,4 @@
-Multimapas. 5 llaves. Y al obtener las llaves poder acceder al boss.
+Existen 2 llaves. La dorada para el boss. Y la normal para salas cerradas.
 
 Siempre hay k eliminar a todos los enemigos.
 

@@ -1,6 +1,6 @@
 package principal.guardar_partida;
 
-public class Partida {
+public class Partida implements Comparable<Partida> {
 
     private String nombreJugador;
     private int puntuacion;
@@ -22,6 +22,17 @@ public class Partida {
 
     public String obtenerTiempoJugado() {
         return tiempoJugado;
+    }
+
+    @Override
+    public int compareTo(Partida o) {
+        if(puntuacion > o.puntuacion){
+            return -1;
+        }
+        if(puntuacion < o.puntuacion){
+            return 1;
+        }
+        return 0;
     }
 
 }

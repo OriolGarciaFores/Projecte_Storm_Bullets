@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
-public class Top {
+public class Top  {
 
     public static ArrayList<Partida> partidas = new ArrayList<>();
 
@@ -37,5 +39,9 @@ public class Top {
         } catch (IOException ex) {
             System.out.println("Error al leer el fichero de partidas.");
         }
+    }
+    
+    public static void ordenarPartidas(){
+    Collections.sort(partidas);
     }
 }

@@ -2,6 +2,10 @@ https://gist.github.com/jujogracu/3069429
 
 http://www.pixelsmil.com/2011/08/configurar-photoshop-para-pixel-art.html
 
+https://geekytheory.com/tip-java-como-ordenar-un-array-de-objetos-por-sus-atributos/
+
+http://stackoverflow.com/questions/24975167/java-how-to-use-compareto-to-sort-an-arraylist
+
 
 -- Videos --
 

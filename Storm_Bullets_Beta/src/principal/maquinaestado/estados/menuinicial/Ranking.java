@@ -33,6 +33,7 @@ public class Ranking implements EstadoJuego {
 
         try {
             Top.leerPartidasFichero();
+            Top.ordenarPartidas();
         } catch (Exception ex) {
             System.out.println("No hay partidas.");
         }
