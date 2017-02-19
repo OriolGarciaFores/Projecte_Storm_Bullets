@@ -35,15 +35,16 @@ public class Constantes {
    //FI MAPAS.
 
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/portada2.jpg";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
    public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
    public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
    //IMAGENES DE OBJETOS
-   public static final String RUTA_LLAVEBOSS = "/imagenes/fondos/llaveBoss.png";
-   public static final String RUTA_LLAVE = "/imagenes/fondos/llave.png";
+  // public static final String RUTA_LLAVEBOSS = "/imagenes/hojasObjetos/llaveBoss.png";
+   public static final String RUTA_LLAVES = "/imagenes/hojasObjetos/hojaLlaves.png";
+   public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
    
    //Enemigos
    public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
@@ -57,7 +58,7 @@ public class Constantes {
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
    
     
-   public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
+   public static Font FUENTE_PIXEL = CargadorRecursos.cargarFuente("/fuentes/FreePixel.ttf");
    
    public static int segundos = 0;
    public static int minutos = 0;

@@ -41,7 +41,7 @@ public class GestorTitulo implements EstadoJuego {
 
         final Rectangle etiquetaConfigurar = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaTop.y + etiquetaTop.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[2] = new MenuConfigurar("Configuración", etiquetaConfigurar);
+        secciones[2] = new MenuConfigurar("Opciones", etiquetaConfigurar);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaConfigurar.y + etiquetaConfigurar.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 

@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.DibujoDebug;
+import principal.inventario.RegistroObjetos;
+import principal.inventario.armas.Arma;
+import principal.inventario.armas.Desarmado;
 import principal.mapas.MapaTiled;
 import principal.sprites.HojaSprites;
 
@@ -38,6 +42,10 @@ public class Jugador {
     private int vidaJugador;
     private int puntuacion;
     private String nomJugador;
+    
+    private AlmacenEquipo ae;
+    
+    private ArrayList<Rectangle> alcanceActual;
 
     public Jugador() {
         this.posicionX = ElementosPrincipales.mapa.obtenerPosicionInicial().getX();
@@ -55,6 +63,10 @@ public class Jugador {
         vidaJugador = 300;
         puntuacion = 0;
         nomJugador = "";
+        
+        ae = new AlmacenEquipo((Arma)RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
+        
+        alcanceActual = new ArrayList<>();
 
     }
 
@@ -63,7 +75,16 @@ public class Jugador {
         enMovimiento = false;
         determinarDireccion();
         animar();
+        calcularAlcanceAtaque();
         salirMapa();
+    }
+    
+    private void calcularAlcanceAtaque(){
+        if(ae.obtenerArma() instanceof Desarmado){
+            return;
+        }
+        
+        alcanceActual = ae.obtenerArma().obtenerAlcance(this);
     }
 
     private void cambiarAnimacionEstado() {
@@ -421,6 +442,15 @@ public class Jugador {
         g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
         g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
         g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);*/
+       
+       if(!alcanceActual.isEmpty()){
+           dibujarAlcance(g);
+       }
+       
+    }
+    
+    private void dibujarAlcance(final Graphics g){
+    DibujoDebug.dibujarRectanguloRelleno(g, alcanceActual.get(0), Color.red);
     }
 
     public void establecerPosicionX(double posicionX) {
@@ -476,5 +506,13 @@ public class Jugador {
     public int obtenerAlto() {
         return ALTO_JUGADOR;
     }
-
+    
+    public AlmacenEquipo obtenerAlmacenEquipo(){
+        return ae;
+    }
+    
+    public int obtenerDireccion(){
+    return direccion;
+    }
+    
 }

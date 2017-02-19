@@ -27,7 +27,7 @@ public class GestorMenu implements EstadoJuego {
 
         final Rectangle etiquetaMenu = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new MenuConfigurar("Configurar", etiquetaMenu);
+        secciones[0] = new MenuConfigurar("Opciones", etiquetaMenu);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaMenu.y + etiquetaMenu.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 

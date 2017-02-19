@@ -30,7 +30,7 @@ public class GestorPrincipal {
             System.setProperty("sun.java2d.opengl", "True");
         }
         //EN EL PORTATIL NECESARIO.
-        System.setProperty("sun.java2d.opengl", "True");
+       // System.setProperty("sun.java2d.opengl", "True");
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 
         gp.iniciarJuego();

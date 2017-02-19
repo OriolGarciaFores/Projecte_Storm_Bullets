@@ -7,18 +7,16 @@ import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.entes.Jugador;
+import principal.guardar_partida.Top;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
+import principal.inventario.Inventario;
+import principal.inventario.Objeto;
 
 public class MenuInferior {
 
     private Rectangle areaInventario;
     private Rectangle bordeAreaInventario;
-    //Pruebas.
-    private Integer minutos = 0, segundos = 0;
-    private String min = "00", seg = "00";
-    private int MILISEC;
-    //Fin de pruebas.
     private Color negroDesaturado;
     private Color rojoOscuro;
     private static final BufferedImage img = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_AVATAR);
@@ -27,8 +25,6 @@ public class MenuInferior {
     private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
-    private static final BufferedImage llaveBoss = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_LLAVEBOSS);
-    private static final BufferedImage llave = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_LLAVE);
 
     public MenuInferior() {
 
@@ -47,8 +43,7 @@ public class MenuInferior {
         dibujarPuntuaciones(g);
         dibujarAvatar(g);
         dibujarControles(g);
-        dibujarLlave(g);
-        dibujarLlaveBoss(g);
+        dibujarElementosEquipables(g);
     }
 
     private void dibujarAreaInventario(final Graphics g) {
@@ -75,23 +70,55 @@ public class MenuInferior {
 
     private void dibujarPuntuaciones(final Graphics g) {
         DibujoDebug.dibujarString(g, "Puntuación: " + ElementosPrincipales.jugador.obtenerPuntuacionJugador(), areaInventario.x + 60, areaInventario.y + 35, 12);
-        DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60, areaInventario.y + 50, 12);
+        try{
+        DibujoDebug.dibujarString(g, "Mejor Puntuación: " + Top.partidas.get(0).obtenerPuntuacion(), areaInventario.x + 60, areaInventario.y + 50, 12);
+        } catch(Exception ex){
+            System.out.println("No hay mejor puntuacion.");
+            DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60, areaInventario.y + 50, 12);
+        }
     }
 
     private void dibujarRanurasObjetos(final Graphics g) {
-        final int anchoRanura = 32;
-        final int numeroRanuras = 1;
+        if (ElementosPrincipales.inventario.obtenerConsumibles().isEmpty()) {
+            return;
+        }
+        final int anchoRanura = 10;
+        final int numeroRanuras = ElementosPrincipales.inventario.obtenerConsumibles().size();
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
         final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
         final int anchoRanuraYespacio = anchoRanura + espacioRanuras;
 
-        g.setColor(Color.WHITE);
         for (int i = 0; i < numeroRanuras; i++) {
             int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
-            Rectangle ranura = new Rectangle(xActual - 140, areaInventario.y + 4, anchoRanura, anchoRanura);
-            DibujoDebug.dibujarRectanguloRelleno(g, ranura);
-            DibujoDebug.dibujarString(g, "Q", xActual - 130, areaInventario.y + 54, 12);
+            DibujoDebug.dibujarImagen(g, ElementosPrincipales.inventario.obtenerConsumibles().get(i).obtenerSprite().obtenerImagen(), xActual - 140, areaInventario.y + 4);
+            String cantidad = "" + ElementosPrincipales.inventario.obtenerConsumibles().get(i).obtenerCantidad();
+            DibujoDebug.dibujarString(g, cantidad, xActual - 125, areaInventario.y + 40, 10);
+
+        }
+
+    }
+
+    private void dibujarElementosEquipables(final Graphics g) {
+
+        if (ElementosPrincipales.inventario.obtenerArmas().isEmpty()) {
+            return;
+        }
+
+        final int anchoRanura = 10;
+        final int numeroRanuras = ElementosPrincipales.inventario.obtenerArmas().size();
+        final int espacioRanuras = 10;
+        final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
+        final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
+        final int anchoRanuraYespacio = anchoRanura + espacioRanuras;
+
+        for (int i = 0; i < numeroRanuras; i++) {
+            int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
+            int idActual = ElementosPrincipales.inventario.obtenerArmas().get(i).obtenerId();
+            Objeto objetoActual = ElementosPrincipales.inventario.obtenerObjeto(idActual);
+
+            DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
+
         }
 
     }
@@ -103,22 +130,39 @@ public class MenuInferior {
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(img, anchoRanura, anchoRanura), espacioRanura, areaInventario.y + 4);
     }
 
-    private void dibujarLlave(final Graphics g) {
+    /*private void dibujarLlave(final Graphics g) {
 
-        final int anchoRanura = 32;
-        final int espacioRanura = 10;
+       // final int anchoRanura = 32;
+       // final int espacioRanura = 10;
         DibujoDebug.dibujarImagen(g, llave, espacioRanura + 300, areaInventario.y + 4);
         DibujoDebug.dibujarString(g, "0", espacioRanura + 310, areaInventario.y + 50, 12);
-    }
+       
+      
+       
+       
+        final int anchoRanura = 1;
+        final int numeroRanuras = inventario.objetos.size();
+        final int espacioRanuras = 10;
+        final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
+        final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
+        final int anchoRanuraYespacio = anchoRanura + espacioRanuras;
 
-    private void dibujarLlaveBoss(final Graphics g) {
+       
+        for (int i = 0; i < numeroRanuras; i++) {
+            int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
+            DibujoDebug.dibujarImagen(g, inventario.objetos.get(i).obtenerSprite().obtenerImagen(), xActual - 140, areaInventario.y + 4);
+           
+        }
+              
+    }*/
+
+ /*  private void dibujarLlaveBoss(final Graphics g) {
 
         final int anchoRanura = 32;
         final int espacioRanura = 10;
         DibujoDebug.dibujarImagen(g, llaveBoss, espacioRanura + 330, areaInventario.y + 4);
         DibujoDebug.dibujarString(g, "0", espacioRanura + 340, areaInventario.y + 50, 12);
-    }
-
+    }*/
     private void dibujarControles(final Graphics g) {
         final int anchoTecla = 32;
         //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
@@ -131,7 +175,7 @@ public class MenuInferior {
         DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 330, areaInventario.y + 55, 12);
     }
 
-    private String tiempo() throws InterruptedException {
+    /*private String tiempo() throws InterruptedException {
         //Arreglar el metodo. En vez de dibujarlo, coger el el tiempo local y cuando termine la partida o muera volver a coger otro y restar. Dar valor del tiempo transcurrido.
 
         //Incrementamos 4 milesimas de segundo
@@ -165,6 +209,5 @@ public class MenuInferior {
 
         return min + ":" + seg;
 
-    }
-
+    }*/
 }

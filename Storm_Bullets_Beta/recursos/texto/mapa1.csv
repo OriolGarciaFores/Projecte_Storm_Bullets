@@ -231,5 +231,25 @@
     "xaparicion": 667,
     "yaparicion": 200
 }
+],
+"objetos":
+[
+{
+    "id": 0,
+    "cantidad": 1,
+    "x": 450,
+    "y": 180
+}
+],
+"cofre"
+[
+{
+    "idobjeto1": 1,
+    "cantidad1": 1,
+    "idobjeto2": 0,
+    "cantidad2": 2,
+    "x": 480,
+    "y": 180
+}
 ]
 }

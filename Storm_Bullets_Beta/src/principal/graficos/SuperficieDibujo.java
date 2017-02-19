@@ -51,7 +51,7 @@ public class SuperficieDibujo extends Canvas {
         
         ge.dibujar(g);
         if(GestorControles.teclado.datosJuego){
-        g.setFont(new Font("Arial", Font.PLAIN, 10));
+        g.setFont(Constantes.FUENTE_PIXEL.deriveFont(10f));
         g.setColor(Color.green);
         g.drawString("FPS: " + GestorPrincipal.obtenerFPS(), 20, 60);
         g.drawString("APS: " + GestorPrincipal.obtenerAPS(), 20, 75);

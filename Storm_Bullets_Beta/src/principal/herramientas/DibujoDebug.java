@@ -38,19 +38,19 @@ public class DibujoDebug {
 
     public static void dibujarString(final Graphics g, final String s, final int x, final int y, final int mida) {
         objetosDibujados++;
-        g.setFont(new Font("Arial", Font.PLAIN, mida));
+        g.setFont(Constantes.FUENTE_PIXEL.deriveFont((float)mida));
         g.drawString(s, x, y);
     }
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final int mida) {
         objetosDibujados++;
-         g.setFont(new Font("Arial", Font.PLAIN, mida));
+        g.setFont(Constantes.FUENTE_PIXEL.deriveFont((float)mida));
         g.drawString(s, p.x, p.y);
     }
 
-    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c, final int mida) {
+    public static void dibujarString(final Graphics g, final String s, final int x, final int y, final Color c) {
         objetosDibujados++;
-        g.setFont(Constantes.FUENTE_ALMOSNOW);
+        g.setFont(Constantes.FUENTE_PIXEL);
         g.setColor(c);
         g.drawString(s, x, y);
         
@@ -59,6 +59,7 @@ public class DibujoDebug {
 
     public static void dibujarString(final Graphics g, final String s, final Point p, final Color c) {
         objetosDibujados++;
+        g.setFont(Constantes.FUENTE_PIXEL);
         g.setColor(c);
         g.drawString(s, p.x, p.y);
     }

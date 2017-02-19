@@ -61,15 +61,15 @@ public class Ranking implements EstadoJuego {
         //Dibujar todo los datos del ranking, nombre, puntuacion y numeracion. FALTA.
         //Bucle de dibujar String.
         DibujoDebug.dibujarImagen(g, image, 0, 0);
-        DibujoDebug.dibujarString(g, "Nombre ", Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE, 12);
-        DibujoDebug.dibujarString(g, "Puntuación ", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE, 12);
-        DibujoDebug.dibujarString(g, "Tiempo ", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE, 12);
+        DibujoDebug.dibujarString(g, "Nombre ", Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
+        DibujoDebug.dibujarString(g, "Puntuación ", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
+        DibujoDebug.dibujarString(g, "Tiempo ", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
 
         try{
         for (int h = 0; h < Top.partidas.size(); h++) {
             contador += 50;
-            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerNombreJugador(), Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE, 12);
-            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerPuntuacion() + "", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE, 12);
+            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerNombreJugador(), Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerPuntuacion() + "", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
             if (h == Top.partidas.size() - 1) {
                 contador = 50;
             }

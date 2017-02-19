@@ -32,6 +32,7 @@ public class Partida implements Comparable<Partida> {
         if(puntuacion < o.puntuacion){
             return 1;
         }
+        //FALTA LA COMPARACION EN CASO DE IGUALDAD, EL TIMER SE COMPARA.
         return 0;
     }
 
