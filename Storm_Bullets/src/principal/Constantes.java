@@ -23,21 +23,26 @@ public class Constantes {
 
     public static final int CENTRO_VENTANA_X = ANCHO_JUEGO / 2;
     public static final int CENTRO_VENTANA_Y = ALTO_JUEGO / 2;
-    
-    public static final String RUTA_MAPA = "/texto/mapa1.csv";
-   public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
-   public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
 
-   // public static final String RUTA_MAPA = "/texto/prueba.map";
-    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/player.png";
+    public static int MARGEN_X = ANCHO_JUEGO / 2 - LADO_SPRITE / 2;
+    public static int MARGEN_Y = ALTO_JUEGO / 2 - LADO_SPRITE / 2;
+
+    //MAPAS
+    public static final String RUTA_MAPA = "/texto/mapa1.csv";
+    public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
+    public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
+
+    // public static final String RUTA_MAPA = "/texto/prueba.map";
+    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
     public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
     public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
     public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
     public static final String RUTA_AVATAR = "/imagenes/fondos/avatar.jpg";
     public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
 
-    public static int MARGEN_X = ANCHO_JUEGO / 2 - LADO_SPRITE / 2;
-    public static int MARGEN_Y = ALTO_JUEGO / 2 - LADO_SPRITE / 2;
+    //IMAGENES DE OBJETOS
+    public static final String RUTA_LLAVES = "/imagenes/hojasObjetos/hojaLlaves.png";
+    public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
 
     //Enemigos
     public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
@@ -49,8 +54,8 @@ public class Constantes {
     public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
     public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
 
-    public static Font FUENTE_ALMOSNOW = CargadorRecursos.cargarFuente("/fuentes/almosnow.ttf");
+    public static Font FUENTE_PIXEL = CargadorRecursos.cargarFuente("/fuentes/FreePixel.ttf");
 
-   public static int segundos = 0;
-   public static int minutos = 0;
+    public static int segundos = 0;
+    public static int minutos = 0;
 }

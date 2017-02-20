@@ -61,11 +61,6 @@ public class MenuInferior {
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2 - 1, 12);
         DibujoDebug.dibujarString(g, ElementosPrincipales.jugador.getNomJugador(), areaInventario.x + 5, areaInventario.y + 54, 12);
         DibujoDebug.dibujarString(g, ElementosPrincipales.jugador.obtenerVidaJugador(), areaInventario.x + 160, areaInventario.y + medidaVertical * 2 - 1, 12);
-        /* try {
-            DibujoDebug.dibujarString(g, "Tiempo: " + tiempo(), areaInventario.x + 45, areaInventario.y + medidaVertical * 4);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MenuInferior.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     private void dibujarPuntuaciones(final Graphics g) {

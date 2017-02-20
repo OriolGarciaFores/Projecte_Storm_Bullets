@@ -6,6 +6,7 @@ import principal.maquinaestado.estados.menuinicial.GestorTitulo;
 import principal.maquinaestado.estados.juego.GestorJuego;
 import principal.maquinaestado.estados.menuinicial.Configuracion;
 import principal.maquinaestado.estados.menuinicial.NombrarJugador;
+import principal.maquinaestado.estados.menuinicial.Ranking;
 import principal.maquinaestado.estados.menujuego.GestorMenu;
 
 public class GestorEstados {
@@ -19,12 +20,13 @@ public class GestorEstados {
     }
 
     private void iniciarEstados() {
-        estados = new EstadoJuego[5];
+        estados = new EstadoJuego[6];
         estados[0] = new GestorTitulo();
         estados[1] = new GestorJuego();
         estados[2] = new GestorMenu();
         estados[3] = new Configuracion();
         estados[4] = new NombrarJugador();
+        estados[5] = new Ranking();
         //Estado Top list de jugadores mejores puntuaciones.
         //Añadir e iniciar los demás estados a medida que los creemos.
     }

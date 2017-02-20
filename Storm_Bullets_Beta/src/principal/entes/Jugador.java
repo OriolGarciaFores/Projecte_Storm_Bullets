@@ -232,9 +232,6 @@ public class Jugador {
                     ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA3);
                     
                     continue;//ROMPE EL BUCLE.
-                    //SE TIENE K MEJORAR. NECESARIO OBTENER LA POSICION CORRECTA SEGUN EL MAPA. YA K ES POSIBLE QUE EL SIGUIENTE MAPA EL ARRAY SEA MAS PEQUEÑO.
-                    //POSIBLE ARREGLO. MAPAS TANTAS SALIDAS COMO LA ULTIMA POSICION DEL ARRAY.
-                    
 
                 }
             }
@@ -287,21 +284,6 @@ public class Jugador {
         }
 
         return false;
-        /*
-        for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
-            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
-
-            int origenX = area.x;
-            int origenY = area.y + velocidadY * (int) velocidad + 3 * (int) velocidad;
-
-            final Rectangle areaFutura = new Rectangle(origenX, origenY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-
-            if (LIMITE_ARRIBA.intersects(areaFutura)) {
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     private boolean enColisionAbajo(int velocidadY) {
@@ -319,20 +301,6 @@ public class Jugador {
         }
 
         return false;
-        /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
-            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
-
-            int origenX = area.x;
-            int origenY = area.y + velocidadY * (int) velocidad - 3 * (int) velocidad;
-
-            final Rectangle areaFutura = new Rectangle(origenX, origenY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-
-            if (LIMITE_ABAJO.intersects(areaFutura)) {
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     private boolean enColisionIzquierda(int velocidadX) {
@@ -351,20 +319,6 @@ public class Jugador {
         }
 
         return false;
-        /* for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
-            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
-
-            int origenX = area.x + velocidadX * (int) velocidad + 3 * (int) velocidad;
-            int origenY = area.y;
-
-            final Rectangle areaFutura = new Rectangle(origenX, origenY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-
-            if (LIMITE_IZQUIERDA.intersects(areaFutura)) {
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     private boolean enColisionDerecha(int velocidadX) {
@@ -382,20 +336,6 @@ public class Jugador {
         }
 
         return false;
-        /*for (int r = 0; r < ElementosPrincipales.mapa.areasColision.size(); r++) {
-            final Rectangle area = ElementosPrincipales.mapa.areasColision.get(r);
-
-            int origenX = area.x + velocidadX * (int) velocidad - 3 * (int) velocidad;
-            int origenY = area.y;
-
-            final Rectangle areaFutura = new Rectangle(origenX, origenY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-
-            if (LIMITE_DERECHA.intersects(areaFutura)) {
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     private boolean fueraMapa(final int velocidadX, final int velocidadY) {

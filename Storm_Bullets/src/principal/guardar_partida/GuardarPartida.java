@@ -41,7 +41,6 @@ public class GuardarPartida {
     }
 
     public static void modificarSave() {
-        String[] info;
         Path path = Paths.get(rutaSave);
         crearSaveAux();
         BufferedReader br = null;
@@ -52,49 +51,45 @@ public class GuardarPartida {
             bw = Files.newBufferedWriter(aux, cs);
             br = Files.newBufferedReader(path, cs);
             String linea;
-            
-            
-            
-                while ((linea = br.readLine()) != null) {
-                   
-                    bw.write(linea);
-                    bw.newLine();
 
-                }
-             bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + ElementosPrincipales.jugador.obtenerPuntuacionJugador() + ";" + "temps");
-             bw.newLine();
+            while ((linea = br.readLine()) != null) {
+
+                bw.write(linea);
+                bw.newLine();
+
+            }
+            bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + ElementosPrincipales.jugador.obtenerPuntuacionJugador() + ";" + "temps");
+            bw.newLine();
             bw.close();
             br.close();
 
         } catch (IOException ex) {
             Logger.getLogger(GuardarPartida.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            
-             try {
-            bw = Files.newBufferedWriter(path, cs);
-            br = Files.newBufferedReader(aux, cs);
-            String linea;
-            
-           
+
+            try {
+                bw = Files.newBufferedWriter(path, cs);
+                br = Files.newBufferedReader(aux, cs);
+                String linea;
+
                 while ((linea = br.readLine()) != null) {
                     bw.write(linea);
                     bw.newLine();
 
                 }
-            bw.close();
-            br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(GuardarPartida.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-                 
-                 try {
-                     Files.delete(aux);
-                 } catch (IOException ex) {
-                     Logger.getLogger(GuardarPartida.class.getName()).log(Level.SEVERE, null, ex);
-                 }
+                bw.close();
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GuardarPartida.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
 
-        }
-            
+                try {
+                    Files.delete(aux);
+                } catch (IOException ex) {
+                    Logger.getLogger(GuardarPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
 
         }
     }

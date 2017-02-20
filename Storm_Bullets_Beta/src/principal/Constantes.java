@@ -42,7 +42,6 @@ public class Constantes {
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
    //IMAGENES DE OBJETOS
-  // public static final String RUTA_LLAVEBOSS = "/imagenes/hojasObjetos/llaveBoss.png";
    public static final String RUTA_LLAVES = "/imagenes/hojasObjetos/hojaLlaves.png";
    public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
    

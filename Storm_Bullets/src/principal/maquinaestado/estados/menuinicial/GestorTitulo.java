@@ -38,7 +38,7 @@ public class GestorTitulo implements EstadoJuego {
 
         final Rectangle etiquetaConfigurar = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaTop.y + etiquetaTop.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[2] = new MenuConfigurar("Configuración", etiquetaConfigurar);
+        secciones[2] = new MenuConfigurar("Opciones", etiquetaConfigurar);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaConfigurar.y + etiquetaConfigurar.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
@@ -46,6 +46,7 @@ public class GestorTitulo implements EstadoJuego {
 
         seccionActual = secciones[0];
         ElementosPrincipales.m.reproducir(Constantes.RUTA_AUDIO_TITULO);
+        
     }
 
     public void actualizar() {
@@ -87,12 +88,17 @@ public class GestorTitulo implements EstadoJuego {
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
-                              
+                 
+
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;
                     ElementosPrincipales.m.pararReproducir();
                     ElementosPrincipales.musicaIngame.reproducir(Constantes.RUTA_AUDIO_INGAME);
+                }
+                if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
+                   GestorControles.teclado.ranking = true;
+                   GestorControles.teclado.accion.teclaLiberada();
                 }
                 if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
                    GestorControles.teclado.config = true;
@@ -102,13 +108,17 @@ public class GestorTitulo implements EstadoJuego {
                 if (seccionActual == secciones[3] && GestorControles.teclado.accion.estaPulsada()) {
                     seccionActual.actualizar();
                 }
-                              
+                
+                
             } else {
                 secciones[i].dibujarEtiquetaInactiva(g);
             }
             
+            
+
         }
         
     }
 
 }
+

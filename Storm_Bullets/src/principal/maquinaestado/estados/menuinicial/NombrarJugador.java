@@ -57,8 +57,8 @@ public class NombrarJugador implements EstadoJuego {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
         DibujoDebug.dibujarRectanguloRelleno(g, r, Color.DARK_GRAY);
-        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.BLACK, 12);
-        DibujoDebug.dibujarString(g, "Nombre de Usuario: ", Constantes.CENTRO_VENTANA_X - 350, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE, 12);
+        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.BLACK);
+        DibujoDebug.dibujarString(g, "Nombre de Usuario: ", Constantes.CENTRO_VENTANA_X - 350, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE);
         ElementosPrincipales.jugador.setNomJugador(nombre());
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {
