@@ -188,6 +188,7 @@
  "tilewidth":32,
  "version":1,
  "width":28,
+"nameMap":"mapa1",
 "start":
 {
     "x": 512,

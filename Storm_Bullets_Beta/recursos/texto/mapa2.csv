@@ -254,6 +254,7 @@
  "tilewidth":32,
  "version":1,
  "width":28,
+"nameMap":"mapa2",
 "start":
 {
     "x": 525,

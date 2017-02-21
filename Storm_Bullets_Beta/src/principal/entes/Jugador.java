@@ -212,7 +212,7 @@ public class Jugador {
     private void salirMapa() {
         //CAMBIO DE MAPA CHAPUZERO.
         for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
-            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {
+            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {//Comprobar si la puerta esta abierta. Necesario llaves.
                 //SALIDA 1.
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
                         && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
