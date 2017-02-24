@@ -75,8 +75,17 @@ public class Jugador {
         enMovimiento = false;
         determinarDireccion();
         animar();
-        calcularAlcanceAtaque();
+        actualizarArmas();
         salirMapa();
+    }
+    
+    private void actualizarArmas(){
+        if(ae.obtenerArma() instanceof Desarmado){
+            return;
+        }
+        
+        calcularAlcanceAtaque();
+        ae.obtenerArma().actualizar();
     }
     
     private void calcularAlcanceAtaque(){
@@ -453,6 +462,10 @@ public class Jugador {
     
     public int obtenerDireccion(){
     return direccion;
+    }
+    
+    public ArrayList<Rectangle> obtenerAlcanceActual(){
+        return alcanceActual;
     }
     
 }

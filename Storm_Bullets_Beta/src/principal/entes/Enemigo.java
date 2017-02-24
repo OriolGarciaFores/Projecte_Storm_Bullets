@@ -80,7 +80,7 @@ public class Enemigo {
         if (vidaActual <= 0) {
             return;
         }
-       // dibujarBarraVida(g, puntoX, puntoY);
+        dibujarBarraVida(g, puntoX, puntoY);
         /*DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ARRIBA());
@@ -335,6 +335,16 @@ public class Enemigo {
          }
          
          return false;
+    }
+    
+    public void perderVida(float ataqueRecibido){
+        //Sonidos posibles al recibir el enemigo.
+        
+        if(vidaActual - ataqueRecibido < 0){
+            vidaActual = 0;
+        }else{
+            vidaActual -= ataqueRecibido;
+        }
     }
     
 }

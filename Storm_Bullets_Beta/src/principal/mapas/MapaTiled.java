@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,12 +15,14 @@ import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.entes.Enemigo;
 import principal.entes.RegistroEnemigos;
+import principal.herramientas.CalculadoraDistancia;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.inventario.ContenedorObjetos;
 import principal.inventario.Objeto;
 import principal.inventario.ObjetoUnicoTiled;
 import principal.inventario.RegistroObjetos;
+import principal.inventario.armas.Desarmado;
 import principal.sprites.HojaSprites;
 import principal.sprites.Sprite;
 
@@ -314,6 +317,7 @@ public class MapaTiled {
     public void actualizar() {
         actualizarAreasColision();
         actualizarEnemigos();
+        actualizarAtaques();
         actualizarRecogidaObjetos();
         actualizarRecogidaCofre();
         contador++;
@@ -323,6 +327,76 @@ public class MapaTiled {
             if (Constantes.segundos == 60) {
                 Constantes.segundos = 0;
                 Constantes.minutos += 1;
+
+            }
+        }
+    }
+    
+    private void actualizarAtaques(){
+        if(enemigosMapa.isEmpty() || ElementosPrincipales.jugador.obtenerAlcanceActual().isEmpty() 
+                || ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Desarmado){
+            
+                 for (int i = 0; i < ElementosPrincipales.datosMapa.size(); i++) {
+                if (ElementosPrincipales.datosMapa.get(i).getNomMapa().equals(nombreMapa)) {
+                    ElementosPrincipales.datosMapa.get(i).setEnemigosMuertos(true);
+                }
+
+            }
+                
+            return;
+        }
+        
+        if(GestorControles.teclado.atacando){
+            ArrayList<Enemigo> enemigosAlcanzados = new ArrayList<>();
+            
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().esPenetrante()){
+                for(Enemigo enemigo : enemigosMapa){
+                    if(ElementosPrincipales.jugador.obtenerAlcanceActual().get(0).intersects(enemigo.obtenerArea())){
+                        enemigosAlcanzados.add(enemigo);
+                    }
+                    
+                }
+            }else{
+                Enemigo enemigoMasCercano = null;
+                Double distanciaMasCercana = null;
+                
+                for(Enemigo enemigo : enemigosMapa){
+                    if(ElementosPrincipales.jugador.obtenerAlcanceActual().get(0).intersects(enemigo.obtenerArea())){
+                        Point puntoJugador = new Point(ElementosPrincipales.jugador.obtenerPosicionXint() / 32, ElementosPrincipales.jugador.obtenerPosicionYint() / 32);
+                        Point puntoEnemigo = new Point((int)enemigo.obtenerPosicionX(), (int)enemigo.obtenerPosicionY());
+                        
+                        Double distanciaActual = CalculadoraDistancia.obtenerDistanciaEntrePuntos(puntoJugador, puntoEnemigo);
+                        
+                        if(enemigoMasCercano == null){
+                            enemigoMasCercano = enemigo;
+                            distanciaMasCercana = distanciaActual;
+                        }else if(distanciaActual < distanciaMasCercana){
+                            enemigoMasCercano = enemigo;
+                            distanciaMasCercana = distanciaActual;
+                        
+                        }
+                    }
+                    
+                }
+                
+                enemigosAlcanzados.add(enemigoMasCercano);
+            
+            }
+           try{
+            ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().atacar(enemigosAlcanzados);
+           }catch(Exception ex){
+           
+           }
+            
+        }
+        
+        Iterator<Enemigo> iterador = enemigosMapa.iterator();
+        
+        while(iterador.hasNext()){
+            Enemigo enemigo = iterador.next();
+            
+            if(enemigo.obtenerVidaActual() <= 0){
+                iterador.remove();
 
             }
         }

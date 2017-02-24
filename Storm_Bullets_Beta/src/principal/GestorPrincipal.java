@@ -30,6 +30,11 @@ public class GestorPrincipal {
         // System.setProperty("sun.java2d.opengl", "True");
         // }
         //Para mejorar rendimiento en sistemas operativos como en Linux que no usan direx y con eso ejecutamos la grafica.
+        
+        System.setProperty("sun.java2d.d3d", "True");
+        System.setProperty("sun.java2d.ddforcevram", "True");
+        
+        System.setProperty("sun.java2d.transaccel", "True");
 
         GestorPrincipal gp = new GestorPrincipal("Storm Bullets Beta", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 

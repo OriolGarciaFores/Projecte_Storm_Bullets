@@ -8,13 +8,10 @@ import principal.entes.Jugador;
 
 public class Desarmado extends Arma {
 
-    public Desarmado(int id, String nombre, int ataqueMin, int ataqueMax) {
-        super(id, nombre, ataqueMin, ataqueMax);
+    public Desarmado(int id, String nombre, int ataqueMin, int ataqueMax, boolean automatica, boolean penetrante, double ataquesPorSegundo) {
+        super(id, nombre, ataqueMin, ataqueMax, automatica, penetrante, ataquesPorSegundo);
     }
 
-    public Desarmado(int id, String nombre, int cantidad, int ataqueMin, int ataqueMax) {
-        super(id, nombre, cantidad, ataqueMin, ataqueMax);
-    }
     
     @Override
     public ArrayList<Rectangle> obtenerAlcance(final Jugador jugador) {

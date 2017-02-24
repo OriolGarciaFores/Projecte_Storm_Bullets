@@ -9,13 +9,10 @@ import principal.entes.Jugador;
 
 public class Pistola extends Arma {
 
-    public Pistola(int id, String nombre, int ataqueMin, int ataqueMax) {
-        super(id, nombre, ataqueMin, ataqueMax);
+    public Pistola(int id, String nombre, int ataqueMin, int ataqueMax, boolean automatica, boolean penetrante, double ataquesPorSegundo) {
+        super(id, nombre, ataqueMin, ataqueMax, automatica, penetrante, ataquesPorSegundo);
     }
 
-    public Pistola(int id, String nombre, int cantidad, int ataqueMin, int ataqueMax) {
-        super(id, nombre, cantidad, ataqueMin, ataqueMax);
-    }
 
     @Override
     public ArrayList<Rectangle> obtenerAlcance(final Jugador jugador) {
