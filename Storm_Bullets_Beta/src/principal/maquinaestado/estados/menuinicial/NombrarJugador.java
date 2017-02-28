@@ -41,13 +41,14 @@ public class NombrarJugador implements EstadoJuego {
         secciones[0] = new Volumen("Continuar", null);
 
         seccionActual = secciones[0];
+        GuardarPartida.crearSave();
     }
 
     public void actualizar() {
         for (int i = 0; i < secciones.length; i++) {
             if (GestorControles.teclado.accion.estaPulsada() && seccionActual == secciones[0]) {
-                GuardarPartida.crearSave();
-               // GestorControles.teclado.accion.teclaLiberada();
+                
+                GestorControles.teclado.accion.teclaLiberada();
             }
         }
 

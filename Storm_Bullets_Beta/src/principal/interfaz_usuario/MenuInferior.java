@@ -53,9 +53,9 @@ public class MenuInferior {
 
     private void dibujarBarraVitalidad(final Graphics g) {
         final int medidaVertical = 10;
-        final int anchoTotal = 200;
+        final int anchoTotal = 1000;
 
-        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 60, areaInventario.y + medidaVertical, anchoTotal, medidaVertical, rojoOscuro);
+        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 60, areaInventario.y + medidaVertical, anchoTotal * Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) / 300, medidaVertical, rojoOscuro);
 
         g.setColor(Color.white);
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2 - 1, 12);
@@ -113,6 +113,7 @@ public class MenuInferior {
             Objeto objetoActual = ElementosPrincipales.inventario.obtenerObjeto(idActual);
 
             DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
+            DibujoDebug.dibujarString(g, "ESPACIO", xActual - 40,  areaInventario.y + 40 , 12);
 
         }
 

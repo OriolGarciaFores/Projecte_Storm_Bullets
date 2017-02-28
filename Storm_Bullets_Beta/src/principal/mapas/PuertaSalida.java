@@ -5,24 +5,26 @@ import java.awt.Point;
 
 
 public class PuertaSalida {
-    private String nomMapa;
+    private String lugar;
+    private String nomMapaDestino;
     private Point pInicial;
     private Point pFinal;
     private Point pAparicion;
 
-    public PuertaSalida(String nomMapa, Point pInicial, Point pFinal, Point pAparicion) {
-        this.nomMapa = nomMapa;
+    public PuertaSalida(String lugar, String nomMapaDestino, Point pInicial, Point pFinal, Point pAparicion) {
+        this.lugar = lugar;
+        this.nomMapaDestino = nomMapaDestino;
         this.pInicial = pInicial;
         this.pFinal = pFinal;
         this.pAparicion = pAparicion;
     }
 
-    public String getNomMapa() {
-        return nomMapa;
+    public String getNomMapaDestino() {
+        return nomMapaDestino;
     }
 
-    public void setNomMapa(String nomMapa) {
-        this.nomMapa = nomMapa;
+    public void setNomMapaDestino(String nomMapaDestino) {
+        this.nomMapaDestino = nomMapaDestino;
     }
 
     public Point getpInicial() {
@@ -48,6 +50,16 @@ public class PuertaSalida {
     public void setpAparicion(Point pAparicion) {
         this.pAparicion = pAparicion;
     }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+    
+    
     
     
 }

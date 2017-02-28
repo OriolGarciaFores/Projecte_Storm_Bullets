@@ -42,9 +42,9 @@ public class Jugador {
     private int vidaJugador;
     private int puntuacion;
     private String nomJugador;
-    
+
     private AlmacenEquipo ae;
-    
+
     private ArrayList<Rectangle> alcanceActual;
 
     public Jugador() {
@@ -60,12 +60,12 @@ public class Jugador {
         animacion = 0;
         estado = 1;
 
-        vidaJugador = 300;
+        vidaJugador = 50;
         puntuacion = 0;
         nomJugador = "";
-        
-        ae = new AlmacenEquipo((Arma)RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
-        
+
+        ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
+
         alcanceActual = new ArrayList<>();
 
     }
@@ -78,21 +78,21 @@ public class Jugador {
         actualizarArmas();
         salirMapa();
     }
-    
-    private void actualizarArmas(){
-        if(ae.obtenerArma() instanceof Desarmado){
+
+    private void actualizarArmas() {
+        if (ae.obtenerArma() instanceof Desarmado) {
             return;
         }
-        
+
         calcularAlcanceAtaque();
         ae.obtenerArma().actualizar();
     }
-    
-    private void calcularAlcanceAtaque(){
-        if(ae.obtenerArma() instanceof Desarmado){
+
+    private void calcularAlcanceAtaque() {
+        if (ae.obtenerArma() instanceof Desarmado) {
             return;
         }
-        
+
         alcanceActual = ae.obtenerArma().obtenerAlcance(this);
     }
 
@@ -221,10 +221,11 @@ public class Jugador {
     private void salirMapa() {
         //CAMBIO DE MAPA CHAPUZERO.
         for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
-            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa1.csv")) {//Comprobar si la puerta esta abierta. Necesario llaves.
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa1") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {//Comprobar si la puerta esta abierta. Necesario llaves.
                 //SALIDA 1.
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y 
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
 
                     this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
                     this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
@@ -234,34 +235,47 @@ public class Jugador {
                 }
                 //SALIDA 2.
                 if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa3.csv")) {
 
                     this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
                     this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
                     ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA3);
-                    
+
                     continue;//ROMPE EL BUCLE.
 
                 }
             }
 
-            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa2.csv")) {
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa2") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
                 //SALIDA 1
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa1.csv")) {
 
                     this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
                     this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
                     ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
                     continue;
-                    
+
+                }
+                //SALIDA 2
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa6.csv")) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA6);
+                    continue;
 
                 }
             }
-            if (ElementosPrincipales.mapa.puertas.get(i).getNomMapa().equals("mapa3.csv")) {
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa3") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
                 //SALIDA 1
                 if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y) {
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa1.csv")) {
 
                     this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
                     this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
@@ -271,6 +285,19 @@ public class Jugador {
                 }
             }
             
+              if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa6") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+                //SALIDA 1.
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
+
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
+                    continue;
+
+                }
+            }
 
         }
 
@@ -338,7 +365,7 @@ public class Jugador {
             int origenY = area.y;
 
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
-            
+
             if (LIMITE_DERECHA.intersects(areaFutura)) {
                 return true;
             }
@@ -387,19 +414,22 @@ public class Jugador {
         //g.setColor(Color.green);
         DibujoDebug.dibujarImagen(g, imagenActual, centroX, centroY);
 
-       /* g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
+        /* g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
         g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
         g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
         g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);*/
-       
-       if(!alcanceActual.isEmpty()){
-           dibujarAlcance(g);
-       }
-       
+       // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
+
+       /* if (!alcanceActual.isEmpty()) {
+            
+            dibujarAlcance(g);
+            
+        }*/
+
     }
-    
-    private void dibujarAlcance(final Graphics g){
-    DibujoDebug.dibujarRectanguloRelleno(g, alcanceActual.get(0), Color.red);
+
+    private void dibujarAlcance(final Graphics g) {
+        DibujoDebug.dibujarRectanguloRelleno(g, alcanceActual.get(0), Color.red);
     }
 
     public void establecerPosicionX(double posicionX) {
@@ -433,11 +463,34 @@ public class Jugador {
         return vidajugador;
     }
 
+    public void perderVida(int ataqueRecibido) {
+        if (vidaJugador - ataqueRecibido <= 0) {
+            vidaJugador = 0;
+            GestorControles.teclado.muerto = true;
+        } else {
+            vidaJugador -= ataqueRecibido;
+        }
+
+    }
+
     public String obtenerPuntuacionJugador() {
         String puntos;
 
         puntos = Integer.toString(puntuacion);
         return puntos;
+    }
+
+    public void aumentarPuntuacion(int puntuacion) {
+        this.puntuacion += puntuacion;
+    }
+
+    public void disminuirPuntuacion(int puntuacion) {
+        if (this.puntuacion - puntuacion <= 0) {
+            this.puntuacion = 0;
+        } else {
+            this.puntuacion -= puntuacion;
+        }
+
     }
 
     public String getNomJugador() {
@@ -455,17 +508,23 @@ public class Jugador {
     public int obtenerAlto() {
         return ALTO_JUGADOR;
     }
-    
-    public AlmacenEquipo obtenerAlmacenEquipo(){
+
+    public AlmacenEquipo obtenerAlmacenEquipo() {
         return ae;
     }
-    
-    public int obtenerDireccion(){
-    return direccion;
+
+    public int obtenerDireccion() {
+        return direccion;
     }
-    
-    public ArrayList<Rectangle> obtenerAlcanceActual(){
+
+    public ArrayList<Rectangle> obtenerAlcanceActual() {
         return alcanceActual;
     }
+
+    public Rectangle obtenerArea() {
+        return new Rectangle(Constantes.CENTRO_VENTANA_X - 15, Constantes.CENTRO_VENTANA_Y - ALTO_JUGADOR, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+    }
     
+    
+
 }

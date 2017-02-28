@@ -16,18 +16,17 @@ public abstract class Arma extends Objeto {
 
     public static HojaSprites hojaArmas = new HojaSprites(Constantes.RUTA_ARMAS, Constantes.LADO_SPRITE, false);
     
-    protected int ataqueMin;
+    protected int ataque;
     protected int ataqueMax;
     protected boolean automatica;
     protected boolean penetrante;
     protected double ataquesPorSegundo;
     protected int actuProxAtaque;
     
-    public Arma(int id, String nombre, int ataqueMin, int ataqueMax, final boolean automatica, final boolean penetrante, final double ataquesPorSegundo) {
+    public Arma(int id, String nombre, int ataque, final boolean automatica, final boolean penetrante, final double ataquesPorSegundo) {
         super(id, nombre);
         
-        this.ataqueMin = ataqueMin;
-        this.ataqueMax = ataqueMax;
+        this.ataque = ataque;
         this.automatica = automatica;
         this.penetrante = penetrante;
         this.ataquesPorSegundo = ataquesPorSegundo;
@@ -42,6 +41,8 @@ public abstract class Arma extends Objeto {
     }*/
     
     public abstract ArrayList<Rectangle> obtenerAlcance(final Jugador jugador);
+    
+    public abstract Rectangle obtenerBala(final Jugador jugador, ArrayList<Rectangle> alcance);
     
     public void actualizar(){
         if(actuProxAtaque > 0){
@@ -76,9 +77,9 @@ public abstract class Arma extends Objeto {
     }
     
     protected int obtenerAtaqueMedio(){
-        Random r = new Random();
         
-        return r.nextInt(ataqueMax - ataqueMin) + ataqueMin;
+        
+        return ataque;
     }
     
     public boolean esAutomatica(){

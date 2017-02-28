@@ -97,10 +97,12 @@ public class GestorPrincipal {
     }
 
     private void actualizar() {
-        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
+        if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking && !GestorControles.teclado.muerto) {
             ge.cambiarEstadoActual(1);
+            
+            
 
-        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
+        } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking && !GestorControles.teclado.muerto) {
             ge.cambiarEstadoActual(2);
         }
         if (GestorControles.teclado.ranking && !GestorControles.teclado.nombrarJugador && GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config) {
@@ -116,7 +118,7 @@ public class GestorPrincipal {
             if (!GestorControles.teclado.menuActivo) {
                 GestorControles.teclado.menuActivo = true;
             }
-        } else if (GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking) {
+        } else if (GestorControles.teclado.tituloActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking && !GestorControles.teclado.muerto) {
             ge.cambiarEstadoActual(0);
             if (GestorControles.teclado.menuActivo) {
                 GestorControles.teclado.menuActivo = false;
@@ -125,6 +127,10 @@ public class GestorPrincipal {
         if (GestorControles.teclado.nombrarJugador && !GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.ranking) {
             ge.cambiarEstadoActual(4);
         }
+        
+        if(GestorControles.teclado.muerto){
+                ge.cambiarEstadoActual(6);
+            }
 
         ge.actualizar();
     }

@@ -11,8 +11,8 @@ public class Esqueleto extends Enemigo {
     
     private static HojaSprites hojaEsqueleto;
     
-    public Esqueleto(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad) {
-        super(idEnemigo, nombre, vidaMaxima, velocidad);
+    public Esqueleto(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad, final int puntos) {
+        super(idEnemigo, nombre, vidaMaxima, velocidad, puntos);
         
         if(hojaEsqueleto == null){
             hojaEsqueleto = new HojaSprites(Constantes.RUTA_ENEMIGOS, Constantes.LADO_SPRITE, false);

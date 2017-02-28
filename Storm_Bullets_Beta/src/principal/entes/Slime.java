@@ -11,8 +11,8 @@ public class Slime extends Enemigo {
     
      private static HojaSprites hojaSlime;
     
-    public Slime(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad) {
-        super(idEnemigo, nombre, vidaMaxima, velocidad);
+    public Slime(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad, final int puntos) {
+        super(idEnemigo, nombre, vidaMaxima, velocidad, puntos);
         
         if(hojaSlime == null){
             hojaSlime = new HojaSprites(Constantes.RUTA_SLIME, Constantes.LADO_SPRITE, false);

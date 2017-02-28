@@ -15,6 +15,7 @@ public class Enemigo {
     private int idEnemigo;
     private double posicionX;
     private double posicionY;
+    private int puntos;
 
     private double velocidad;
  
@@ -28,14 +29,15 @@ public class Enemigo {
     
     private boolean enMovimiento;
 
-    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad) {
+    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad, final int puntos) {
         this.idEnemigo = idEnemigo;
         this.posicionX = 0;
         this.posicionY = 0;
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.vidaActual = vidaMaxima;
-        this.velocidad = velocidad;  
+        this.velocidad = velocidad;
+        this.puntos = puntos;
         
         animacion = 0;
         estado = 1;
@@ -80,7 +82,8 @@ public class Enemigo {
         if (vidaActual <= 0) {
             return;
         }
-        dibujarBarraVida(g, puntoX, puntoY);
+       // dibujarBarraVida(g, puntoX, puntoY);
+       // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
         /*DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ARRIBA());
@@ -345,6 +348,10 @@ public class Enemigo {
         }else{
             vidaActual -= ataqueRecibido;
         }
+    }
+    
+    public int obtenerPuntos(){
+        return puntos;
     }
     
 }

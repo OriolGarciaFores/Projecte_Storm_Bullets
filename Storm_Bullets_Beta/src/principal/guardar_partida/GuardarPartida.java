@@ -2,6 +2,7 @@ package principal.guardar_partida;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -9,21 +10,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import principal.Constantes;
 import principal.ElementosPrincipales;
 
 public class GuardarPartida {
 
     private final static Charset cs = java.nio.charset.StandardCharsets.UTF_8;
-    private final static String rutaSave = "recursos/saves/StormBullets.sav";
-    private final static String rutaAuxSave = "recursos/saves/StormBulletsAux.sav";
+    private final static String rutaSave = "saves/StormBullets.sav";
+    private final static String rutaAuxSave = "saves/StormBulletsAux.sav";
 
     public static void crearSave() {
-        Path path = Paths.get(rutaSave);
+        File directorio = new File("saves");
+        directorio.mkdir();
+        Path path = Paths.get(rutaSave);       
         try {
 
             Files.createFile(path);
-
+            
         } catch (IOException ex) {
             System.out.println("El fichero 'StormBullets' ya existe.");
         }

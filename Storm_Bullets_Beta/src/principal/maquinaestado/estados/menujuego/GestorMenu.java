@@ -55,7 +55,7 @@ public class GestorMenu implements EstadoJuego {
                 }
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
                     ElementosPrincipales.musicaIngame.pararReproducir();
-                    GuardarPartida.modificarSave();
+                    
                     System.exit(0);
                 }
             } else {
