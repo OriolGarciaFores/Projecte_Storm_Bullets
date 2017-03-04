@@ -131,7 +131,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/imagenes\/hojasTexturas\/1.png",
+         "image":"1.png",
          "imageheight":320,
          "imagewidth":320,
          "margin":0,
@@ -143,5 +143,65 @@
         }],
  "tilewidth":32,
  "version":1,
- "width":28
+ "width":28,
+"nameMap":"mapa5",
+"start":
+{
+    "x": 512,
+    "y": 288
+},
+"enemigos":
+[
+{
+    "id": 1,
+    "x": 320,
+    "y": 288
+},
+{
+    "id": 1,
+    "x": 448,
+    "y": 192
+},
+{
+    "id": 1,
+    "x": 608,
+    "y": 224
+}
+],
+"salidas":
+[
+{
+    "mapa":"mapa2.csv",
+    "xinicial": 475,
+    "yinicial": 111,
+    "xfinal": 510,
+    "yfinal": 111,
+    "xaparicion": 530,
+    "yaparicion": 373
+},
+{
+    "mapa":"mapa3.csv",
+    "xinicial": 254,
+    "yinicial": 180,
+    "xfinal": 254,
+    "yfinal": 231,
+    "xaparicion": 667,
+    "yaparicion": 200
+}
+],
+"candados":
+[
+{
+    "x":495,
+    "y":32
+},
+{
+    "x":192,
+    "y":210
+},
+{
+    "x":736,
+    "y":240
+}
+]
 }

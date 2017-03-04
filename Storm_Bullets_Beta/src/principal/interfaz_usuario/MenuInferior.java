@@ -44,6 +44,7 @@ public class MenuInferior {
         dibujarAvatar(g);
         dibujarControles(g);
         dibujarElementosEquipables(g);
+        dibujarTiempo(g);
     }
 
     private void dibujarAreaInventario(final Graphics g) {
@@ -71,6 +72,10 @@ public class MenuInferior {
             System.out.println("No hay mejor puntuacion.");
             DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60, areaInventario.y + 50, 12);
         }
+    }
+    
+    private void dibujarTiempo(final Graphics g){
+        DibujoDebug.dibujarString(g, "Tiempo: " + Constantes.minutos + ":" + Constantes.segundos, areaInventario.x + 180, areaInventario.y + 35, 12);      
     }
 
     private void dibujarRanurasObjetos(final Graphics g) {

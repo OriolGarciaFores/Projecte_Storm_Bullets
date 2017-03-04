@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import principal.Constantes;
 import principal.ElementosPrincipales;
 
 public class GuardarPartida {
@@ -60,7 +61,7 @@ public class GuardarPartida {
                 bw.newLine();
 
             }
-            bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + ElementosPrincipales.jugador.obtenerPuntuacionJugador() + ";" + "temps");
+            bw.write(ElementosPrincipales.jugador.getNomJugador() + ";" + ElementosPrincipales.jugador.obtenerPuntuacionJugador() + ";" + Constantes.minutos + ":" + Constantes.segundos);
             bw.newLine();
             bw.close();
             br.close();

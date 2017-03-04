@@ -224,7 +224,7 @@ public class Jugador {
             if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa1") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {//Comprobar si la puerta esta abierta. Necesario llaves.
                 //SALIDA 1.
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y 
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
                         && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
 
                     this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
@@ -284,8 +284,13 @@ public class Jugador {
 
                 }
             }
-            
-              if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa6") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa4") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+            }
+
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa5") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+            }
+
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa6") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
                 //SALIDA 1.
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
                         && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
@@ -297,6 +302,13 @@ public class Jugador {
                     continue;
 
                 }
+            }
+
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa7") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+            }
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_boss") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+            }
+            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_salida") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
             }
 
         }
@@ -418,14 +430,13 @@ public class Jugador {
         g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
         g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
         g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);*/
-       // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
+        // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
 
-       /* if (!alcanceActual.isEmpty()) {
+        /* if (!alcanceActual.isEmpty()) {
             
             dibujarAlcance(g);
             
         }*/
-
     }
 
     private void dibujarAlcance(final Graphics g) {
@@ -524,7 +535,5 @@ public class Jugador {
     public Rectangle obtenerArea() {
         return new Rectangle(Constantes.CENTRO_VENTANA_X - 15, Constantes.CENTRO_VENTANA_Y - ALTO_JUGADOR, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
     }
-    
-    
 
 }

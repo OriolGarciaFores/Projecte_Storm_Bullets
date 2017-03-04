@@ -32,10 +32,15 @@ public class Constantes {
    public static final String RUTA_MAPA2 = "/texto/mapa2.csv";
    public static final String RUTA_MAPA3 = "/texto/mapa3.csv";
    public static final String RUTA_MAPA4 = "/texto/mapa4.csv";
+   public static final String RUTA_MAPA5 = "/texto/mapa5.csv";
    public static final String RUTA_MAPA6 = "/texto/mapa6.csv";
+   public static final String RUTA_MAPA7 = "/texto/mapa7.csv";
+   public static final String RUTA_MAPA_BOSS = "/texto/mapa_boss.csv";
+   public static final String RUTA_MAPA_SALIDA = "/texto/mapa_salida.csv";
    //FI MAPAS.
    
    public static final String RUTA_BALA = "/imagenes/hojasObjetos/bala.png";
+   public static final String RUTA_CANDADO = "/imagenes/hojasTexturas/candado.png";
    
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
    public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
