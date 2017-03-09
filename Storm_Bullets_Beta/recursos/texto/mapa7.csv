@@ -167,6 +167,7 @@
  "version":1,
  "width":28,
 "nameMap":"mapa7",
+"puerta": "abierta",
 "start":
 {
     "x": 512,
@@ -175,55 +176,37 @@
 "enemigos":
 [
 {
-    "id": 1,
-    "x": 320,
-    "y": 288
+    "id": 3,
+    "x": 384,
+    "y": 128
 },
 {
-    "id": 1,
-    "x": 448,
+    "id": 3,
+    "x": 480,
     "y": 192
-},
-{
-    "id": 1,
-    "x": 608,
-    "y": 224
 }
 ],
 "salidas":
 [
 {
     "mapa":"mapa2.csv",
-    "xinicial": 475,
-    "yinicial": 111,
-    "xfinal": 510,
-    "yfinal": 111,
-    "xaparicion": 530,
-    "yaparicion": 373
-},
-{
-    "mapa":"mapa3.csv",
-    "xinicial": 254,
-    "yinicial": 180,
-    "xfinal": 254,
-    "yfinal": 231,
-    "xaparicion": 667,
-    "yaparicion": 200
+    "xinicial": 372,
+    "yinicial": 445,
+    "xfinal": 430,
+    "yfinal": 445,
+    "xaparicion": 526,
+    "yaparicion": 126
 }
 ],
 "candados":
 [
 {
-    "x":495,
-    "y":32
+    "x":400,
+    "y":480
 },
 {
-    "x":192,
-    "y":210
-},
-{
-    "x":736,
-    "y":240
+    "x":400,
+    "y":0
 }
 ]
 }

@@ -255,6 +255,7 @@
  "version":1,
  "width":28,
 "nameMap":"mapa2",
+"puerta": "abierta",
 "start":
 {
     "x": 525,
@@ -302,12 +303,29 @@
     "yfinal": 300,
     "xaparicion": 336,
     "yaparicion": 307
+},
+{
+    "mapa":"mapa7.csv",
+    "xinicial": 505,
+    "yinicial": 110,
+    "xfinal": 552,
+    "yfinal": 110,
+    "xaparicion": 398,
+    "yaparicion": 427
 }
 ],
 "candados":
 [
 {
-    "x":671,
+    "x":530,
+    "y":32
+},
+{
+    "x":530,
+    "y":416
+},
+{
+    "x":170,
     "y":224
 }
 ]

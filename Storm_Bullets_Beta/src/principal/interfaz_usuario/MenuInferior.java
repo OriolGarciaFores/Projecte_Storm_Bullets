@@ -83,7 +83,7 @@ public class MenuInferior {
             return;
         }
         final int anchoRanura = 10;
-        final int numeroRanuras = ElementosPrincipales.inventario.obtenerConsumibles().size();
+        final int numeroRanuras = ElementosPrincipales.inventario.obtenerConsumibles().size() - 1;//Se resta el ultimo objeto que es el botiquin para no dibujarlo.
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
         final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;

@@ -115,6 +115,7 @@
  "version":1,
  "width":28,
 "nameMap":"mapa4",
+"puerta": "cerrada",
 "start":
 {
     "x": 512,
@@ -123,55 +124,61 @@
 "enemigos":
 [
 {
-    "id": 1,
-    "x": 320,
-    "y": 288
+    "id": 3,
+    "x": 128,
+    "y": 128
+},
+{
+    "id": 3,
+    "x": 352,
+    "y": 160
 },
 {
     "id": 1,
-    "x": 448,
-    "y": 192
+    "x": 256,
+    "y": 256
 },
 {
     "id": 1,
-    "x": 608,
-    "y": 224
+    "x": 352,
+    "y": 416
+},
+{
+    "id": 3,
+    "x": 224,
+    "y": 416
 }
 ],
 "salidas":
 [
 {
-    "mapa":"mapa2.csv",
-    "xinicial": 475,
-    "yinicial": 111,
-    "xfinal": 510,
-    "yfinal": 111,
-    "xaparicion": 530,
-    "yaparicion": 373
+    "mapa":"mapa1.csv",
+    "xinicial": 94,
+    "yinicial": 332,
+    "xfinal": 94,
+    "yfinal": 394,
+    "xaparicion": 663,
+    "yaparicion": 236
 },
 {
-    "mapa":"mapa3.csv",
-    "xinicial": 254,
-    "yinicial": 180,
-    "xfinal": 254,
-    "yfinal": 231,
-    "xaparicion": 667,
-    "yaparicion": 200
+    "mapa":"mapa5.csv",
+    "xinicial": 220,
+    "yinicial": 79,
+    "xfinal": 261,
+    "yfinal": 79,
+    "xaparicion": 337,
+    "yaparicion": 332
 }
 ],
 "candados":
 [
 {
-    "x":495,
-    "y":32
+    "x":232,
+    "y":0
 },
 {
-    "x":192,
-    "y":210
-},
-{
-    "x":736,
-    "y":240
+    "x":32,
+    "y":372
 }
 ]
 }

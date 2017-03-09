@@ -50,12 +50,13 @@ public class Constantes {
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
    //IMAGENES DE OBJETOS
-   public static final String RUTA_LLAVES = "/imagenes/hojasObjetos/hojaLlaves.png";
+   public static final String RUTA_CONSUMIBLES = "/imagenes/hojasObjetos/consumibles.png";
    public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
    
    //Enemigos
    public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
    public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
+   public static String RUTA_FANTASMA = "/imagenes/hojasPersonajes/fantasma.png";
    
    //Imagenes de los controles del juego.
    public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";

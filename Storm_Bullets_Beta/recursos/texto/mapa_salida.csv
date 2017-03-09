@@ -144,7 +144,8 @@
     "xfinal": 510,
     "yfinal": 111,
     "xaparicion": 530,
-    "yaparicion": 373
+    "yaparicion": 373,
+    "puerta": "abierta"
 },
 {
     "mapa":"mapa3.csv",
@@ -153,7 +154,8 @@
     "xfinal": 254,
     "yfinal": 231,
     "xaparicion": 667,
-    "yaparicion": 200
+    "yaparicion": 200,
+    "puerta": "abierta"
 }
 ],
 "candados":

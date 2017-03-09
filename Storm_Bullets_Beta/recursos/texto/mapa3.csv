@@ -123,6 +123,7 @@
  "version":1,
  "width":28,
 "nameMap":"mapa3",
+"puerta": "abierta",
 "start":
 {
     "x": 512,

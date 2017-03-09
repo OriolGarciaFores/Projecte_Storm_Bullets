@@ -7,26 +7,28 @@ import java.util.ArrayList;
 public class DatosMapas {
     
     private String nomMapa;
-    private Boolean enemigosMuertos;
-    private Boolean objetosCogidos;
-    private Boolean cofresCogidos;
+    private boolean enemigosMuertos;
+    private boolean objetosCogidos;
+    private boolean cofresCogidos;
+    private String estadoPuerta;
 
-    public DatosMapas(String nomMapa, Boolean enemigosMuertos, Boolean objetosCogidos, Boolean cofresCogidos) {
+    public DatosMapas(String nomMapa, boolean enemigosMuertos, boolean objetosCogidos, boolean cofresCogidos, String estadoPuerta) {
         this.nomMapa = nomMapa;
         this.enemigosMuertos = enemigosMuertos;
         this.objetosCogidos = objetosCogidos;
         this.cofresCogidos = cofresCogidos;
+        this.estadoPuerta = estadoPuerta;
     }
 
     public String getNomMapa() {
         return nomMapa;
     }
 
-    public Boolean getEnemigosMuertos() {
+    public boolean getEnemigosMuertos() {
         return enemigosMuertos;
     }
 
-    public void setEnemigosMuertos(Boolean enemigosMuertos) {
+    public void setEnemigosMuertos(boolean enemigosMuertos) {
         this.enemigosMuertos = enemigosMuertos;
     }
 
@@ -34,16 +36,28 @@ public class DatosMapas {
         return objetosCogidos;
     }
 
-    public void setObjetosCogidos(Boolean objetosCogidos) {
+    public void setObjetosCogidos(boolean objetosCogidos) {
         this.objetosCogidos = objetosCogidos;
     }
 
-    public Boolean getCofresCogidos() {
+    public boolean getCofresCogidos() {
         return cofresCogidos;
     }
 
-    public void setCofresCogidos(Boolean cofresCogidos) {
+    public void setCofresCogidos(boolean cofresCogidos) {
         this.cofresCogidos = cofresCogidos;
+    }
+
+    public boolean getEstadoPuerta() {
+        boolean isOpen = false;
+        if(estadoPuerta.equals("abierta")){
+            isOpen = true;
+        }
+        return isOpen;
+    }
+
+    public void setEstadoPuerta(String estadoPuerta) {
+        this.estadoPuerta = estadoPuerta;
     }
     
     

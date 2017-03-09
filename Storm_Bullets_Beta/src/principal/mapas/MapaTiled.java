@@ -31,6 +31,7 @@ public class MapaTiled {
     private int altoMapaTiles;
     private String rutaMapa;
     private String nombreMapa;
+    private String estadoPuerta;
 
     private int segundosVida = 0;
     private boolean diley = true;
@@ -67,9 +68,10 @@ public class MapaTiled {
         anchoMapaTiles = obtenerIntDesdeJSON(globalJSON, "width");
         altoMapaTiles = obtenerIntDesdeJSON(globalJSON, "height");
         nombreMapa = globalJSON.get("nameMap").toString();
+        estadoPuerta = globalJSON.get("puerta").toString();
 
         if (ElementosPrincipales.datosMapa.isEmpty()) {
-            DatosMapas dm = new DatosMapas(nombreMapa, false, false, false);
+            DatosMapas dm = new DatosMapas(nombreMapa, false, false, false, estadoPuerta);
             ElementosPrincipales.datosMapa.add(dm);
         } else {
             for (int i = 0; i < ElementosPrincipales.datosMapa.size(); i++) {
@@ -79,7 +81,7 @@ public class MapaTiled {
 
             }
             if (!repetido) {
-                DatosMapas dm = new DatosMapas(nombreMapa, false, false, false);
+                DatosMapas dm = new DatosMapas(nombreMapa, false, false, false, estadoPuerta);
                 ElementosPrincipales.datosMapa.add(dm);
             }
 
@@ -505,9 +507,23 @@ public class MapaTiled {
                 final Rectangle posicionObjetoActual = new Rectangle(objetoActual.obtenerPosicion().x, objetoActual.obtenerPosicion().y, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
 
                 if (areaJugador.intersects(posicionObjetoActual) && GestorControles.teclado.recogiendo) {
-                    ElementosPrincipales.inventario.recogerObjetoUnico(objetoActual);
-                    ElementosPrincipales.inventario.incrementarObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
-                    objetosMapa.remove(i);
+                    if (objetosMapa.get(i).obtenerObjeto().obtenerNombre().equals("Botiquin") && Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) < 50) {
+
+                        ElementosPrincipales.inventario.recogerObjetoUnico(objetoActual);
+                        ElementosPrincipales.inventario.incrementarObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
+                        
+                        if (objetosMapa.get(i).obtenerObjeto().obtenerNombre().equals("Botiquin")) {
+                            ElementosPrincipales.inventario.disminuirObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
+                            ElementosPrincipales.jugador.recuperarVida(10);
+                        }
+
+                        objetosMapa.remove(i);
+                    } else if (!objetosMapa.get(i).obtenerObjeto().obtenerNombre().equals("Botiquin")) {
+                        ElementosPrincipales.inventario.recogerObjetoUnico(objetoActual);
+                        ElementosPrincipales.inventario.incrementarObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
+
+                        objetosMapa.remove(i);
+                    }
 
                 }
 
@@ -612,7 +628,7 @@ public class MapaTiled {
             }
         } catch (Exception ex) {
         }
-        
+
         dibujarCandados(g);
 
     }

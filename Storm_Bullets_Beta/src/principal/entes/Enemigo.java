@@ -95,22 +95,26 @@ public class Enemigo {
          enMovimiento = true;
          
         //DERECHA
-        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)){
+        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos) ||
+                posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && this.idEnemigo==3 && !enColisionEnemigoDerecha(enemigos)){
             posicionX += velocidad;
            direccion = 2;
         }
        //IZQUIERDA
-        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)) {
+        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos) ||
+                posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && this.idEnemigo==3 && !enColisionEnemigoIzquierda(enemigos)) {
             posicionX -= velocidad;
             direccion = 1;
         }
       //ABAJO
-        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos) ||
+                posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && this.idEnemigo==3 && !enColisionEnemigoAbajo(enemigos)) {
             posicionY += velocidad;
             direccion = 0;
         }
       //ARRIBA
-        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigoArriba(enemigos)) {
+        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigoArriba(enemigos) ||
+                posicionY > ElementosPrincipales.jugador.obtenerPosicionY() && this.idEnemigo==3 && !enColisionEnemigoArriba(enemigos)) {
             posicionY -= velocidad;
             direccion = 3;
         }

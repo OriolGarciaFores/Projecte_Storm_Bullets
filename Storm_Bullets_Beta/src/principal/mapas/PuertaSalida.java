@@ -58,8 +58,8 @@ public class PuertaSalida {
     public void setLugar(String lugar) {
         this.lugar = lugar;
     }
+
+
     
-    
-    
-    
+       
 }

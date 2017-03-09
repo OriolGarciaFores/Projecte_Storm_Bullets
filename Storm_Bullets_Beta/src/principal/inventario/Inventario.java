@@ -13,6 +13,7 @@ public class Inventario {
 
         objetos.add(RegistroObjetos.obtenerObjeto(0));
         objetos.add(RegistroObjetos.obtenerObjeto(1));
+        objetos.add(RegistroObjetos.obtenerObjeto(2));
 
         objetos.add(RegistroObjetos.obtenerObjeto(500));
 
@@ -55,6 +56,20 @@ public class Inventario {
 
         }
         return incrementado;
+    }
+    
+        public boolean disminuirObjeto(final Objeto objeto, final int cantidad) {
+        boolean reducido = false;
+
+        for (Objeto objetoActual : objetos) {
+            if (objetoActual.obtenerId() == objeto.obtenerId()) {
+                objetoActual.reducirCantidad(cantidad);
+                reducido = true;
+                break;
+            }
+
+        }
+        return reducido;
     }
 
     public boolean objetoExiste(final Objeto objeto) {

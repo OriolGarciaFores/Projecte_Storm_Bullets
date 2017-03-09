@@ -189,6 +189,7 @@
  "version":1,
  "width":28,
 "nameMap":"mapa1",
+"puerta": "abierta",
 "start":
 {
     "x": 512,
@@ -231,6 +232,15 @@
     "yfinal": 231,
     "xaparicion": 667,
     "yaparicion": 200
+},
+{
+    "mapa":"mapa4.csv",
+    "xinicial": 670,
+    "yinicial": 267,
+    "xfinal": 670,
+    "yfinal": 207,
+    "xaparicion": 110,
+    "yaparicion": 370
 }
 ],
 "candados":
@@ -247,6 +257,15 @@
     "x":736,
     "y":240
 }
-]
+],
+"objetos":
+[
+{
+    "id": 2,
+    "cantidad": 1,
+    "x": 320,
+    "y": 288
+}
+],
 
 }
