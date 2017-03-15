@@ -4,8 +4,6 @@ import principal.sprites.Sprite;
 
 public abstract class Objeto {
 
-   // public static HojaSprites hojaObjetos = new HojaSprites(Constantes.RUTA_LLAVES, Constantes.LADO_SPRITE, false);
-
     protected final int id;
     protected final String nombre;
 

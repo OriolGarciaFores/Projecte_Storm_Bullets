@@ -1,6 +1,7 @@
 package principal.guardar_partida;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -17,11 +18,12 @@ public class Top  {
     private static Partida partida;
 
     private final static Charset cs = java.nio.charset.StandardCharsets.UTF_8;
-    private final static String rutaSave = "recursos/saves/StormBullets.sav";
+    private final static String rutaSave = "saves/StormBullets.sav";
 
     public static void leerPartidasFichero() {
+        File fichero = new File(rutaSave);
         String[] info;
-        Path path = Paths.get(rutaSave);
+        Path path = Paths.get(fichero.getAbsolutePath());
         BufferedReader br = null;
 
         try {

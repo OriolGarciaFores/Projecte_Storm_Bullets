@@ -27,6 +27,9 @@ public class Ranking implements EstadoJuego {
 
     int contador = 50;
 
+    int max = 5;
+    int numero = 1;
+
     public Ranking() {
         estructuraMenu = new EstructuraMenu();
         secciones = new SeccionMenu[1];
@@ -58,23 +61,38 @@ public class Ranking implements EstadoJuego {
 
     @Override
     public void dibujar(Graphics g) {
-        //Dibujar todo los datos del ranking, nombre, puntuacion y numeracion. FALTA.
+        //Dibujar todo los datos del ranking, nombre, puntuacion y numeracion.
         //Bucle de dibujar String.
         DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarString(g, "Nombre ", Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
         DibujoDebug.dibujarString(g, "Puntuación ", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
         DibujoDebug.dibujarString(g, "Tiempo ", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
 
-        try{
-        for (int h = 0; h < Top.partidas.size(); h++) {
-            contador += 50;
-            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerNombreJugador(), Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
-            DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerPuntuacion() + "", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
-            if (h == Top.partidas.size() - 1) {
-                contador = 50;
+        try {
+            if (Top.partidas.size() <= max) {
+                for (int h = 0; h < Top.partidas.size(); h++) {
+                    contador += 50;
+                    DibujoDebug.dibujarString(g, numero++ + " " + Top.partidas.get(h).obtenerNombreJugador(), Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerPuntuacion() + "", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerTiempoJugado() + "", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    if (h == Top.partidas.size() - 1) {
+                        contador = 50;
+                        numero = 1;
+                    }
+                }
+            } else {
+                for (int h = 0; h < max; h++) {
+                    contador += 50;
+                    DibujoDebug.dibujarString(g, numero++ + " " + Top.partidas.get(h).obtenerNombreJugador(), Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerPuntuacion() + "", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    DibujoDebug.dibujarString(g, Top.partidas.get(h).obtenerTiempoJugado() + "", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200 + contador, Color.WHITE);
+                    if (h == max - 1) {
+                        contador = 50;
+                        numero = 1;
+                    }
+                }
             }
-        }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("No hay partidas.");
         }
 

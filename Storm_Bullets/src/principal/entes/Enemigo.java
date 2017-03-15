@@ -15,29 +15,30 @@ public class Enemigo {
     private int idEnemigo;
     private double posicionX;
     private double posicionY;
-    private double velocidad;
+    private int puntos;
 
+    private double velocidad;
+ 
     private String nombre;
     private int vidaMaxima;
     private float vidaActual;
     private int animacion;
     public int estado;
-
+    
     public char direccion;
-
+    
     private boolean enMovimiento;
 
-    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad) {
+    public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final double velocidad, final int puntos) {
         this.idEnemigo = idEnemigo;
-
         this.posicionX = 0;
         this.posicionY = 0;
-
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.vidaActual = vidaMaxima;
         this.velocidad = velocidad;
-
+        this.puntos = puntos;
+        
         animacion = 0;
         estado = 1;
         enMovimiento = false;
@@ -50,8 +51,8 @@ public class Enemigo {
         mover(enemigos);
         animar();
     }
-
-    private void cambiarAnimacionEstado() {
+    
+     private void cambiarAnimacionEstado() {
         if (animacion < 40) {
             animacion++;
         } else {
@@ -69,7 +70,7 @@ public class Enemigo {
         }
 
     }
-
+     
     private void animar() {
         if (!enMovimiento) {
             estado = 1;
@@ -81,38 +82,46 @@ public class Enemigo {
         if (vidaActual <= 0) {
             return;
         }
-        //dibujarBarraVida(g, puntoX, puntoY);
-        //DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
-        //dibujarDistancia(g, puntoX, puntoY);
+       // dibujarBarraVida(g, puntoX, puntoY);
+       // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
+        /*DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ARRIBA());
+        DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_DERECHA());*/
+       // dibujarDistancia(g, puntoX, puntoY);
     }
 
     private void mover(ArrayList<Enemigo> enemigos) {
-        enMovimiento = true;
-
+         enMovimiento = true;
+         
         //DERECHA
-        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
+        if (posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos) ||
+                posicionX < ElementosPrincipales.jugador.obtenerPosicionX() && this.idEnemigo==3 && !enColisionEnemigoDerecha(enemigos)){
             posicionX += velocidad;
-            direccion = 2;
+           direccion = 2;
         }
-        //IZQUIERDA
-        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)) {
+       //IZQUIERDA
+        if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos) ||
+                posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && this.idEnemigo==3 && !enColisionEnemigoIzquierda(enemigos)) {
             posicionX -= velocidad;
             direccion = 1;
         }
-        //ABAJO
-        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+      //ABAJO
+        if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos) ||
+                posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && this.idEnemigo==3 && !enColisionEnemigoAbajo(enemigos)) {
             posicionY += velocidad;
             direccion = 0;
         }
-        //ARRIBA
-        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionArriba() && !enColisionEnemigoArriba(enemigos)) {
+      //ARRIBA
+        if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY()&& !enColisionArriba() && !enColisionEnemigoArriba(enemigos) ||
+                posicionY > ElementosPrincipales.jugador.obtenerPosicionY() && this.idEnemigo==3 && !enColisionEnemigoArriba(enemigos)) {
             posicionY -= velocidad;
             direccion = 3;
         }
 
     }
-
-    private boolean enColisionArriba() {
+    
+     private boolean enColisionArriba() {
 
         for (int r = 0; r < ElementosPrincipales.mapa.areasColisionPorActualizacion.size(); r++) {
             final Rectangle area = ElementosPrincipales.mapa.areasColisionPorActualizacion.get(r);
@@ -175,7 +184,7 @@ public class Enemigo {
             int origenY = area.y;
 
             final Rectangle areaFutura = new Rectangle(origenX, origenY, area.width, area.height);
-
+            
             if (obtenerLIMITE_DERECHA().intersects(areaFutura)) {
                 return true;
             }
@@ -184,6 +193,7 @@ public class Enemigo {
         return false;
 
     }
+    
 
     private void dibujarBarraVida(final Graphics g, final int puntoX, final int puntoY) {
         g.setColor(Color.red);
@@ -199,7 +209,7 @@ public class Enemigo {
         DibujoDebug.dibujarString(g, String.format("%.2f", distancia), puntoX, puntoY - 8, 12);
 
     }
-
+    
     public void establecerPosicion(final double posicionX, final double posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
@@ -227,97 +237,110 @@ public class Enemigo {
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX + 30, puntoY + 15, 1, 16);
     }
-
-    public Rectangle obtenerLIMITE_ABAJO() {
+    
+     public Rectangle obtenerLIMITE_ABAJO() {
         //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
         final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY + 30, 30, 1);
     }
-
-    public Rectangle obtenerLIMITE_ARRIBA() {
+      public Rectangle obtenerLIMITE_ARRIBA() {
         //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
         final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY + 15, 30, 1);
     }
-
-    public Rectangle obtenerLIMITE_IZQUIERDA() {
+      
+       public Rectangle obtenerLIMITE_IZQUIERDA() {
         //USAR DATOS PARA HACER LOS RECTANGULOS DE COLISIONES DEL ENEMIGO.
         final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY + 15, 1, 16);
     }
-
-    public Rectangle obtenerArea() {
+       
+        public Rectangle obtenerArea() {
         final int puntoX = (int) posicionX - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X;
         final int puntoY = (int) posicionY - ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y;
         return new Rectangle(puntoX, puntoY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
     }
-
-    public Rectangle obtenerAreaPosicional() {
+        
+        public Rectangle obtenerAreaPosicional(){
         return new Rectangle((int) posicionX, (int) posicionY, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-    }
-
-    private boolean enColisionEnemigoDerecha(ArrayList<Enemigo> enemigos) {
-        for (Enemigo enemigo : enemigos) {
-            if (enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())) {
-                continue;
-            }
-
-            if (this.obtenerLIMITE_DERECHA().intersects(enemigo.obtenerArea())) {
-
-                return true;
-            }
         }
 
-        return false;
-
+    private boolean enColisionEnemigoDerecha(ArrayList<Enemigo> enemigos) {
+         for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_DERECHA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
+        
     }
 
     private boolean enColisionEnemigoIzquierda(ArrayList<Enemigo> enemigos) {
-        for (Enemigo enemigo : enemigos) {
-            if (enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())) {
-                continue;
-            }
-
-            if (this.obtenerLIMITE_IZQUIERDA().intersects(enemigo.obtenerArea())) {
-
-                return true;
-            }
-        }
-
-        return false;
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_IZQUIERDA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
     }
 
     private boolean enColisionEnemigoAbajo(ArrayList<Enemigo> enemigos) {
-        for (Enemigo enemigo : enemigos) {
-            if (enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())) {
-                continue;
-            }
-
-            if (this.obtenerLIMITE_ABAJO().intersects(enemigo.obtenerArea())) {
-
-                return true;
-            }
-        }
-
-        return false;
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_ABAJO().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
     }
 
     private boolean enColisionEnemigoArriba(ArrayList<Enemigo> enemigos) {
-        for (Enemigo enemigo : enemigos) {
-            if (enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())) {
-                continue;
-            }
-
-            if (this.obtenerLIMITE_ARRIBA().intersects(enemigo.obtenerArea())) {
-
-                return true;
-            }
-        }
-
-        return false;
+                for(Enemigo enemigo : enemigos){
+             if(enemigo.obtenerAreaPosicional().equals(this.obtenerAreaPosicional())){
+                 continue;
+             }
+             
+             if(this.obtenerLIMITE_ARRIBA().intersects(enemigo.obtenerArea())){
+                 
+                 return true;
+             }
+         }
+         
+         return false;
     }
-
+    
+    public void perderVida(float ataqueRecibido){
+        //Sonidos posibles al recibir el enemigo.
+        
+        if(vidaActual - ataqueRecibido < 0){
+            vidaActual = 0;
+        }else{
+            vidaActual -= ataqueRecibido;
+        }
+    }
+    
+    public int obtenerPuntos(){
+        return puntos;
+    }
+    
 }

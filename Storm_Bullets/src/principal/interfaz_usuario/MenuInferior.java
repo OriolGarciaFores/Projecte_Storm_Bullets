@@ -15,6 +15,7 @@ import principal.inventario.Objeto;
 
 
 public class MenuInferior {
+
     private Rectangle areaInventario;
     private Rectangle bordeAreaInventario;
     private Color negroDesaturado;
@@ -25,6 +26,7 @@ public class MenuInferior {
     private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
+
     public MenuInferior() {
 
         int altoMenu = 64;
@@ -43,6 +45,7 @@ public class MenuInferior {
         dibujarAvatar(g);
         dibujarControles(g);
         dibujarElementosEquipables(g);
+        dibujarTiempo(g);
     }
 
     private void dibujarAreaInventario(final Graphics g) {
@@ -52,9 +55,9 @@ public class MenuInferior {
 
     private void dibujarBarraVitalidad(final Graphics g) {
         final int medidaVertical = 10;
-        final int anchoTotal = 200;
+        final int anchoTotal = 1000;
 
-        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 60, areaInventario.y + medidaVertical, anchoTotal, medidaVertical, rojoOscuro);
+        DibujoDebug.dibujarRectanguloRelleno(g, areaInventario.x + 60, areaInventario.y + medidaVertical, anchoTotal * Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) / 300, medidaVertical, rojoOscuro);
 
         g.setColor(Color.white);
         DibujoDebug.dibujarString(g, "HP", areaInventario.x + 125, areaInventario.y + medidaVertical * 2 - 1, 12);
@@ -71,13 +74,17 @@ public class MenuInferior {
             DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60, areaInventario.y + 50, 12);
         }
     }
+    
+    private void dibujarTiempo(final Graphics g){
+        DibujoDebug.dibujarString(g, "Tiempo: " + Constantes.minutos + ":" + Constantes.segundos, areaInventario.x + 180, areaInventario.y + 35, 12);      
+    }
 
     private void dibujarRanurasObjetos(final Graphics g) {
         if (ElementosPrincipales.inventario.obtenerConsumibles().isEmpty()) {
             return;
         }
         final int anchoRanura = 10;
-        final int numeroRanuras = ElementosPrincipales.inventario.obtenerConsumibles().size();
+        final int numeroRanuras = ElementosPrincipales.inventario.obtenerConsumibles().size() - 1;//Se resta el ultimo objeto que es el botiquin para no dibujarlo.
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
         final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
@@ -112,6 +119,7 @@ public class MenuInferior {
             Objeto objetoActual = ElementosPrincipales.inventario.obtenerObjeto(idActual);
 
             DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
+            DibujoDebug.dibujarString(g, "ESPACIO", xActual - 40,  areaInventario.y + 40 , 12);
 
         }
 
@@ -123,12 +131,12 @@ public class MenuInferior {
         final int espacioRanura = 10;
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(img, anchoRanura, anchoRanura), espacioRanura, areaInventario.y + 4);
     }
-    
-    private void dibujarControles(final Graphics g){
+
+    private void dibujarControles(final Graphics g) {
         final int anchoTecla = 32;
-        //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
+
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(w, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 220, areaInventario.y + 10);
-        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(a, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 180, areaInventario.y+ 10);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(a, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 180, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(s, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 140, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(d, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 100, areaInventario.y + 10);
         DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55, 12);

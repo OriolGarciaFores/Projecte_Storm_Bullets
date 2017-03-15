@@ -354,7 +354,7 @@ public class Jugador {
                    
                     
                     abierto = false;
-                    //FALTA ABRIR LA PUERTA 1 VEZ Y NO GASTAR LA LLAVE SIEMPRE.
+                    
                     
                     
                     continue;

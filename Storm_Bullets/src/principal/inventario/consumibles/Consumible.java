@@ -9,7 +9,7 @@ import principal.sprites.Sprite;
 
 public class Consumible extends Objeto {
     
-    public static HojaSprites hojaConsumibles = new HojaSprites(Constantes.RUTA_LLAVES, Constantes.LADO_SPRITE, false);
+    public static HojaSprites hojaConsumibles = new HojaSprites(Constantes.RUTA_CONSUMIBLES, Constantes.LADO_SPRITE, false);
 
     public Consumible(int id, String nombre) {
         super(id, nombre);

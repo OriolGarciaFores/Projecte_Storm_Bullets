@@ -27,13 +27,13 @@ public class GestorMenu implements EstadoJuego {
 
         final Rectangle etiquetaMenu = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new MenuConfigurar("Configurar", etiquetaMenu);
+        secciones[0] = new MenuConfigurar("Opciones", etiquetaMenu);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaMenu.y + etiquetaMenu.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
         secciones[1] = new MenuSalir("Salir", etiquetaSalir);
 
-        seccionActual = secciones[0];
+        seccionActual = secciones[0];       
     }
 
     public void actualizar() {
@@ -50,12 +50,12 @@ public class GestorMenu implements EstadoJuego {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.config = true;
-                    GestorControles.teclado.accion.teclaLiberada();
-
+                   GestorControles.teclado.accion.teclaLiberada();
+                    
                 }
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
                     ElementosPrincipales.musicaIngame.pararReproducir();
-                    GuardarPartida.modificarSave();
+                    
                     System.exit(0);
                 }
             } else {
@@ -78,4 +78,5 @@ public class GestorMenu implements EstadoJuego {
             seccionActual = secciones[0];
         }
     }
+
 }

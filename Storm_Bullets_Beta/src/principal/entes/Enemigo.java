@@ -194,21 +194,6 @@ public class Enemigo {
 
     }
     
-    private boolean enColisionEnemigo() {
-        
-      /*   for (int i = 0; i < ElementosPrincipales.mapa.getEnemigosMapa().size(); i++) {
-             if(i == 1){
-            final Rectangle area = ElementosPrincipales.mapa.getEnemigosMapa().get(i).obtenerArea();
-             
-            if(obtenerArea().intersects(area)){
-                return true;
-            }
-             }
-        }*/
-
-        return false;
-
-    }
 
     private void dibujarBarraVida(final Graphics g, final int puntoX, final int puntoY) {
         g.setColor(Color.red);
