@@ -398,6 +398,7 @@ public class MapaTiled {
         }
 
         for (int i = 0; i < cb.obtenerArrayBalas().size(); i++) {
+            //La bala impacta con el enemigo, pierde vida y se elimina la bala.
             if (cb.obtenerArrayBalas().get(i).enColisionEnemigo(enemigosMapa)) {
 
                 cb.obtenerArrayBalas().remove(i);
@@ -406,10 +407,13 @@ public class MapaTiled {
         }
 
         if (GestorControles.teclado.atacando) {
-
+            //Se añaden balas en el mapa cada 20 milisegundos.
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
             cb.addBala();
+             ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
+            }
 
-            if (cb.obtenerRecarga()) {
+           /* if (cb.obtenerRecarga()) {
                 cb.setRecarga(false);
             }
             // ArrayList<Enemigo> enemigosAlcanzados = new ArrayList<>();

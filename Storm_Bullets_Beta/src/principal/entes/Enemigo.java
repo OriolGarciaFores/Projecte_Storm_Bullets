@@ -82,7 +82,7 @@ public class Enemigo {
         if (vidaActual <= 0) {
             return;
         }
-       // dibujarBarraVida(g, puntoX, puntoY);
+        dibujarBarraVida(g, puntoX, puntoY);
        // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
         /*DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());

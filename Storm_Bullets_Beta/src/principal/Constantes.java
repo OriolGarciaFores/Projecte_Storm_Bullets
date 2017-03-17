@@ -51,7 +51,7 @@ public class Constantes {
    
    //IMAGENES DE OBJETOS
    public static final String RUTA_CONSUMIBLES = "/imagenes/hojasObjetos/consumibles.png";
-   public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
+   public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/armas.png";
    
    //Enemigos
    public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.

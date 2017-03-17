@@ -486,8 +486,8 @@ public class Jugador {
     }
     
     private boolean fueraMapa(final int velocidadX, final int velocidadY) {
-        int posicionFuturaX = (int) posicionX + velocidadX * velocidad;
-        int posicionFuturaY = (int) posicionY + velocidadY * velocidad;
+        int posicionFuturaX = (int) posicionX + velocidadX * (int)velocidad;
+        int posicionFuturaY = (int) posicionY + velocidadY * (int)velocidad;
         
         final Rectangle bordesMapa = ElementosPrincipales.mapa.obtenerBordes(posicionFuturaX, posicionFuturaY);
         

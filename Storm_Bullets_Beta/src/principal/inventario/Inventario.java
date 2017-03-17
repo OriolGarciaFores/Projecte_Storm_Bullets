@@ -1,6 +1,7 @@
 package principal.inventario;
 
 import java.util.ArrayList;
+import principal.ElementosPrincipales;
 import principal.inventario.armas.Arma;
 import principal.inventario.consumibles.Consumible;
 
@@ -16,6 +17,8 @@ public class Inventario {
         objetos.add(RegistroObjetos.obtenerObjeto(2));
 
         objetos.add(RegistroObjetos.obtenerObjeto(500));
+        
+        
 
     }
 
@@ -24,7 +27,13 @@ public class Inventario {
             if (objetoExiste(objeto)) {
                 incrementarObjeto(objeto, objeto.obtenerCantidad());
             } else {
+                if(objeto.obtenerId()==501){
+                    ElementosPrincipales.jugador.obtenerAlmacenEquipo().cambiarArma((Arma) objeto);
+                    objetos.add(objeto);
+                }else{
                 objetos.add(objeto);
+                }
+                
             }
         }
     }

@@ -1,3 +1,4 @@
+
 package principal.inventario.armas;
 
 import java.awt.Rectangle;
@@ -5,13 +6,14 @@ import java.util.ArrayList;
 import principal.Constantes;
 import principal.entes.Jugador;
 
-public class Pistola extends Arma {
 
-    public Pistola(int id, String nombre, int ataque, boolean automatica, boolean penetrante, double ataquesPorSegundo) {
+public class RifleAsalto extends Arma {
+
+    public RifleAsalto(int id, String nombre, int ataque, boolean automatica, boolean penetrante, double ataquesPorSegundo) {
         super(id, nombre, ataque, automatica, penetrante, ataquesPorSegundo);
     }
 
-    @Override
+     @Override
     public ArrayList<Rectangle> obtenerAlcance(final Jugador jugador) {
         final ArrayList<Rectangle> alcance = new ArrayList<>();
 
@@ -58,6 +60,5 @@ public class Pistola extends Arma {
     public Rectangle obtenerBala(Jugador jugador, ArrayList<Rectangle> alcance) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-  
+    
 }

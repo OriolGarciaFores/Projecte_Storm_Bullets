@@ -106,7 +106,7 @@ public class MenuInferior {
         }
 
         final int anchoRanura = 10;
-        final int numeroRanuras = ElementosPrincipales.inventario.obtenerArmas().size();
+        final int numeroRanuras = 1;
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
         final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
@@ -114,11 +114,15 @@ public class MenuInferior {
 
         for (int i = 0; i < numeroRanuras; i++) {
             int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
-            int idActual = ElementosPrincipales.inventario.obtenerArmas().get(i).obtenerId();
+            
+            int idActual = ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerId();
             Objeto objetoActual = ElementosPrincipales.inventario.obtenerObjeto(idActual);
 
+            
             DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
+            
             DibujoDebug.dibujarString(g, "ESPACIO", xActual - 40,  areaInventario.y + 40 , 12);
+            
 
         }
 
