@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import principal.herramientas.CargadorRecursos;
+import principal.reproductor.Sonido.Sonido;
 
 
 public class Constantes {
@@ -70,5 +71,10 @@ public class Constantes {
    
    public static int segundos = 0;
    public static int minutos = 0;
+   
+   
+   //SONIDOS.
+   
+   public static final Sonido disparo = new Sonido("/audio/disparo.wav");
    
 }

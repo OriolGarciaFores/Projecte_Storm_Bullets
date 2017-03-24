@@ -410,6 +410,7 @@ public class MapaTiled {
             //Se añaden balas en el mapa cada 20 milisegundos.
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
             cb.addBala();
+            Constantes.disparo.play();
              ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
             }
 
