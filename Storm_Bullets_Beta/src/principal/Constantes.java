@@ -75,6 +75,8 @@ public class Constantes {
    
    //SONIDOS.
    
-   public static final Sonido disparo = new Sonido("/audio/disparo.wav");
+   public static final Sonido disparo_pistola = new Sonido("/audio/disparo_pistola.wav");
+   public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav");
+   public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav");
    
 }

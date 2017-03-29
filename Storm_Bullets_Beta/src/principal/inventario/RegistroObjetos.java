@@ -27,10 +27,13 @@ public class RegistroObjetos {
                 break;
                 //500-599 armas.
             case 500:
-                objeto = new Pistola(idObjeto, "Pistola", 5, false, false, 20);
+                objeto = new Pistola(idObjeto, "Pistola", 5, false, false, 30);
                 break;
             case 501:
                 objeto = new RifleAsalto(idObjeto, "Rifle Asalto", 5, false, false, 5);
+                break;
+            case 502:
+                //FRANCOTIRADOR.
                 break;
             case 599:
                 objeto = new Desarmado(idObjeto, "Desarmado", 0, false, false, 0);
