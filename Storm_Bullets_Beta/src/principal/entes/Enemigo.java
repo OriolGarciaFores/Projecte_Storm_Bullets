@@ -100,32 +100,32 @@ public class Enemigo {
             posicionX += velocidad;
             direccion = 2;
             //ABAJO
-        } else if (enColisionDerecha() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+        }/* else if (enColisionDerecha() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
             posicionY += velocidad;
-            direccion = 0;
+           // direccion = 0;
            // System.out.println("ABAJO");
             //ARRIBA
         } else if (enColisionAbajo() && !enColisionArriba() && !enColisionEnemigoArriba(enemigos)) {
             posicionY -= velocidad;
-            direccion = 3;
+           // direccion = 3;
             //System.out.println("ARRIBA");
-        }
+        }*/
 
         //IZQUIERDA
         if (posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)
                 || posicionX > ElementosPrincipales.jugador.obtenerPosicionX() && this.idEnemigo == 3 && !enColisionEnemigoIzquierda(enemigos)) {
             posicionX -= velocidad;
             direccion = 1;
-        } else if (enColisionIzquierda() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+        } /*else if (enColisionIzquierda() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
             posicionY += velocidad;
-            direccion = 0;
+           // direccion = 0;
             System.out.println("ABAJO");
             //ARRIBA
         } else if (enColisionAbajo() && !enColisionArriba() && !enColisionEnemigoArriba(enemigos)) {
             posicionY -= velocidad;
-            direccion = 3;
+           // direccion = 3;
             System.out.println("ARRIBA");
-        }
+        }*/
 
         //ABAJO
         if (posicionY < ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)
@@ -133,14 +133,14 @@ public class Enemigo {
             posicionY += velocidad;
             direccion = 0;
             //DERECHA
-        } else if (enColisionAbajo() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
+        }/* else if (enColisionAbajo() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
             posicionX += velocidad;
             direccion = 2;
             //IZQUIERDA
         } else if (enColisionDerecha() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)) {
              posicionX -= velocidad;
             direccion = 1;
-        }
+        }*/
 
         //ARRIBA
         if (posicionY > ElementosPrincipales.jugador.obtenerPosicionY() && !enColisionArriba() && !enColisionEnemigoArriba(enemigos)
@@ -148,13 +148,37 @@ public class Enemigo {
             posicionY -= velocidad;
             direccion = 3;
             //DERECHA
-        }else if (enColisionArriba() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
+        }/*else if (enColisionArriba() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
             posicionX += velocidad;
-            direccion = 2;
+            //direccion = 2;
             //IZQUIERDA
         } else if (enColisionDerecha() && !enColisionIzquierda() && !enColisionEnemigoIzquierda(enemigos)) {
              posicionX -= velocidad;
-            direccion = 1;
+            //direccion = 1;
+        }*/
+        
+        
+        //EN CAS DE COLISIONS CAMBIAR DIRECCIO.
+        
+        if (enColisionDerecha() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+            posicionY += velocidad;
+            //direccion = 0;
+        }
+        
+        if (enColisionIzquierda() && !enColisionAbajo() && !enColisionEnemigoAbajo(enemigos)) {
+            posicionY += velocidad;
+           // direccion = 0;
+        }
+        
+        
+        if (enColisionAbajo() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
+            posicionX += velocidad;
+           // direccion = 2;
+        }
+        
+        if (enColisionArriba() && !enColisionDerecha() && !enColisionEnemigoDerecha(enemigos)) {
+            posicionX += velocidad;
+           // direccion = 2;
         }
 
     }
