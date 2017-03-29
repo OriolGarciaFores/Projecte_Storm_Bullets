@@ -22,6 +22,8 @@ import principal.inventario.ObjetoUnicoTiled;
 import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.ControladorBalas;
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Pistola;
+import principal.inventario.armas.RifleAsalto;
 import principal.sprites.HojaSprites;
 import principal.sprites.Sprite;
 
@@ -410,7 +412,14 @@ public class MapaTiled {
             //Se añaden balas en el mapa cada 20 milisegundos.
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
             cb.addBala();
-            Constantes.disparo.play();
+            
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola){
+                Constantes.disparo.play();
+            }
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
+                Constantes.disparo.play();
+            }
+            
              ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
             }
 
