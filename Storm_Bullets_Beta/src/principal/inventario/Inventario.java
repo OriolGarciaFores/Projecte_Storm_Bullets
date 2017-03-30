@@ -27,7 +27,7 @@ public class Inventario {
             if (objetoExiste(objeto)) {
                 incrementarObjeto(objeto, objeto.obtenerCantidad());
             } else {
-                if(objeto.obtenerId()==501){
+                if(objeto.obtenerId()>=500 && objeto.obtenerId() <= 599){
                     ElementosPrincipales.jugador.obtenerAlmacenEquipo().cambiarArma((Arma) objeto);
                     objetos.add(objeto);
                 }else{
