@@ -12,6 +12,7 @@ import principal.herramientas.DibujoDebug;
 import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.Arma;
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Francotirador;
 import principal.mapas.MapaTiled;
 import principal.sprites.HojaSprites;
 
@@ -537,11 +538,11 @@ public class Jugador {
         
         // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
 
-        /* if (!alcanceActual.isEmpty()) {
+         if (!alcanceActual.isEmpty() && ae.obtenerArma() instanceof Francotirador) {
             
             dibujarAlcance(g);
             
-        }*/
+        }
     }
     
     private void dibujarAlcance(final Graphics g) {

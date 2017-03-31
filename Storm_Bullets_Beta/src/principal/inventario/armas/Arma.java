@@ -55,13 +55,8 @@ public abstract class Arma extends Objeto {
     }
 
     public void atacar(final ArrayList<Enemigo> enemigos) {
-        /* if(actuProxAtaque > 0){
-            return;
-        }
-        
-        actuProxAtaque = (int)(ataquesPorSegundo * 60);*/
 
-        //reproducir sonido.
+        
         if (enemigos.isEmpty()) {
             return;
         }

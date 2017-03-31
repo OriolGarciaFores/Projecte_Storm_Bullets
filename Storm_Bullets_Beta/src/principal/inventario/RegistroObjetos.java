@@ -2,6 +2,7 @@
 package principal.inventario;
 
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Francotirador;
 import principal.inventario.armas.Pistola;
 import principal.inventario.armas.RifleAsalto;
 import principal.inventario.consumibles.Consumible;
@@ -30,10 +31,11 @@ public class RegistroObjetos {
                 objeto = new Pistola(idObjeto, "Pistola", 5, false, false, 30);
                 break;
             case 501:
-                objeto = new RifleAsalto(idObjeto, "Rifle Asalto", 5, false, false, 5);
+                objeto = new RifleAsalto(idObjeto, "Rifle Asalto", 2, false, false, 5);
                 break;
             case 502:
                 //FRANCOTIRADOR.
+                objeto = new Francotirador(idObjeto, "Francotirador", 20, false, false, 90);
                 break;
             case 599:
                 objeto = new Desarmado(idObjeto, "Desarmado", 0, false, false, 0);

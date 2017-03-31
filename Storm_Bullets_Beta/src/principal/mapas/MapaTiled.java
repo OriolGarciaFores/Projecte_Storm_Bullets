@@ -22,6 +22,7 @@ import principal.inventario.ObjetoUnicoTiled;
 import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.ControladorBalas;
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Francotirador;
 import principal.inventario.armas.Pistola;
 import principal.inventario.armas.RifleAsalto;
 import principal.sprites.HojaSprites;
@@ -418,6 +419,9 @@ public class MapaTiled {
             }
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
                 Constantes.disparo_rifleAsalto.play();
+            }
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador){
+                Constantes.disparo_francotirador.play();
             }
             
              ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
