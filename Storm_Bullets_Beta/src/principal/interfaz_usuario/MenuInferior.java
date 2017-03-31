@@ -25,6 +25,8 @@ public class MenuInferior {
     private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
+    private static final BufferedImage e = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_E);
+    private static final BufferedImage espacio = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESPACIO);
 
     public MenuInferior() {
 
@@ -177,7 +179,11 @@ public class MenuInferior {
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(d, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 100, areaInventario.y + 10);
         DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55, 12);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 300, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 330, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 310, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(e, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 360, areaInventario.y + 10);
+        DibujoDebug.dibujarString(g, "Recojer", Constantes.ANCHO_JUEGO - 360, areaInventario.y + 55, 12);
+       // DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(espacio, 128, anchoTecla), Constantes.ANCHO_JUEGO - 500, areaInventario.y + 20);
+       // DibujoDebug.dibujarString(g, "Disparar", Constantes.ANCHO_JUEGO - 420, areaInventario.y + 55, 12);
     }
 
     /*private String tiempo() throws InterruptedException {

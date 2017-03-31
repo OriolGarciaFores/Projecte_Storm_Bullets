@@ -65,6 +65,8 @@ public class Constantes {
    public static final String RUTA_IMAGEN_S = "/imagenes/fondos/s.jpg";
    public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
+   public static final String RUTA_IMAGEN_E = "/imagenes/fondos/e.jpg";
+   public static final String RUTA_IMAGEN_ESPACIO = "/imagenes/fondos/espacio.jpg";
    
     
    public static Font FUENTE_PIXEL = CargadorRecursos.cargarFuente("/fuentes/FreePixel.ttf");
