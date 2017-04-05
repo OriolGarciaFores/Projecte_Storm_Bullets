@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import principal.herramientas.CargadorRecursos;
-import principal.reproductor.Sonido.Sonido;
+import principal.reproductor.Sonido;
 
 
 public class Constantes {
@@ -45,8 +45,6 @@ public class Constantes {
    
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
    public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
-   public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
-   public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
@@ -81,4 +79,12 @@ public class Constantes {
    public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav");
    public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav");
    
+   
+   //MUSICA FONDO.
+   
+   public static final Sonido MUSICA_TITULO = new Sonido("/audio/musica_titulo.wav");
+   public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav");
+   
+  // public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
+   //public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
 }

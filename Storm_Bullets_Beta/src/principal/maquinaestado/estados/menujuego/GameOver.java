@@ -2,21 +2,11 @@ package principal.maquinaestado.estados.menujuego;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.ArrayList;
 import principal.Constantes;
-import principal.ElementosPrincipales;
-import static principal.ElementosPrincipales.datosMapa;
-import static principal.ElementosPrincipales.inventario;
 import principal.control.GestorControles;
-import principal.entes.Jugador;
 import principal.guardar_partida.GuardarPartida;
-import principal.guardar_partida.Top;
 import principal.herramientas.DibujoDebug;
-import principal.inventario.Inventario;
-import principal.mapas.MapaTiled;
 import principal.maquinaestado.EstadoJuego;
-import principal.reproductor.Musicas;
 
 public class GameOver implements EstadoJuego {
 

@@ -415,13 +415,13 @@ public class MapaTiled {
             cb.addBala();
             
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola){
-                Constantes.disparo_pistola.play();
+                Constantes.disparo_pistola.reproducir();
             }
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
-                Constantes.disparo_rifleAsalto.play();
+                Constantes.disparo_rifleAsalto.reproducir();
             }
             if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador){
-                Constantes.disparo_francotirador.play();
+                Constantes.disparo_francotirador.reproducir();
             }
             
              ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);

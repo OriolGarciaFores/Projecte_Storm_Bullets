@@ -13,6 +13,7 @@ import principal.herramientas.DibujoDebug;
 import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
+import principal.reproductor.Sonido;
 
 public class Configuracion implements EstadoJuego {
 
@@ -24,19 +25,24 @@ public class Configuracion implements EstadoJuego {
     private final SeccionMenu[] secciones;
 
     private SeccionMenu seccionActual;
-    
 
     public Configuracion() {
         estructuraMenu = new EstructuraMenu();
-        secciones = new SeccionMenu[2];
+        secciones = new SeccionMenu[3];
 
         final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
+        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
+        secciones[0] = new Volumen("Volumen Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%", etiquetaVolumen);
 
-        final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+        final Rectangle etiquetaVolumenSonido = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[1] = new Volver("Volver", etiquetaVolver);
+        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
+        secciones[1] = new Volumen("Volumen Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%", etiquetaVolumenSonido);
+
+        final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumenSonido.y + etiquetaVolumenSonido.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
+
+        secciones[2] = new Volver("Volver", etiquetaVolver);
 
         seccionActual = secciones[0];
     }
@@ -47,15 +53,22 @@ public class Configuracion implements EstadoJuego {
                 seccionActual = secciones[1];
                 GestorControles.teclado.abajo.teclaLiberada();
             }
+            if (GestorControles.teclado.abajo.estaPulsada() && seccionActual == secciones[1]) {
+                seccionActual = secciones[2];
+                GestorControles.teclado.abajo.teclaLiberada();
+            }
+            
+            if (GestorControles.teclado.arriba.estaPulsada() && seccionActual == secciones[2]) {
+                seccionActual = secciones[1];
+                GestorControles.teclado.arriba.teclaLiberada();
+
+            }
             if (GestorControles.teclado.arriba.estaPulsada() && seccionActual == secciones[1]) {
                 seccionActual = secciones[0];
                 GestorControles.teclado.arriba.teclaLiberada();
 
             }
-            if (GestorControles.teclado.accion.estaPulsada() && seccionActual == secciones[0]) {
-
-                GestorControles.teclado.accion.teclaLiberada();
-            }
+            
         }
     }
 
@@ -67,30 +80,54 @@ public class Configuracion implements EstadoJuego {
             if (seccionActual == secciones[i]) {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.derecha.estaPulsada()) {
-                    try {
-                        
-                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());                       
-                        seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
-                        ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
-                    } catch (Exception ex) {
-                        Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
+
+                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
+                    Constantes.MUSICA_TITULO.aumentarVolumen(0.8f);
+                    // seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
+                    seccionActual.ModificarNombre("Volumen Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
+                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
+                    Constantes.MUSICA_INGAME.aumentarVolumen(0.8f);
+
                     //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {
-                    try {
-                        
-                        ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());                      
-                        seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
-                        ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
-                    } catch (Exception ex) {
-                        Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+
+                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());   
+                    Constantes.MUSICA_TITULO.disminuirVolumen(0.8f);
+                    //seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
+                    seccionActual.ModificarNombre("Volumen Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
+                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
+                    Constantes.MUSICA_INGAME.disminuirVolumen(0.8f);
+
                     GestorControles.teclado.izquierda.teclaLiberada();
                 }
 
-                if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
+
+                    if (seccionActual == secciones[1] && GestorControles.teclado.derecha.estaPulsada()) {
+
+                        Constantes.disparo_pistola.aumentarVolumen(0.8f);
+                        Constantes.disparo_rifleAsalto.aumentarVolumen(0.8f);
+                        Constantes.disparo_francotirador.aumentarVolumen(0.8f);
+
+                        seccionActual.ModificarNombre("Volumen Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
+
+                        GestorControles.teclado.derecha.teclaLiberada();
+                    } else if (seccionActual == secciones[1] && GestorControles.teclado.izquierda.estaPulsada()) {
+
+                        Constantes.disparo_pistola.disminuirVolumen(0.8f);
+                        Constantes.disparo_rifleAsalto.disminuirVolumen(0.8f);
+                        Constantes.disparo_francotirador.disminuirVolumen(0.8f);
+
+                        seccionActual.ModificarNombre("Volumen Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
+
+                        GestorControles.teclado.izquierda.teclaLiberada();
+                    }
+
+                   
+
+                
+
+                if (seccionActual == secciones[2] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.config = false;
                     GestorControles.teclado.accion.teclaLiberada();
 

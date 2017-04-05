@@ -3,11 +3,7 @@ package principal.maquinaestado.estados.menuinicial;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
 import principal.Constantes;
-import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -48,7 +44,8 @@ public class GestorTitulo implements EstadoJuego {
         secciones[3] = new Exit("Salir", etiquetaSalir);
 
         seccionActual = secciones[0];
-        ElementosPrincipales.m.reproducir(Constantes.RUTA_AUDIO_TITULO);
+        //ElementosPrincipales.m.reproducir(Constantes.RUTA_AUDIO_TITULO);
+        Constantes.MUSICA_TITULO.repetir();
         
     }
 
@@ -96,8 +93,10 @@ public class GestorTitulo implements EstadoJuego {
                 if (seccionActual == secciones[0] && GestorControles.teclado.accion.estaPulsada()) {
                     GestorControles.teclado.nombrarJugador = true;
                     GestorControles.teclado.tituloActivo = false;
-                    ElementosPrincipales.m.pararReproducir();
-                    ElementosPrincipales.musicaIngame.reproducir(Constantes.RUTA_AUDIO_INGAME);
+                   // ElementosPrincipales.m.pararReproducir();
+                   Constantes.MUSICA_TITULO.detener();
+                   // ElementosPrincipales.musicaIngame.reproducir(Constantes.RUTA_AUDIO_INGAME);
+                   Constantes.MUSICA_INGAME.repetir();
                 }
                 if (seccionActual == secciones[1] && GestorControles.teclado.accion.estaPulsada()) {
                    GestorControles.teclado.ranking = true;
