@@ -83,10 +83,12 @@ public class Configuracion implements EstadoJuego {
 
                     // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
                     Constantes.MUSICA_TITULO.aumentarVolumen(0.8f);
+                    Constantes.MUSICA_INGAME.aumentarVolumen(0.8f);
+                    Constantes.MUSICA_GAME_OVER.aumentarVolumen(0.8f);
                     // seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     seccionActual.ModificarNombre("Volumen Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
                     //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
-                    Constantes.MUSICA_INGAME.aumentarVolumen(0.8f);
+                    
 
                     //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
@@ -94,10 +96,12 @@ public class Configuracion implements EstadoJuego {
 
                     // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());   
                     Constantes.MUSICA_TITULO.disminuirVolumen(0.8f);
+                     Constantes.MUSICA_INGAME.disminuirVolumen(0.8f);
                     //seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
+                    Constantes.MUSICA_GAME_OVER.disminuirVolumen(0.8f);
                     seccionActual.ModificarNombre("Volumen Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
                     //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
-                    Constantes.MUSICA_INGAME.disminuirVolumen(0.8f);
+                   
 
                     GestorControles.teclado.izquierda.teclaLiberada();
                 }
@@ -108,6 +112,8 @@ public class Configuracion implements EstadoJuego {
                         Constantes.disparo_pistola.aumentarVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.aumentarVolumen(0.8f);
                         Constantes.disparo_francotirador.aumentarVolumen(0.8f);
+                        
+                        Constantes.grito_perderVida.aumentarVolumen(0.8f);
 
                         seccionActual.ModificarNombre("Volumen Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
 
@@ -117,6 +123,8 @@ public class Configuracion implements EstadoJuego {
                         Constantes.disparo_pistola.disminuirVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.disminuirVolumen(0.8f);
                         Constantes.disparo_francotirador.disminuirVolumen(0.8f);
+                        
+                        Constantes.grito_perderVida.disminuirVolumen(0.8f);
 
                         seccionActual.ModificarNombre("Volumen Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
 

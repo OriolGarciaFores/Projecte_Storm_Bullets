@@ -53,6 +53,7 @@ public class GameOver implements EstadoJuego {
                     GestorControles.teclado.tituloActivo = true;
                     GestorControles.teclado.muerto = false;*/
                     //Intentar volver al menu principal y reiniciar juego.
+                   // Constantes.MUSICA_GAME_OVER.detener();
                     GuardarPartida.modificarSave();
                     System.exit(0);
                     GestorControles.teclado.accion.teclaLiberada();

@@ -377,6 +377,7 @@ public class MapaTiled {
                     //CADA SEGUNDO PERDERIA VIDA EL JUGADOR.
                     if (diley) {
                         ElementosPrincipales.jugador.perderVida(5);
+                        Constantes.grito_perderVida.reproducir();
                         ElementosPrincipales.jugador.disminuirPuntuacion(2);
                         diley = false;
                     }

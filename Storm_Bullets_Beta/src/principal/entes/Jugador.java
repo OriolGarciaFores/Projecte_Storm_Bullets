@@ -583,6 +583,8 @@ public class Jugador {
     public void perderVida(int ataqueRecibido) {
         if (vidaJugador - ataqueRecibido <= 0) {
             vidaJugador = 0;
+        Constantes.MUSICA_INGAME.detener();
+        Constantes.MUSICA_GAME_OVER.reproducir();
             GestorControles.teclado.muerto = true;
         } else {
             vidaJugador -= ataqueRecibido;
