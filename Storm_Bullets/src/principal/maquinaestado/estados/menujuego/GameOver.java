@@ -2,21 +2,11 @@ package principal.maquinaestado.estados.menujuego;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.ArrayList;
 import principal.Constantes;
-import principal.ElementosPrincipales;
-import static principal.ElementosPrincipales.datosMapa;
-import static principal.ElementosPrincipales.inventario;
 import principal.control.GestorControles;
-import principal.entes.Jugador;
 import principal.guardar_partida.GuardarPartida;
-import principal.guardar_partida.Top;
 import principal.herramientas.DibujoDebug;
-import principal.inventario.Inventario;
-import principal.mapas.MapaTiled;
 import principal.maquinaestado.EstadoJuego;
-import principal.reproductor.Musicas;
 
 public class GameOver implements EstadoJuego {
 
@@ -63,6 +53,7 @@ public class GameOver implements EstadoJuego {
                     GestorControles.teclado.tituloActivo = true;
                     GestorControles.teclado.muerto = false;*/
                     //Intentar volver al menu principal y reiniciar juego.
+                   // Constantes.MUSICA_GAME_OVER.detener();
                     GuardarPartida.modificarSave();
                     System.exit(0);
                     GestorControles.teclado.accion.teclaLiberada();

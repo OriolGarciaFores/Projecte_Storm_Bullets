@@ -87,6 +87,4 @@ public class Constantes {
    public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav");
    public static final Sonido MUSICA_GAME_OVER = new Sonido("/audio/gameOver.wav");
    
-  // public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
-   //public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
 }

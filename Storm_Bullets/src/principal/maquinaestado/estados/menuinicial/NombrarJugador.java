@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package principal.maquinaestado.estados.menuinicial;
 
 import java.awt.Color;
@@ -19,17 +15,14 @@ import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
 
-/**
- *
- * @author Tebrase
- */
+
 public class NombrarJugador implements EstadoJuego {
 
     private final BufferedImage image = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_PORTADA);
     private final BufferedImage titol = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_TITOL);
 
     private final EstructuraMenu estructuraMenu;
-    private final Rectangle r = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, 150, 45);
+    private final Rectangle r = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 50, 150, 5);
     private final SeccionMenu[] secciones;
     private static String lletra = "";
     private SeccionMenu seccionActual;
@@ -57,9 +50,9 @@ public class NombrarJugador implements EstadoJuego {
     public void dibujar(Graphics g) {
         DibujoDebug.dibujarImagen(g, image, 0, 0);
         DibujoDebug.dibujarImagen(g, titol, 120, 0);
-        DibujoDebug.dibujarRectanguloRelleno(g, r, Color.DARK_GRAY);
-        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.BLACK);
-        DibujoDebug.dibujarString(g, "Nombre: ", Constantes.CENTRO_VENTANA_X - 150, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE);
+        DibujoDebug.dibujarRectanguloRelleno(g, r, Color.WHITE);
+        DibujoDebug.dibujarString(g, escribir(), Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE);
+        DibujoDebug.dibujarString(g, "Nombre: ", Constantes.CENTRO_VENTANA_X - 170, Constantes.CENTRO_VENTANA_Y + 40, Color.WHITE);
         ElementosPrincipales.jugador.setNomJugador(nombre());
         for (int i = 0; i < secciones.length; i++) {
             if (seccionActual == secciones[i]) {

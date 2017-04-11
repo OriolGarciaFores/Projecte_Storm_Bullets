@@ -12,6 +12,7 @@ import principal.herramientas.DibujoDebug;
 import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.Arma;
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Francotirador;
 import principal.mapas.MapaTiled;
 import principal.sprites.HojaSprites;
 
@@ -486,8 +487,8 @@ public class Jugador {
     }
     
     private boolean fueraMapa(final int velocidadX, final int velocidadY) {
-        int posicionFuturaX = (int) posicionX + velocidadX * velocidad;
-        int posicionFuturaY = (int) posicionY + velocidadY * velocidad;
+        int posicionFuturaX = (int) posicionX + velocidadX * (int)velocidad;
+        int posicionFuturaY = (int) posicionY + velocidadY * (int)velocidad;
         
         final Rectangle bordesMapa = ElementosPrincipales.mapa.obtenerBordes(posicionFuturaX, posicionFuturaY);
         
@@ -525,17 +526,17 @@ public class Jugador {
         //g.setColor(Color.green);
         DibujoDebug.dibujarImagen(g, imagenActual, centroX, centroY);
 
-        /* g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
+       /*  g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
         g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
         g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
         g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);*/
         // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
 
-        /* if (!alcanceActual.isEmpty()) {
+         if (!alcanceActual.isEmpty() && ae.obtenerArma() instanceof Francotirador) {
             
             dibujarAlcance(g);
             
-        }*/
+        }
     }
     
     private void dibujarAlcance(final Graphics g) {
@@ -576,6 +577,8 @@ public class Jugador {
     public void perderVida(int ataqueRecibido) {
         if (vidaJugador - ataqueRecibido <= 0) {
             vidaJugador = 0;
+        Constantes.MUSICA_INGAME.detener();
+        Constantes.MUSICA_GAME_OVER.reproducir();
             GestorControles.teclado.muerto = true;
         } else {
             vidaJugador -= ataqueRecibido;

@@ -101,29 +101,12 @@
  "version":1,
  "width":28,
 "nameMap":"mapa_boss",
+"puerta": "abierta",
 "start":
 {
     "x": 512,
     "y": 288
 },
-"enemigos":
-[
-{
-    "id": 1,
-    "x": 320,
-    "y": 288
-},
-{
-    "id": 1,
-    "x": 448,
-    "y": 192
-},
-{
-    "id": 1,
-    "x": 608,
-    "y": 224
-}
-],
 "salidas":
 [
 {

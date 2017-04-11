@@ -18,7 +18,7 @@ public class Slime extends Enemigo {
             hojaSlime = new HojaSprites(Constantes.RUTA_SLIME, Constantes.LADO_SPRITE, false);
         }
     }
-    
+   
     public void dibujar(final Graphics g, final int puntoX, final int puntoY){
         DibujoDebug.dibujarImagen(g, hojaSlime.obtenerSprite(estado, direccion).obtenerImagen(), puntoX, puntoY);
         super.dibujar(g, puntoX, puntoY);

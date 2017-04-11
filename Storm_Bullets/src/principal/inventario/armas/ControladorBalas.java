@@ -9,22 +9,15 @@ public class ControladorBalas {
 
     private ArrayList<Bala> balas;
 
-    private int actuProxAtaque;
-    
-    
-    private boolean recarga = false;
 
     public ControladorBalas() {
         balas = new ArrayList<>();
-        recarga = true;
-        actuProxAtaque = 20;
+
     }
 
     public void addBala() {
-        if(recarga){
         Bala bala = new Bala(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY(), (char) ElementosPrincipales.jugador.obtenerDireccion(), ElementosPrincipales.jugador.obtenerAlcanceActual());
         balas.add(bala);
-        }
     }
 
     public void dibujar(Graphics g) {
@@ -37,14 +30,6 @@ public class ControladorBalas {
     
     public void actualizar(double posicionX, double posicionY, ArrayList<Rectangle> alcanceActual){
         
-         if(actuProxAtaque == 20){
-         recarga = true;
-         actuProxAtaque = 0;
-         }
-         if(!recarga){
-             actuProxAtaque++;
-             
-         }
          if (!balas.isEmpty()) {
             for (int i = 0; i < balas.size(); i++) {
                 balas.get(i).actualizar();
@@ -81,15 +66,5 @@ public class ControladorBalas {
     public ArrayList<Bala> obtenerArrayBalas(){
         return balas;
     }
-    
-    public void setRecarga(boolean recarga){
-    this.recarga = recarga;
-    }
-    
-    public boolean obtenerRecarga(){
-        return recarga;
-    }
-    
-    
-
+       
 }

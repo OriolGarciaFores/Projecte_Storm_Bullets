@@ -1,11 +1,9 @@
-
 package principal.inventario.armas;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import principal.Constantes;
 import principal.entes.Jugador;
-
 
 public class Pistola extends Arma {
 
@@ -57,23 +55,9 @@ public class Pistola extends Arma {
     }
 
     @Override
-    public Rectangle obtenerBala(final Jugador jugador, ArrayList<Rectangle> alcance) {
-        Rectangle bala;
-        //Abajo o arriba.
-        if (jugador.obtenerDireccion() == 0 || jugador.obtenerDireccion() == 3) {
-            int ancho = 1;
-            int alto = 5;
-            if (jugador.obtenerDireccion() == 0) {
-                //ABAJO
-                //sumar y
-
-            } else {
-                //ARRIBA
-                //restar y
-
-            }
-
-        }
-        return null;
+    public Rectangle obtenerBala(Jugador jugador, ArrayList<Rectangle> alcance) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
 }

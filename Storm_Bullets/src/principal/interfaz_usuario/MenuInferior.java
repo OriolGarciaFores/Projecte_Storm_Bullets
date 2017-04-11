@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.ElementosPrincipales;
-import principal.entes.Jugador;
 import principal.guardar_partida.Top;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -26,6 +25,8 @@ public class MenuInferior {
     private static final BufferedImage s = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_S);
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
+    private static final BufferedImage e = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_E);
+    private static final BufferedImage espacio = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESPACIO);
 
     public MenuInferior() {
 
@@ -107,7 +108,7 @@ public class MenuInferior {
         }
 
         final int anchoRanura = 10;
-        final int numeroRanuras = ElementosPrincipales.inventario.obtenerArmas().size();
+        final int numeroRanuras = 1;
         final int espacioRanuras = 10;
         final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
         final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
@@ -115,11 +116,15 @@ public class MenuInferior {
 
         for (int i = 0; i < numeroRanuras; i++) {
             int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
-            int idActual = ElementosPrincipales.inventario.obtenerArmas().get(i).obtenerId();
+            
+            int idActual = ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerId();
             Objeto objetoActual = ElementosPrincipales.inventario.obtenerObjeto(idActual);
 
+            
             DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
+            
             DibujoDebug.dibujarString(g, "ESPACIO", xActual - 40,  areaInventario.y + 40 , 12);
+            
 
         }
 
@@ -134,14 +139,18 @@ public class MenuInferior {
 
     private void dibujarControles(final Graphics g) {
         final int anchoTecla = 32;
-
+        //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(w, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 220, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(a, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 180, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(s, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 140, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(d, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 100, areaInventario.y + 10);
         DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55, 12);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 300, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 330, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 310, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(e, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 360, areaInventario.y + 10);
+        DibujoDebug.dibujarString(g, "Recojer", Constantes.ANCHO_JUEGO - 360, areaInventario.y + 55, 12);
+       // DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(espacio, 128, anchoTecla), Constantes.ANCHO_JUEGO - 500, areaInventario.y + 20);
+       // DibujoDebug.dibujarString(g, "Disparar", Constantes.ANCHO_JUEGO - 420, areaInventario.y + 55, 12);
     }
     
 }

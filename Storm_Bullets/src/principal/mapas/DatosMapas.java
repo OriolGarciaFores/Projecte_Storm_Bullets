@@ -1,8 +1,6 @@
 
 package principal.mapas;
 
-import java.util.ArrayList;
-
 
 public class DatosMapas {
     

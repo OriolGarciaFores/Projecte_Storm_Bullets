@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import principal.herramientas.CargadorRecursos;
-import principal.reproductor.Musicas;
+import principal.reproductor.Sonido;
 
 public class Constantes {
    public static final int LADO_SPRITE = 32; 
@@ -42,18 +42,16 @@ public class Constantes {
    public static final String RUTA_CANDADO = "/imagenes/hojasTexturas/candado.png";
    
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
-   public static final String RUTA_AUDIO_TITULO = "/audio/musica_titulo.mp3";
-   public static final String RUTA_AUDIO_INGAME = "/audio/musica_ingame.mp3";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
    //IMAGENES DE OBJETOS
    public static final String RUTA_CONSUMIBLES = "/imagenes/hojasObjetos/consumibles.png";
-   public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/pistola.png";
+   public static final String RUTA_ARMAS = "/imagenes/hojasObjetos/armas.png";
    
    //Enemigos
-   public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";//Se tiene que modificar es de prueba.
+   public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";
    public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
    public static String RUTA_FANTASMA = "/imagenes/hojasPersonajes/fantasma.png";
    
@@ -63,11 +61,28 @@ public class Constantes {
    public static final String RUTA_IMAGEN_S = "/imagenes/fondos/s.jpg";
    public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
+   public static final String RUTA_IMAGEN_E = "/imagenes/fondos/e.jpg";
+   public static final String RUTA_IMAGEN_ESPACIO = "/imagenes/fondos/espacio.jpg";
    
     
    public static Font FUENTE_PIXEL = CargadorRecursos.cargarFuente("/fuentes/FreePixel.ttf");
    
    public static int segundos = 0;
    public static int minutos = 0;
+   
+   
+   //SONIDOS.
+   
+   public static final Sonido disparo_pistola = new Sonido("/audio/disparo_pistola.wav");
+   public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav");
+   public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav");
+   public static final Sonido grito_perderVida = new Sonido("/audio/grito.wav");
+   
+   
+   //MUSICA FONDO.
+   
+   public static final Sonido MUSICA_TITULO = new Sonido("/audio/musica_titulo.wav");
+   public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav");
+   public static final Sonido MUSICA_GAME_OVER = new Sonido("/audio/gameOver.wav");
    
 }

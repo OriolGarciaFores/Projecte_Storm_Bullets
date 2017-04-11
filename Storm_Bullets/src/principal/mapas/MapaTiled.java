@@ -22,6 +22,9 @@ import principal.inventario.ObjetoUnicoTiled;
 import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.ControladorBalas;
 import principal.inventario.armas.Desarmado;
+import principal.inventario.armas.Francotirador;
+import principal.inventario.armas.Pistola;
+import principal.inventario.armas.RifleAsalto;
 import principal.sprites.HojaSprites;
 import principal.sprites.Sprite;
 
@@ -374,6 +377,7 @@ public class MapaTiled {
                     //CADA SEGUNDO PERDERIA VIDA EL JUGADOR.
                     if (diley) {
                         ElementosPrincipales.jugador.perderVida(5);
+                        Constantes.grito_perderVida.reproducir();
                         ElementosPrincipales.jugador.disminuirPuntuacion(2);
                         diley = false;
                     }
@@ -398,6 +402,7 @@ public class MapaTiled {
         }
 
         for (int i = 0; i < cb.obtenerArrayBalas().size(); i++) {
+            //La bala impacta con el enemigo, pierde vida y se elimina la bala.
             if (cb.obtenerArrayBalas().get(i).enColisionEnemigo(enemigosMapa)) {
 
                 cb.obtenerArrayBalas().remove(i);
@@ -406,12 +411,23 @@ public class MapaTiled {
         }
 
         if (GestorControles.teclado.atacando) {
-
+            //Se añaden balas en el mapa cada 20 milisegundos.
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
             cb.addBala();
-
-            if (cb.obtenerRecarga()) {
-                cb.setRecarga(false);
+            
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola){
+                Constantes.disparo_pistola.reproducir();
             }
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
+                Constantes.disparo_rifleAsalto.reproducir();
+            }
+            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador){
+                Constantes.disparo_francotirador.reproducir();
+            }
+            
+             ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
+            }
+
         }
 
         Iterator<Enemigo> iterador = enemigosMapa.iterator();

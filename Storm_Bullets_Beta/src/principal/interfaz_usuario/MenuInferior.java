@@ -137,39 +137,6 @@ public class MenuInferior {
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(img, anchoRanura, anchoRanura), espacioRanura, areaInventario.y + 4);
     }
 
-    /*private void dibujarLlave(final Graphics g) {
-
-       // final int anchoRanura = 32;
-       // final int espacioRanura = 10;
-        DibujoDebug.dibujarImagen(g, llave, espacioRanura + 300, areaInventario.y + 4);
-        DibujoDebug.dibujarString(g, "0", espacioRanura + 310, areaInventario.y + 50, 12);
-       
-      
-       
-       
-        final int anchoRanura = 1;
-        final int numeroRanuras = inventario.objetos.size();
-        final int espacioRanuras = 10;
-        final int anchoTotal = anchoRanura * numeroRanuras + espacioRanuras * numeroRanuras;
-        final int xInicial = Constantes.ANCHO_JUEGO - anchoTotal;
-        final int anchoRanuraYespacio = anchoRanura + espacioRanuras;
-
-       
-        for (int i = 0; i < numeroRanuras; i++) {
-            int xActual = xInicial + anchoRanuraYespacio * i - areaInventario.y;//530
-            DibujoDebug.dibujarImagen(g, inventario.objetos.get(i).obtenerSprite().obtenerImagen(), xActual - 140, areaInventario.y + 4);
-           
-        }
-              
-    }*/
-
- /*  private void dibujarLlaveBoss(final Graphics g) {
-
-        final int anchoRanura = 32;
-        final int espacioRanura = 10;
-        DibujoDebug.dibujarImagen(g, llaveBoss, espacioRanura + 330, areaInventario.y + 4);
-        DibujoDebug.dibujarString(g, "0", espacioRanura + 340, areaInventario.y + 50, 12);
-    }*/
     private void dibujarControles(final Graphics g) {
         final int anchoTecla = 32;
         //Arreglar imagen a una resolucion pequeña y añadir mas teclas.
