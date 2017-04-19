@@ -7,8 +7,8 @@ import principal.herramientas.CargadorRecursos;
 public class Sonido {
 
     final private Clip sonido;
-    private float volumen = 0.0f;
-    private int porcentaje = 100;
+    private float volumen = -16.0f;
+    private int porcentaje = 80;
 
     public Sonido(final String ruta) {
         sonido = CargadorRecursos.cargarSonidoCambiarVolumen(ruta, volumen);//-80.0f y 0.0

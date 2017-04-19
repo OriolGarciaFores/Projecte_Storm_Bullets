@@ -42,7 +42,7 @@ public class Constantes {
    public static final String RUTA_CANDADO = "/imagenes/hojasTexturas/candado.png";
    
    public static final String RUTA_PERSONAJE = "/imagenes/hojasPersonajes/pj.png";
-   public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
+   public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
    
@@ -62,7 +62,6 @@ public class Constantes {
    public static final String RUTA_IMAGEN_D = "/imagenes/fondos/d.jpg";
    public static final String RUTA_IMAGEN_ESC = "/imagenes/fondos/esc2.jpg";
    public static final String RUTA_IMAGEN_E = "/imagenes/fondos/e.jpg";
-   public static final String RUTA_IMAGEN_ESPACIO = "/imagenes/fondos/espacio.jpg";
    
     
    public static Font FUENTE_PIXEL = CargadorRecursos.cargarFuente("/fuentes/FreePixel.ttf");

@@ -66,7 +66,7 @@ public class Jugador {
         puntuacion = 0;
         nomJugador = "";
         
-        ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
+        ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(501));//Equipamos al personaje con una pistola en empezar el juego.
 
         alcanceActual = new ArrayList<>();
         
@@ -641,7 +641,7 @@ public class Jugador {
     }
     
     public Rectangle obtenerArea() {
-        return new Rectangle(Constantes.CENTRO_VENTANA_X - 15, Constantes.CENTRO_VENTANA_Y - ALTO_JUGADOR, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+        return new Rectangle(Constantes.CENTRO_VENTANA_X - 10, Constantes.CENTRO_VENTANA_Y - ALTO_JUGADOR, Constantes.LADO_SPRITE - 10, Constantes.LADO_SPRITE);
     }
     
     public void recuperarVida(int cantidad){

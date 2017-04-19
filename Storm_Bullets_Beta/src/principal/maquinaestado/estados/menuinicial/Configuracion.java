@@ -112,6 +112,8 @@ public class Configuracion implements EstadoJuego {
                         Constantes.disparo_pistola.aumentarVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.aumentarVolumen(0.8f);
                         Constantes.disparo_francotirador.aumentarVolumen(0.8f);
+                        Constantes.bola_fuego.aumentarVolumen(0.8f);
+                        Constantes.lanzallamas.aumentarVolumen(0.8f);
                         
                         Constantes.grito_perderVida.aumentarVolumen(0.8f);
 
@@ -123,6 +125,8 @@ public class Configuracion implements EstadoJuego {
                         Constantes.disparo_pistola.disminuirVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.disminuirVolumen(0.8f);
                         Constantes.disparo_francotirador.disminuirVolumen(0.8f);
+                        Constantes.bola_fuego.disminuirVolumen(0.8f);
+                        Constantes.lanzallamas.disminuirVolumen(0.8f);
                         
                         Constantes.grito_perderVida.disminuirVolumen(0.8f);
 

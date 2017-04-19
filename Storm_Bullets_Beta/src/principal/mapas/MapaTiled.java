@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,8 +13,10 @@ import org.json.simple.parser.ParseException;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
+import principal.entes.Demonio;
 import principal.entes.Enemigo;
 import principal.entes.RegistroEnemigos;
+import principal.entes.habilidades.ControladorBolasFuego;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.inventario.ContenedorObjetos;
@@ -61,6 +64,9 @@ public class MapaTiled {
     private ArrayList<Candado> candados;
 
     private ControladorBalas cb;
+    private ControladorBolasFuego cbf;
+    
+    //private Demonio boss;
 
     public MapaTiled(String ruta) {
         this.rutaMapa = ruta;
@@ -337,6 +343,7 @@ public class MapaTiled {
 
         areasColisionPorActualizacion = new ArrayList<>();
         cb = new ControladorBalas();
+        cbf = new ControladorBolasFuego();
     }
 
     public void actualizar() {
@@ -346,7 +353,14 @@ public class MapaTiled {
         actualizarAtaqueEnemigo();
         actualizarRecogidaObjetos();
         actualizarRecogidaCofre();
-        cb.actualizar(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY(), ElementosPrincipales.jugador.obtenerAlcanceActual());
+        cb.actualizar(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY());
+
+        if (!enemigosMapa.isEmpty()) {
+            if (enemigosMapa.get(0) instanceof Demonio) {
+                cbf.actualizar(enemigosMapa.get(0).obtenerPosicionX(), enemigosMapa.get(0).obtenerPosicionY());
+            }
+        }
+        actualizarHabilidadesEnemigoBoss();
 
         contador++;
         if (contador == 60) {
@@ -387,8 +401,81 @@ public class MapaTiled {
 
     }
 
+    private void actualizarHabilidadesEnemigoBoss() {
+        if (!enemigosMapa.isEmpty() && enemigosMapa.get(0) instanceof Demonio) {
+            for (int i = 0; i < cbf.obtenerArrayBolas().size(); i++) {
+                //La bala impacta con el enemigo, pierde vida y se elimina la bala.
+                if (cbf.obtenerArrayBolas().get(i).enColisionJugador()) {
+                    Constantes.grito_perderVida.reproducir();
+                    ElementosPrincipales.jugador.disminuirPuntuacion(2);
+                    cbf.obtenerArrayBolas().remove(i);
+                }
+
+            }
+
+//EN LA FASE 2 HAY K MODIFICAR EL ATAQUE.
+            if (!enemigosMapa.get(0).obtenerFase2()) {
+
+                if (enemigosMapa.get(0).direccion == 0 && (enemigosMapa.get(0).obtenerPosicionX() == ElementosPrincipales.jugador.obtenerPosicionX() - 32
+                        || enemigosMapa.get(0).obtenerPosicionX() == ElementosPrincipales.jugador.obtenerPosicionX() + 32)) {
+
+                    cbf.addBola(enemigosMapa);
+                }
+                if (enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY()
+                        || enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY() - 32) {
+
+                    cbf.addBola(enemigosMapa);
+                }
+            } else {
+                Random rd = new Random();
+
+                enemigosMapa.get(0).direccion = (char) rd.nextInt(4);
+                cbf.modificarRecarga(true);
+
+                cbf.addBola(enemigosMapa);
+            }
+            if (enemigosMapa.get(0).obtenerFase3()) {
+
+                if(Constantes.segundos >= 17 && Constantes.segundos <= 20 || Constantes.segundos >= 42 && Constantes.segundos <= 45){
+                enemigosMapa.get(0).direccion = 0;
+                cbf.modificarRecarga(true);
+                cbf.addBola(enemigosMapa);
+                }
+                
+              /*  boss = (Demonio) enemigosMapa.get(0);
+                
+                double randomX = boss.obtenerPosRandomX();
+                
+                if (enemigosMapa.get(0).direccion == 0 && enemigosMapa.get(0).obtenerPosicionX() == randomX) {
+
+                    cbf.addBola(enemigosMapa);
+                }
+                if (enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY()
+                        || enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY() - 32) {
+
+                    cbf.addBola(enemigosMapa);
+                }*/
+                
+                
+                
+                if (Constantes.segundos == 17 || Constantes.segundos == 42) {
+                    Constantes.lanzallamas.reproducir();
+                }
+            }
+
+        } else {
+            if (!cbf.obtenerArrayBolas().isEmpty()) {
+                for (int i = 0; i < cbf.obtenerArrayBolas().size(); i++) {
+                    cbf.obtenerArrayBolas().remove(i);
+
+                }
+            }
+
+        }
+    }
+
     private void actualizarAtaques() {
-        if (enemigosMapa.isEmpty() || ElementosPrincipales.jugador.obtenerAlcanceActual().isEmpty()
+        if (enemigosMapa.isEmpty()
                 || ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Desarmado) {
 
             for (int i = 0; i < ElementosPrincipales.datosMapa.size(); i++) {
@@ -412,23 +499,23 @@ public class MapaTiled {
 
         if (GestorControles.teclado.atacando) {
             //Se añaden balas en el mapa cada 20 milisegundos.
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
-            cb.addBala();
-            
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola){
-                Constantes.disparo_pistola.reproducir();
-            }
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
-                Constantes.disparo_rifleAsalto.reproducir();
-            }
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador){
-                Constantes.disparo_francotirador.reproducir();
-            }
-            
-             ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
+            if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()) {
+                cb.addBala(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerAlcance(ElementosPrincipales.jugador));
+
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola) {
+                    Constantes.disparo_pistola.reproducir();
+                }
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto) {
+                    Constantes.disparo_rifleAsalto.reproducir();
+                }
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador) {
+                    Constantes.disparo_francotirador.reproducir();
+                }
+
+                ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
             }
 
-           /* if (cb.obtenerRecarga()) {
+            /* if (cb.obtenerRecarga()) {
                 cb.setRecarga(false);
             }
             // ArrayList<Enemigo> enemigosAlcanzados = new ArrayList<>();
@@ -530,7 +617,7 @@ public class MapaTiled {
 
                         ElementosPrincipales.inventario.recogerObjetoUnico(objetoActual);
                         ElementosPrincipales.inventario.incrementarObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
-                        
+
                         if (objetosMapa.get(i).obtenerObjeto().obtenerNombre().equals("Botiquin")) {
                             ElementosPrincipales.inventario.disminuirObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
                             ElementosPrincipales.jugador.recuperarVida(10);
@@ -644,6 +731,13 @@ public class MapaTiled {
         try {
             if (!cb.obtenerArrayBalas().isEmpty()) {
                 cb.dibujar(g);
+            }
+        } catch (Exception ex) {
+        }
+
+        try {
+            if (!cbf.obtenerArrayBolas().isEmpty()) {
+                cbf.dibujar(g);
             }
         } catch (Exception ex) {
         }

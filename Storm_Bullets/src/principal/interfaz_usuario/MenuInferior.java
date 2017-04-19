@@ -26,7 +26,6 @@ public class MenuInferior {
     private static final BufferedImage d = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_IMAGEN_D);
     private static final BufferedImage esc = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESC);
     private static final BufferedImage e = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_E);
-    private static final BufferedImage espacio = CargadorRecursos.cargarImagenCompatibleOpaca(Constantes.RUTA_IMAGEN_ESPACIO);
 
     public MenuInferior() {
 
