@@ -67,7 +67,7 @@ public class Jugador {
         nomJugador = "";
         
         ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
-
+        //502 francotirador.
         alcanceActual = new ArrayList<>();
         
     }
