@@ -16,7 +16,7 @@ public class Inventario {
         objetos.add(RegistroObjetos.obtenerObjeto(1));
         objetos.add(RegistroObjetos.obtenerObjeto(2));
 
-        objetos.add(RegistroObjetos.obtenerObjeto(501));
+        objetos.add(RegistroObjetos.obtenerObjeto(500));
         
         
 

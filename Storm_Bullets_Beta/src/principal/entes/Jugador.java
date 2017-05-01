@@ -66,7 +66,7 @@ public class Jugador {
         puntuacion = 0;
         nomJugador = "";
         
-        ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(501));//Equipamos al personaje con una pistola en empezar el juego.
+        ae = new AlmacenEquipo((Arma) RegistroObjetos.obtenerObjeto(500));//Equipamos al personaje con una pistola en empezar el juego.
 
         alcanceActual = new ArrayList<>();
         
@@ -332,6 +332,8 @@ public class Jugador {
                     if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa4") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
                         abierto = false;
                     }
+                    
+                   
                 }
                 
                 if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
@@ -355,9 +357,7 @@ public class Jugador {
                    
                     
                     abierto = false;
-                    
-                    
-                    
+                 
                     continue;
                     
                 }
@@ -404,11 +404,49 @@ public class Jugador {
                     continue;
                     
                 }
-                //SALIDA 2.
+                
+                //SALIDA 2 NECESARIO LLAVE.
+                for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
+                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                        abierto = true;
+                    }
+                    
+                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                        abierto = false;
+                    }
+                    
+                   
+                }
+                
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_boss.csv") && (ElementosPrincipales.inventario.obtenerConsumibles().get(1).obtenerCantidad() >= 1 || abierto)) {
+                    
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_BOSS);
+                    
+                    if (!abierto) {
+                        for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
+                            
+                            if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                                ElementosPrincipales.datosMapa.get(h).setEstadoPuerta("abierta");
+                            }
+                        }
+                         ElementosPrincipales.inventario.disminuirObjeto(ElementosPrincipales.inventario.obtenerObjeto(1), 1);
+                    }
+             
+                    abierto = false;
+                 
+                    continue;
+                }
+                
             }
             if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_boss") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+                
             }
             if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_salida") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
+                
             }
             
         }

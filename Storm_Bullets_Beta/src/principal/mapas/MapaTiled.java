@@ -253,19 +253,42 @@ public class MapaTiled {
                     for (int i = 0; i < coleccionCofres.size(); i++) {
                         JSONObject datosObjeto = obtenerObjetoJSON(coleccionCofres.get(i).toString());
 
-                        int idObjeto1 = obtenerIntDesdeJSON(datosObjeto, "idobjeto1");
+                        /*int idObjeto1 = obtenerIntDesdeJSON(datosObjeto, "idobjeto1");
                         int cantidadObjeto1 = obtenerIntDesdeJSON(datosObjeto, "cantidad1");
                         int idObjeto2 = obtenerIntDesdeJSON(datosObjeto, "idobjeto2");
-                        int cantidadObjeto2 = obtenerIntDesdeJSON(datosObjeto, "cantidad2");
+                        int cantidadObjeto2 = obtenerIntDesdeJSON(datosObjeto, "cantidad2");*/
                         int xCofre = obtenerIntDesdeJSON(datosObjeto, "x");
                         int yCofre = obtenerIntDesdeJSON(datosObjeto, "y");
 
+                        //Hacer un random para los items del cofre.
+                        int randomCantidad = (int) (Math.random() * 100 + 1);
                         int[] idObjetos = new int[2];
-                        idObjetos[0] = idObjeto1;
-                        idObjetos[1] = idObjeto2;
                         int[] cantidades = new int[2];
-                        cantidades[0] = cantidadObjeto1;
-                        cantidades[1] = cantidadObjeto2;
+                        
+                        //70% de probabilidades de que solo se consiga un item en el cofre.
+                        if(randomCantidad > 20){
+                            int randomIdArmas = (int) (Math.random()* 100 + 1);
+                            
+                            //10% de conseuir un francotirador.
+                            if(randomIdArmas >= 90){
+                                idObjetos[0] = 502;
+                                cantidades[0] = 1;
+                                //40% de conseguir rifle asalto.
+                            }else if(randomIdArmas < 90 && randomIdArmas > 50){
+                                idObjetos[0] = 501;
+                                cantidades[0] = 1;
+                                //50% de conseguir pistola.
+                            }else if(randomIdArmas <= 50){
+                                idObjetos[0] = 500;
+                                cantidades[0] = 1;
+                            }
+                        
+                            //20% de tener un item extra.
+                        }else{
+                            idObjetos[1] = 0;
+                            cantidades[1] = 1;
+                        }
+
                         Point posicionCofre = new Point(xCofre, yCofre);
                         ContenedorObjetos co = new ContenedorObjetos(posicionCofre, idObjetos, cantidades);
                         cofres.add(co);
