@@ -47,6 +47,7 @@ public class Constantes {
    public static final String RUTA_PORTADA = "/imagenes/fondos/muro.jpg";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
+   public static final String RUTA_SANGRE = "/imagenes/fondos/sangre.png";
    
    //IMAGENES DE OBJETOS
    public static final String RUTA_CONSUMIBLES = "/imagenes/hojasObjetos/consumibles.png";

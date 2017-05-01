@@ -28,12 +28,10 @@ public class Configuracion implements EstadoJuego {
 
         final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
         secciones[0] = new Volumen("Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%", etiquetaVolumen);
 
         final Rectangle etiquetaVolumenSonido = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
         secciones[1] = new Volumen("Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%", etiquetaVolumenSonido);
 
         final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumenSonido.y + etiquetaVolumenSonido.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
@@ -77,28 +75,21 @@ public class Configuracion implements EstadoJuego {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.derecha.estaPulsada()) {
 
-                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
                     Constantes.MUSICA_TITULO.aumentarVolumen(0.8f);
                     Constantes.MUSICA_INGAME.aumentarVolumen(0.8f);
                     Constantes.MUSICA_GAME_OVER.aumentarVolumen(0.8f);
-                    // seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
-                    seccionActual.ModificarNombre("Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
-                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
-                    
 
+                    seccionActual.ModificarNombre("Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
+                    
                     //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {
-
-                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());   
+  
                     Constantes.MUSICA_TITULO.disminuirVolumen(0.8f);
                      Constantes.MUSICA_INGAME.disminuirVolumen(0.8f);
-                    //seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     Constantes.MUSICA_GAME_OVER.disminuirVolumen(0.8f);
                     seccionActual.ModificarNombre("Musica " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
-                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
                    
-
                     GestorControles.teclado.izquierda.teclaLiberada();
                 }
 
@@ -108,22 +99,30 @@ public class Configuracion implements EstadoJuego {
                         Constantes.disparo_pistola.aumentarVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.aumentarVolumen(0.8f);
                         Constantes.disparo_francotirador.aumentarVolumen(0.8f);
+                        Constantes.bola_fuego.aumentarVolumen(0.8f);
+                        Constantes.lanzallamas.aumentarVolumen(0.8f);
                         
                         Constantes.grito_perderVida.aumentarVolumen(0.8f);
 
                         seccionActual.ModificarNombre("Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
-
+                        
+                        Constantes.disparo_pistola.reproducir();
+                        
                         GestorControles.teclado.derecha.teclaLiberada();
                     } else if (seccionActual == secciones[1] && GestorControles.teclado.izquierda.estaPulsada()) {
 
                         Constantes.disparo_pistola.disminuirVolumen(0.8f);
                         Constantes.disparo_rifleAsalto.disminuirVolumen(0.8f);
                         Constantes.disparo_francotirador.disminuirVolumen(0.8f);
+                        Constantes.bola_fuego.disminuirVolumen(0.8f);
+                        Constantes.lanzallamas.disminuirVolumen(0.8f);
                         
                         Constantes.grito_perderVida.disminuirVolumen(0.8f);
 
                         seccionActual.ModificarNombre("Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
 
+                        Constantes.disparo_pistola.reproducir();
+                        
                         GestorControles.teclado.izquierda.teclaLiberada();
                     }
 

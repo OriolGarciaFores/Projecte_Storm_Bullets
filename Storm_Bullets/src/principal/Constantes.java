@@ -45,6 +45,7 @@ public class Constantes {
    public static final String RUTA_PORTADA = "/imagenes/fondos/portada.jpg";
    public static final String RUTA_AVATAR ="/imagenes/fondos/avatar.jpg";
    public static final String RUTA_TITOL = "/imagenes/fondos/titol.png";
+   public static final String RUTA_SANGRE = "/imagenes/fondos/sangre.png";
    
    //IMAGENES DE OBJETOS
    public static final String RUTA_CONSUMIBLES = "/imagenes/hojasObjetos/consumibles.png";
@@ -54,6 +55,7 @@ public class Constantes {
    public static String RUTA_ENEMIGOS = "/imagenes/hojasPersonajes/esqueleto.png";
    public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
    public static String RUTA_FANTASMA = "/imagenes/hojasPersonajes/fantasma.png";
+   public static String RUTA_DEMONIO = "/imagenes/hojasPersonajes/boss.png";
    
    //Imagenes de los controles del juego.
    public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";
@@ -76,6 +78,8 @@ public class Constantes {
    public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav");
    public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav");
    public static final Sonido grito_perderVida = new Sonido("/audio/grito.wav");
+   public static final Sonido bola_fuego = new Sonido("/audio/bolaFuego.wav");
+   public static final Sonido lanzallamas = new Sonido("/audio/lanzallamas.wav");
    
    
    //MUSICA FONDO.
@@ -83,5 +87,8 @@ public class Constantes {
    public static final Sonido MUSICA_TITULO = new Sonido("/audio/musica_titulo.wav");
    public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav");
    public static final Sonido MUSICA_GAME_OVER = new Sonido("/audio/gameOver.wav");
+     
+   //HABILIDADES
+   public static final String BOLA_FUEGO = "/imagenes/hojasObjetos/bola_fuego.png";
    
 }

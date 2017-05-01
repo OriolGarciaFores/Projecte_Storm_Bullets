@@ -444,9 +444,52 @@ public class Jugador {
             }
             if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_boss") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
                 
+                 //SALIDA 1
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa7.csv")) {
+                    
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA7);
+                    continue;
+                    
+                }
+                //SALIDA 2
+                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_salida.csv")) {
+                    
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_SALIDA);
+                    continue;
+                    
+                }
+                
             }
             if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_salida") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
                 
+                   //SALIDA 1
+                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_boss.csv")) {
+                    
+                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
+                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
+                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_BOSS);
+                    continue;
+                    
+                }
+                //SALIDA 2
+                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
+                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
+                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("finalDemo")) {
+                    
+                    ElementosPrincipales.jugador.perderVida(50);
+                    continue;
+                    
+                }
             }
             
         }

@@ -118,37 +118,33 @@
 "salidas":
 [
 {
-    "mapa":"mapa2.csv",
-    "xinicial": 475,
-    "yinicial": 111,
-    "xfinal": 510,
-    "yfinal": 111,
-    "xaparicion": 530,
-    "yaparicion": 373
+    "mapa":"mapa7.csv",
+    "xinicial": 428,
+    "yinicial": 318,
+    "xfinal": 495,
+    "yfinal": 318,
+    "xaparicion": 399,
+    "yaparicion": 94
 },
 {
-    "mapa":"mapa3.csv",
-    "xinicial": 254,
-    "yinicial": 180,
-    "xfinal": 254,
-    "yfinal": 231,
-    "xaparicion": 667,
-    "yaparicion": 200
+    "mapa":"mapa_salida.csv",
+    "xinicial": 287,
+    "yinicial": 176,
+    "xfinal": 287,
+    "yfinal": 237,
+    "xaparicion": 633,
+    "yaparicion": 238
 }
 ],
 "candados":
 [
 {
-    "x":495,
-    "y":32
+    "x":465,
+    "y":360
 },
 {
-    "x":192,
+    "x":220,
     "y":210
-},
-{
-    "x":736,
-    "y":240
 }
 ]
 }

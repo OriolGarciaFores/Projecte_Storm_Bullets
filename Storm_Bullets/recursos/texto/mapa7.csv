@@ -167,10 +167,10 @@
  "version":1,
  "width":28,
 "nameMap":"mapa7",
-"puerta": "abierta",
+"puerta": "cerrada",
 "start":
 {
-    "x": 512,
+    "x": 490,
     "y": 288
 },
 "enemigos":
@@ -196,6 +196,15 @@
     "yfinal": 445,
     "xaparicion": 526,
     "yaparicion": 126
+},
+{
+    "mapa":"mapa_boss.csv",
+    "xinicial": 379,
+    "yinicial": 81,
+    "xfinal": 422,
+    "yfinal": 81,
+    "xaparicion": 466,
+    "yaparicion": 313
 }
 ],
 "candados":

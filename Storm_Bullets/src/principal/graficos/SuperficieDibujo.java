@@ -48,14 +48,13 @@ public class SuperficieDibujo extends Canvas {
         }
         
         ge.dibujar(g);
+       if(GestorControles.teclado.datosJuego){
         g.setFont(Constantes.FUENTE_PIXEL.deriveFont(10f));
         g.setColor(Color.green);
         g.drawString("FPS: " + GestorPrincipal.obtenerFPS(), 20, 60);
         g.drawString("APS: " + GestorPrincipal.obtenerAPS(), 20, 75);
         g.drawString("Timer: " + Constantes.minutos + ":" + Constantes.segundos, 20, 90);
-       // g.drawString("ESCALA X: " + Constantes.FACTOR_ESCALADO_X, 20, 90);
-       // g.drawString("ESCALA Y: " + Constantes.FACTOR_ESCALADO_Y, 20, 100);
-
+        }
         Toolkit.getDefaultToolkit().sync();
 
         g.dispose();

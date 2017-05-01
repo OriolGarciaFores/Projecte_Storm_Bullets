@@ -3,8 +3,10 @@ package principal.mapas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,8 +14,10 @@ import org.json.simple.parser.ParseException;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
+import principal.entes.Demonio;
 import principal.entes.Enemigo;
 import principal.entes.RegistroEnemigos;
+import principal.entes.habilidades.ControladorBolasFuego;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
 import principal.inventario.ContenedorObjetos;
@@ -29,6 +33,8 @@ import principal.sprites.HojaSprites;
 import principal.sprites.Sprite;
 
 public class MapaTiled {
+
+    private final BufferedImage sangre = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_SANGRE);
 
     private int anchoMapaTiles;
     private int altoMapaTiles;
@@ -61,7 +67,9 @@ public class MapaTiled {
     private ArrayList<Candado> candados;
 
     private ControladorBalas cb;
+    private ControladorBolasFuego cbf;
 
+    //private Demonio boss;
     public MapaTiled(String ruta) {
         this.rutaMapa = ruta;
         String contenido = CargadorRecursos.leerArchivoTexto(this.rutaMapa);
@@ -247,19 +255,38 @@ public class MapaTiled {
                     for (int i = 0; i < coleccionCofres.size(); i++) {
                         JSONObject datosObjeto = obtenerObjetoJSON(coleccionCofres.get(i).toString());
 
-                        int idObjeto1 = obtenerIntDesdeJSON(datosObjeto, "idobjeto1");
-                        int cantidadObjeto1 = obtenerIntDesdeJSON(datosObjeto, "cantidad1");
-                        int idObjeto2 = obtenerIntDesdeJSON(datosObjeto, "idobjeto2");
-                        int cantidadObjeto2 = obtenerIntDesdeJSON(datosObjeto, "cantidad2");
                         int xCofre = obtenerIntDesdeJSON(datosObjeto, "x");
                         int yCofre = obtenerIntDesdeJSON(datosObjeto, "y");
 
+                        //Hacer un random para los items del cofre.
+                        int randomCantidad = (int) (Math.random() * 100 + 1);
                         int[] idObjetos = new int[2];
-                        idObjetos[0] = idObjeto1;
-                        idObjetos[1] = idObjeto2;
                         int[] cantidades = new int[2];
-                        cantidades[0] = cantidadObjeto1;
-                        cantidades[1] = cantidadObjeto2;
+
+                        //70% de probabilidades de que solo se consiga un item en el cofre.
+                        if (randomCantidad > 20) {
+                            int randomIdArmas = (int) (Math.random() * 100 + 1);
+
+                            //10% de conseuir un francotirador.
+                            if (randomIdArmas >= 90) {
+                                idObjetos[0] = 502;
+                                cantidades[0] = 1;
+                                //40% de conseguir rifle asalto.
+                            } else if (randomIdArmas < 90 && randomIdArmas > 50) {
+                                idObjetos[0] = 501;
+                                cantidades[0] = 1;
+                                //50% de conseguir pistola.
+                            } else if (randomIdArmas <= 50) {
+                                idObjetos[0] = 500;
+                                cantidades[0] = 1;
+                            }
+
+                            //20% de tener un item extra.
+                        } else {
+                            idObjetos[1] = 0;
+                            cantidades[1] = 1;
+                        }
+
                         Point posicionCofre = new Point(xCofre, yCofre);
                         ContenedorObjetos co = new ContenedorObjetos(posicionCofre, idObjetos, cantidades);
                         cofres.add(co);
@@ -337,6 +364,7 @@ public class MapaTiled {
 
         areasColisionPorActualizacion = new ArrayList<>();
         cb = new ControladorBalas();
+        cbf = new ControladorBolasFuego();
     }
 
     public void actualizar() {
@@ -346,7 +374,14 @@ public class MapaTiled {
         actualizarAtaqueEnemigo();
         actualizarRecogidaObjetos();
         actualizarRecogidaCofre();
-        cb.actualizar(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY(), ElementosPrincipales.jugador.obtenerAlcanceActual());
+        cb.actualizar(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY());
+
+        if (!enemigosMapa.isEmpty()) {
+            if (enemigosMapa.get(0) instanceof Demonio) {
+                cbf.actualizar(enemigosMapa.get(0).obtenerPosicionX(), enemigosMapa.get(0).obtenerPosicionY());
+            }
+        }
+        actualizarHabilidadesEnemigoBoss();
 
         contador++;
         if (contador == 60) {
@@ -387,8 +422,65 @@ public class MapaTiled {
 
     }
 
+    private void actualizarHabilidadesEnemigoBoss() {
+        if (!enemigosMapa.isEmpty() && enemigosMapa.get(0) instanceof Demonio) {
+            for (int i = 0; i < cbf.obtenerArrayBolas().size(); i++) {
+                //La bala impacta con el enemigo, pierde vida y se elimina la bala.
+                if (cbf.obtenerArrayBolas().get(i).enColisionJugador()) {
+                    Constantes.grito_perderVida.reproducir();
+                    ElementosPrincipales.jugador.disminuirPuntuacion(2);
+                    cbf.obtenerArrayBolas().remove(i);
+                }
+
+            }
+
+//EN LA FASE 2 HAY K MODIFICAR EL ATAQUE.
+            if (!enemigosMapa.get(0).obtenerFase2()) {
+
+                if (enemigosMapa.get(0).direccion == 0 && (enemigosMapa.get(0).obtenerPosicionX() == ElementosPrincipales.jugador.obtenerPosicionX() - 32
+                        || enemigosMapa.get(0).obtenerPosicionX() == ElementosPrincipales.jugador.obtenerPosicionX() + 32)) {
+
+                    cbf.addBola(enemigosMapa);
+                }
+                if (enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY()
+                        || enemigosMapa.get(0).obtenerPosicionY() >= ElementosPrincipales.jugador.obtenerPosicionY() - 32) {
+
+                    cbf.addBola(enemigosMapa);
+                }
+            } else {
+                Random rd = new Random();
+
+                enemigosMapa.get(0).direccion = (char) rd.nextInt(4);
+                cbf.modificarRecarga(true);
+
+                cbf.addBola(enemigosMapa);
+            }
+            if (enemigosMapa.get(0).obtenerFase3()) {
+
+                if (Constantes.segundos >= 17 && Constantes.segundos <= 20 || Constantes.segundos >= 42 && Constantes.segundos <= 45) {
+                    enemigosMapa.get(0).direccion = 0;
+                    cbf.modificarRecarga(true);
+                    cbf.addBola(enemigosMapa);
+                }
+
+                if (Constantes.segundos == 17 || Constantes.segundos == 42) {
+                    Constantes.lanzallamas.reproducir();
+                }
+            }
+
+        } else {
+            if (!cbf.obtenerArrayBolas().isEmpty()) {
+                for (int i = 0; i < cbf.obtenerArrayBolas().size(); i++) {
+                    cbf.obtenerArrayBolas().remove(i);
+
+                }
+            }
+
+        }
+    }
+
     private void actualizarAtaques() {
-        if (enemigosMapa.isEmpty() || ElementosPrincipales.jugador.obtenerAlcanceActual().isEmpty()
+        if (enemigosMapa.isEmpty()
                 || ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Desarmado) {
 
             for (int i = 0; i < ElementosPrincipales.datosMapa.size(); i++) {
@@ -412,22 +504,21 @@ public class MapaTiled {
 
         if (GestorControles.teclado.atacando) {
             //Se añaden balas en el mapa cada 20 milisegundos.
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()){
-            cb.addBala();
-            
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola){
-                Constantes.disparo_pistola.reproducir();
-            }
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto){
-                Constantes.disparo_rifleAsalto.reproducir();
-            }
-            if(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador){
-                Constantes.disparo_francotirador.reproducir();
-            }
-            
-             ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
-            }
+            if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerRecarga()) {
+                cb.addBala(ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().obtenerAlcance(ElementosPrincipales.jugador));
 
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Pistola) {
+                    Constantes.disparo_pistola.reproducir();
+                }
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof RifleAsalto) {
+                    Constantes.disparo_rifleAsalto.reproducir();
+                }
+                if (ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma() instanceof Francotirador) {
+                    Constantes.disparo_francotirador.reproducir();
+                }
+
+                ElementosPrincipales.jugador.obtenerAlmacenEquipo().obtenerArma().setRecarga(false);
+            }
         }
 
         Iterator<Enemigo> iterador = enemigosMapa.iterator();
@@ -484,7 +575,7 @@ public class MapaTiled {
 
                         ElementosPrincipales.inventario.recogerObjetoUnico(objetoActual);
                         ElementosPrincipales.inventario.incrementarObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
-                        
+
                         if (objetosMapa.get(i).obtenerObjeto().obtenerNombre().equals("Botiquin")) {
                             ElementosPrincipales.inventario.disminuirObjeto(objetoActual.obtenerObjeto(), objetosMapa.get(i).obtenerCantidad());
                             ElementosPrincipales.jugador.recuperarVida(10);
@@ -602,8 +693,25 @@ public class MapaTiled {
         } catch (Exception ex) {
         }
 
+        try {
+            if (!cbf.obtenerArrayBolas().isEmpty()) {
+                cbf.dibujar(g);
+            }
+        } catch (Exception ex) {
+        }
+
         dibujarCandados(g);
 
+        dibujarSangre(g);
+
+    }
+
+    private void dibujarSangre(final Graphics g) {
+        if (Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) < 20) {
+            //Mostrar sangre.
+            DibujoDebug.dibujarImagen(g, sangre, 0, 0);
+        } else {
+        }
     }
 
     private void dibujarCandados(final Graphics g) {

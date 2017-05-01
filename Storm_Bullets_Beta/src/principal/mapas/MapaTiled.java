@@ -3,6 +3,7 @@ package principal.mapas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -33,6 +34,8 @@ import principal.sprites.Sprite;
 
 public class MapaTiled {
 
+    private final BufferedImage sangre = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_SANGRE);
+    
     private int anchoMapaTiles;
     private int altoMapaTiles;
     private String rutaMapa;
@@ -766,7 +769,17 @@ public class MapaTiled {
         }
 
         dibujarCandados(g);
+        
+        dibujarSangre(g);
 
+    }
+    
+    private void dibujarSangre(final Graphics g){
+        if( Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) < 20){
+            //Mostrar sangre.
+            DibujoDebug.dibujarImagen(g, sangre, 0, 0);
+        }else{
+        }
     }
 
     private void dibujarCandados(final Graphics g) {

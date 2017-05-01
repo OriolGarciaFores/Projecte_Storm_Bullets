@@ -118,7 +118,9 @@ public class Configuracion implements EstadoJuego {
                         Constantes.grito_perderVida.aumentarVolumen(0.8f);
 
                         seccionActual.ModificarNombre("Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
-
+                        
+                        Constantes.disparo_pistola.reproducir();
+                        
                         GestorControles.teclado.derecha.teclaLiberada();
                     } else if (seccionActual == secciones[1] && GestorControles.teclado.izquierda.estaPulsada()) {
 
@@ -132,6 +134,8 @@ public class Configuracion implements EstadoJuego {
 
                         seccionActual.ModificarNombre("Sonido " + Constantes.disparo_pistola.obtenerPorcentaje() + "%");
 
+                        Constantes.disparo_pistola.reproducir();
+                        
                         GestorControles.teclado.izquierda.teclaLiberada();
                     }
 

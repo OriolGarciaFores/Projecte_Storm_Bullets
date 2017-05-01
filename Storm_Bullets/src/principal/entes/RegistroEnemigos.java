@@ -17,6 +17,9 @@ public class RegistroEnemigos {
             case 3:
                 enemigo = new Fantasma(idEnemigo, "Fantasma", 10, 1, 10);
                 break;
+            case 4:
+                enemigo = new Demonio(idEnemigo, "Demonio", 200, 0.5, 50);
+                break;
         }
 
         return enemigo;
