@@ -43,7 +43,7 @@ public class Teclado implements KeyListener {
     public boolean tituloActivo = true;
     public boolean config = false;
     public boolean nombrarJugador = false;
-    public boolean datosJuego = true;
+    public boolean datosJuego = false;
     public boolean ranking = false;
     public boolean recogiendo = false;
     public boolean atacando = false;
