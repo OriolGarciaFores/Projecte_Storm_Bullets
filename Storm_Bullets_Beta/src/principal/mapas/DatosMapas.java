@@ -1,12 +1,10 @@
 
 package principal.mapas;
 
-import java.util.ArrayList;
-
 
 public class DatosMapas {
     
-    private String nomMapa;
+    private final String nomMapa;
     private boolean enemigosMuertos;
     private boolean objetosCogidos;
     private boolean cofresCogidos;

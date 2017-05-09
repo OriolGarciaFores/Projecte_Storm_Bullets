@@ -26,7 +26,7 @@ public class Bala {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.direccion = direccion;
-        this.velocidad = 5;
+        this.velocidad = 8;
         this.alcance = alcanceActual;
     }
 

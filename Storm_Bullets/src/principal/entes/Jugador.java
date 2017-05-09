@@ -13,18 +13,16 @@ import principal.inventario.RegistroObjetos;
 import principal.inventario.armas.Arma;
 import principal.inventario.armas.Desarmado;
 import principal.inventario.armas.Francotirador;
-import principal.mapas.MapaTiled;
 import principal.sprites.HojaSprites;
 
 public class Jugador {
     
     private double posicionX;
     private double posicionY;
-    private boolean abierto = false;
     
     private char direccion;
     
-    private HojaSprites hs;
+    private final HojaSprites hs;
     
     private BufferedImage imagenActual;
     
@@ -37,7 +35,7 @@ public class Jugador {
     private final Rectangle LIMITE_DERECHA = new Rectangle(Constantes.CENTRO_VENTANA_X + ANCHO_JUGADOR / 2, Constantes.CENTRO_VENTANA_Y, 1, ALTO_JUGADOR);
     private boolean enMovimiento;
     
-    private final int velocidad = 1;
+    private final int velocidad = 2;
     private int animacion;
     private int estado;
     
@@ -78,7 +76,6 @@ public class Jugador {
         determinarDireccion();
         animar();
         actualizarArmas();
-        salirMapa();
     }
     
     private void actualizarArmas() {
@@ -219,277 +216,6 @@ public class Jugador {
         }
         
     }
-    
-    private void salirMapa() {
-        //CAMBIO DE MAPA CHAPUZERO.
-        for (int i = 0; i < ElementosPrincipales.mapa.puertas.size(); i++) {
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa1") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {//Comprobar si la puerta esta abierta. Necesario llaves.
-                //SALIDA 1.
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
-                    continue;
-                    
-                }
-                //SALIDA 2.
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa3.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA3);
-                    
-                    continue;//ROMPE EL BUCLE.
-
-                }
-
-                //SALIDA 3.
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa4.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA4);
-                    
-                    continue;//ROMPE EL BUCLE.
-
-                }
-            }
-            
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa2") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa1.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
-                    continue;
-                    
-                }
-                //SALIDA 2
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa6.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA6);
-                    continue;
-                    
-                }
-
-                //SALIDA 3.
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa7.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA7);
-                    continue;
-                    
-                }
-            }
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa3") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa1.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
-                    continue;
-                    
-                }
-            }
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa4") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa1.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA);
-                    continue;
-                    
-                }
-                //SALIDA 2 NECESARIO LLAVE.
-                for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
-                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa4") && ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                        abierto = true;
-                    }
-                    
-                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa4") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                        abierto = false;
-                    }                  
-                }
-                
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa5.csv") && (ElementosPrincipales.inventario.obtenerConsumibles().get(0).obtenerCantidad() >= 1 || abierto)) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA5);
-                    
-                    if (!abierto) {
-                        for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
-                            
-                            if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa4") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                                ElementosPrincipales.datosMapa.get(h).setEstadoPuerta("abierta");
-                            }
-                        }
-                         ElementosPrincipales.inventario.disminuirObjeto(ElementosPrincipales.inventario.obtenerObjeto(0), 1);
-                    }
-    
-                    abierto = false;              
-                    continue;                  
-                }
-                
-            }
-            
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa5") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1.
-                if (posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa4.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA4);
-                    continue;
-                    
-                }
-            }
-            
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa6") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1.
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
-                    continue;
-                    
-                }
-            }
-            
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa7") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                //SALIDA 1.
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa2.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA2);
-                    continue;
-                    
-                }
-                
-                //SALIDA 2 NECESARIO LLAVE.
-                for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
-                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                        abierto = true;
-                    }
-                    
-                    if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                        abierto = false;
-                    }
-                    
-                   
-                }
-                
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_boss.csv") && (ElementosPrincipales.inventario.obtenerConsumibles().get(1).obtenerCantidad() >= 1 || abierto)) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_BOSS);
-                    
-                    if (!abierto) {
-                        for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
-                            
-                            if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals("mapa7") && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                                ElementosPrincipales.datosMapa.get(h).setEstadoPuerta("abierta");
-                            }
-                        }
-                         ElementosPrincipales.inventario.disminuirObjeto(ElementosPrincipales.inventario.obtenerObjeto(1), 1);
-                    }
-             
-                    abierto = false;
-                 
-                    continue;
-                }
-                
-            }
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_boss") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                
-                 //SALIDA 1
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY == ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa7.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA7);
-                    continue;
-                    
-                }
-                //SALIDA 2
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_salida.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_SALIDA);
-                    continue;
-                    
-                }
-                
-            }
-            if (ElementosPrincipales.mapa.puertas.get(i).getLugar().equals("mapa_salida") && ElementosPrincipales.mapa.enemigosMapa.isEmpty()) {
-                
-                   //SALIDA 1
-                if (posicionX == ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX == ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("mapa_boss.csv")) {
-                    
-                    this.posicionX = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().x;
-                    this.posicionY = ElementosPrincipales.mapa.puertas.get(i).getpAparicion().y;
-                    ElementosPrincipales.mapa = new MapaTiled(Constantes.RUTA_MAPA_BOSS);
-                    continue;
-                    
-                }
-                //SALIDA 2
-                if (posicionX >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().x && posicionY >= ElementosPrincipales.mapa.puertas.get(i).getpInicial().y
-                        && posicionX <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().x && posicionY <= ElementosPrincipales.mapa.puertas.get(i).getpFinal().y
-                        && ElementosPrincipales.mapa.puertas.get(i).getNomMapaDestino().equals("finalDemo")) {
-                    
-                    ElementosPrincipales.jugador.perderVida(50);
-                    continue;
-                    
-                }
-            }
-            
-        }
-        
-    }
-
 
     private boolean enColisionArriba(int velocidadY) {
         

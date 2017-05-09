@@ -155,12 +155,11 @@
 [
 {
     "mapa":"mapa4.csv",
-    "xinicial": 362,
-    "yinicial": 350,
-    "xfinal": 307,
-    "yfinal": 350,
+    "xinicial": 340,
+    "yinicial": 380,
     "xaparicion": 238,
-    "yaparicion": 92
+    "yaparicion": 92,
+    "estado":"abierta"
 }
 ],
 "objetos":

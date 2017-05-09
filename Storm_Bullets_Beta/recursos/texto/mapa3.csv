@@ -133,12 +133,11 @@
 [
 {
     "mapa":"mapa1.csv",
-    "xinicial": 671,
-    "yinicial": 192,
-    "xfinal": 671,
-    "yfinal": 224,
+    "xinicial": 700,
+    "yinicial": 212,
     "xaparicion": 262,
-    "yaparicion": 207
+    "yaparicion": 207,
+    "estado":"abierta"
 }
 ],
 "cofre"

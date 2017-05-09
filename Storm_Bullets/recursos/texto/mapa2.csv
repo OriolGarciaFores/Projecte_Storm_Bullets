@@ -288,30 +288,27 @@
 [
 {
     "mapa":"mapa1.csv",
-    "xinicial": 499,
-    "yinicial": 384,
-    "xfinal": 559,
-    "yfinal": 384,
+    "xinicial": 524,
+    "yinicial": 414,
     "xaparicion": 497,
-    "yaparicion": 116
+    "yaparicion": 126,
+    "estado":"abierta"
 },
 {
     "mapa":"mapa6.csv",
-    "xinicial": 157,
-    "yinicial": 300,
-    "xfinal": 191,
-    "yfinal": 300,
+    "xinicial": 172,
+    "yinicial": 278,
     "xaparicion": 336,
-    "yaparicion": 307
+    "yaparicion": 307,
+    "estado":"abierta"
 },
 {
     "mapa":"mapa7.csv",
-    "xinicial": 505,
-    "yinicial": 110,
-    "xfinal": 552,
-    "yfinal": 110,
+    "xinicial": 524,
+    "yinicial": 86,
     "xaparicion": 398,
-    "yaparicion": 427
+    "yaparicion": 428,
+    "estado":"abierta"
 }
 ],
 "candados":

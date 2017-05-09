@@ -118,8 +118,8 @@
 "puerta": "cerrada",
 "start":
 {
-    "x": 512,
-    "y": 288
+    "x": 200,
+    "y": 200
 },
 "enemigos":
 [
@@ -153,21 +153,21 @@
 [
 {
     "mapa":"mapa1.csv",
-    "xinicial": 94,
-    "yinicial": 332,
+    "xinicial": 68,
+    "yinicial": 372,
     "xfinal": 94,
     "yfinal": 394,
     "xaparicion": 663,
-    "yaparicion": 236
+    "yaparicion": 236,
+    "estado":"abierta"
 },
 {
     "mapa":"mapa5.csv",
-    "xinicial": 220,
-    "yinicial": 79,
-    "xfinal": 261,
-    "yfinal": 79,
+    "xinicial": 240,
+    "yinicial": 49,
     "xaparicion": 337,
-    "yaparicion": 332
+    "yaparicion": 333,
+    "estado":"cerrada"
 }
 ],
 "candados":

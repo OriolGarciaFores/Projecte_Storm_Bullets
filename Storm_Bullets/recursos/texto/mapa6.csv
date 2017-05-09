@@ -144,12 +144,11 @@
 [
 {
     "mapa":"mapa2.csv",
-    "xinicial": 313,
-    "yinicial": 318,
-    "xfinal": 364,
-    "yfinal": 318,
+    "xinicial": 332,
+    "yinicial": 348,
     "xaparicion": 176,
-    "yaparicion": 317
+    "yaparicion": 317,
+    "estado":"abierta"
 }
 ],
 "objetos":

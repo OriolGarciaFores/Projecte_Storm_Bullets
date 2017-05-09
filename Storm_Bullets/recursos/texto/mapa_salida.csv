@@ -111,21 +111,19 @@
 [
 {
     "mapa":"mapa_boss.csv",
-    "xinicial": 639,
-    "yinicial": 206,
-    "xfinal": 639,
-    "yfinal": 268,
+    "xinicial": 668,
+    "yinicial": 244,
     "xaparicion": 296,
-    "yaparicion": 204
+    "yaparicion": 205,
+    "estado":"abierta"
 },
 {
     "mapa":"finalDemo",
-    "xinicial": 534,
-    "yinicial": 201,
-    "xfinal": 557,
-    "yfinal": 220,
+    "xinicial": 544,
+    "yinicial": 224,
     "xaparicion": 667,
-    "yaparicion": 200
+    "yaparicion": 200,
+    "estado":"final"
 }
 ],
 "candados":

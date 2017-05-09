@@ -35,7 +35,7 @@ import principal.sprites.Sprite;
 public class MapaTiled {
 
     private final BufferedImage sangre = CargadorRecursos.cargarImagenCompatibleTranslucida(Constantes.RUTA_SANGRE);
-    
+
     private int anchoMapaTiles;
     private int altoMapaTiles;
     private String rutaMapa;
@@ -68,9 +68,8 @@ public class MapaTiled {
 
     private ControladorBalas cb;
     private ControladorBolasFuego cbf;
-    
-    //private Demonio boss;
 
+    //private Demonio boss;
     public MapaTiled(String ruta) {
         this.rutaMapa = ruta;
         String contenido = CargadorRecursos.leerArchivoTexto(this.rutaMapa);
@@ -256,10 +255,6 @@ public class MapaTiled {
                     for (int i = 0; i < coleccionCofres.size(); i++) {
                         JSONObject datosObjeto = obtenerObjetoJSON(coleccionCofres.get(i).toString());
 
-                        /*int idObjeto1 = obtenerIntDesdeJSON(datosObjeto, "idobjeto1");
-                        int cantidadObjeto1 = obtenerIntDesdeJSON(datosObjeto, "cantidad1");
-                        int idObjeto2 = obtenerIntDesdeJSON(datosObjeto, "idobjeto2");
-                        int cantidadObjeto2 = obtenerIntDesdeJSON(datosObjeto, "cantidad2");*/
                         int xCofre = obtenerIntDesdeJSON(datosObjeto, "x");
                         int yCofre = obtenerIntDesdeJSON(datosObjeto, "y");
 
@@ -267,27 +262,27 @@ public class MapaTiled {
                         int randomCantidad = (int) (Math.random() * 100 + 1);
                         int[] idObjetos = new int[2];
                         int[] cantidades = new int[2];
-                        
+
                         //70% de probabilidades de que solo se consiga un item en el cofre.
-                        if(randomCantidad > 20){
-                            int randomIdArmas = (int) (Math.random()* 100 + 1);
-                            
+                        if (randomCantidad > 20) {
+                            int randomIdArmas = (int) (Math.random() * 100 + 1);
+
                             //10% de conseuir un francotirador.
-                            if(randomIdArmas >= 90){
+                            if (randomIdArmas >= 90) {
                                 idObjetos[0] = 502;
                                 cantidades[0] = 1;
                                 //40% de conseguir rifle asalto.
-                            }else if(randomIdArmas < 90 && randomIdArmas > 50){
+                            } else if (randomIdArmas < 90 && randomIdArmas > 50) {
                                 idObjetos[0] = 501;
                                 cantidades[0] = 1;
                                 //50% de conseguir pistola.
-                            }else if(randomIdArmas <= 50){
+                            } else if (randomIdArmas <= 50) {
                                 idObjetos[0] = 500;
                                 cantidades[0] = 1;
                             }
-                        
+
                             //20% de tener un item extra.
-                        }else{
+                        } else {
                             idObjetos[1] = 0;
                             cantidades[1] = 1;
                         }
@@ -335,19 +330,17 @@ public class MapaTiled {
         for (int i = 0; i < coleccionSalidas.size(); i++) {
             JSONObject datosSalida = obtenerObjetoJSON(coleccionSalidas.get(i).toString());
 
-            String nomMapa = datosSalida.get("mapa").toString();
+            String mapaDestino = datosSalida.get("mapa").toString();
             int xInicial = obtenerIntDesdeJSON(datosSalida, "xinicial");
             int yInicial = obtenerIntDesdeJSON(datosSalida, "yinicial");
-            int xFinal = obtenerIntDesdeJSON(datosSalida, "xfinal");
-            int yFinal = obtenerIntDesdeJSON(datosSalida, "yfinal");
             int xAparicion = obtenerIntDesdeJSON(datosSalida, "xaparicion");
             int yAparicion = obtenerIntDesdeJSON(datosSalida, "yaparicion");
+            String estado = datosSalida.get("estado").toString();
 
             Point posicionSalidaInicial = new Point(xInicial, yInicial);
-            Point posicionSalidaFinal = new Point(xFinal, yFinal);
             Point pAparicion = new Point(xAparicion, yAparicion);
 
-            PuertaSalida ps = new PuertaSalida(nombreMapa, nomMapa, posicionSalidaInicial, posicionSalidaFinal, pAparicion);
+            PuertaSalida ps = new PuertaSalida(mapaDestino, posicionSalidaInicial, pAparicion, estado, nombreMapa);
             puertas.add(ps);
 
         }
@@ -374,11 +367,12 @@ public class MapaTiled {
 
     public void actualizar() {
         actualizarAreasColision();
-        actualizarEnemigos();
+         actualizarEnemigos();
         actualizarAtaques();
         actualizarAtaqueEnemigo();
         actualizarRecogidaObjetos();
         actualizarRecogidaCofre();
+        actualizarPuertas();
         cb.actualizar(ElementosPrincipales.jugador.obtenerPosicionX(), ElementosPrincipales.jugador.obtenerPosicionY());
 
         if (!enemigosMapa.isEmpty()) {
@@ -398,6 +392,85 @@ public class MapaTiled {
 
             }
         }
+    }
+
+    private void actualizarPuertas() {
+        if(ElementosPrincipales.mapa.enemigosMapa.isEmpty()){
+
+        final Rectangle areaJugador = new Rectangle(ElementosPrincipales.jugador.obtenerPosicionXint(), ElementosPrincipales.jugador.obtenerPosicionYint(), Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+
+        for (int i = 0; i < puertas.size(); i++) {
+            final PuertaSalida puertaActual = puertas.get(i);
+
+            final Rectangle posicionPuertaActual = new Rectangle(puertaActual.getpInicial().x, puertaActual.getpInicial().y, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+
+            if (areaJugador.intersects(posicionPuertaActual)) {
+                // System.out.println(puertaActual.getNomMapaDestino());
+                //Optimizacion aplicar los cambios de puertas. Aparicion, etc.
+                if (!puertaActual.getEstadoPuerta().equals("puertaBoss") && !puertaActual.getEstadoPuerta().equals("cerrada") && !puertaActual.getEstadoPuerta().equals("final")) {
+
+                    ElementosPrincipales.jugador.establecerPosicionX(puertaActual.getpAparicion().x);
+                    ElementosPrincipales.jugador.establecerPosicionY(puertaActual.getpAparicion().y);
+                    ElementosPrincipales.mapa = new MapaTiled("/texto/" + puertaActual.getNomMapaDestino());
+                    break;
+
+                } else if (puertaActual.getEstadoPuerta().equals("cerrada")) {// bn ya esta abierta.
+                    for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
+                        if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals(puertaActual.getLugar()) && ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                            ElementosPrincipales.jugador.establecerPosicionX(puertaActual.getpAparicion().x);
+                            ElementosPrincipales.jugador.establecerPosicionY(puertaActual.getpAparicion().y);
+                            ElementosPrincipales.mapa = new MapaTiled("/texto/" + puertaActual.getNomMapaDestino());
+                            break;
+                        }
+
+                        if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals(puertaActual.getLugar()) && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                            System.out.println("Cerrada");
+                            //Puerta cerrada.
+
+                            if (ElementosPrincipales.inventario.obtenerConsumibles().get(0).obtenerCantidad() >= 1) {
+                                ElementosPrincipales.datosMapa.get(h).setEstadoPuerta("abierta");
+                                ElementosPrincipales.inventario.disminuirObjeto(ElementosPrincipales.inventario.obtenerObjeto(0), 1);
+                                ElementosPrincipales.jugador.establecerPosicionX(puertaActual.getpAparicion().x);
+                                ElementosPrincipales.jugador.establecerPosicionY(puertaActual.getpAparicion().y);
+                                ElementosPrincipales.mapa = new MapaTiled("/texto/" + puertaActual.getNomMapaDestino());
+                                break;
+                            }
+
+                        }
+
+                    }
+
+                } else if (puertaActual.getEstadoPuerta().equals("puertaBoss")) {
+                     for (int h = 0; h < ElementosPrincipales.datosMapa.size(); h++) {
+                        if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals(puertaActual.getLugar()) && ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                            ElementosPrincipales.jugador.establecerPosicionX(puertaActual.getpAparicion().x);
+                            ElementosPrincipales.jugador.establecerPosicionY(puertaActual.getpAparicion().y);
+                            ElementosPrincipales.mapa = new MapaTiled("/texto/" + puertaActual.getNomMapaDestino());
+                            break;
+                        }
+                        if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals(puertaActual.getLugar()) && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
+                            if (ElementosPrincipales.inventario.obtenerConsumibles().get(1).obtenerCantidad() >= 1) {
+                                ElementosPrincipales.datosMapa.get(h).setEstadoPuerta("abierta");
+                                ElementosPrincipales.inventario.disminuirObjeto(ElementosPrincipales.inventario.obtenerObjeto(1), 1);
+                                ElementosPrincipales.jugador.establecerPosicionX(puertaActual.getpAparicion().x);
+                                ElementosPrincipales.jugador.establecerPosicionY(puertaActual.getpAparicion().y);
+                                ElementosPrincipales.mapa = new MapaTiled("/texto/" + puertaActual.getNomMapaDestino());
+                                break;
+                            }
+
+                        }
+
+                    }
+                }else{
+                    ElementosPrincipales.jugador.perderVida(50);
+                    break;
+                }
+
+            }
+
+        }
+
+         }
     }
 
     private void actualizarAtaqueEnemigo() {
@@ -462,13 +535,13 @@ public class MapaTiled {
             }
             if (enemigosMapa.get(0).obtenerFase3()) {
 
-                if(Constantes.segundos >= 17 && Constantes.segundos <= 20 || Constantes.segundos >= 42 && Constantes.segundos <= 45){
-                enemigosMapa.get(0).direccion = 0;
-                cbf.modificarRecarga(true);
-                cbf.addBola(enemigosMapa);
+                if (Constantes.segundos >= 19 && Constantes.segundos <= 20 || Constantes.segundos >= 44 && Constantes.segundos <= 45) {
+                    enemigosMapa.get(0).direccion = 0;
+                    cbf.modificarRecarga(true);
+                    cbf.addBola(enemigosMapa);
                 }
-                
-              /*  boss = (Demonio) enemigosMapa.get(0);
+
+                /*  boss = (Demonio) enemigosMapa.get(0);
                 
                 double randomX = boss.obtenerPosRandomX();
                 
@@ -481,10 +554,7 @@ public class MapaTiled {
 
                     cbf.addBola(enemigosMapa);
                 }*/
-                
-                
-                
-                if (Constantes.segundos == 17 || Constantes.segundos == 42) {
+                if (Constantes.segundos == 19 || Constantes.segundos == 44) {
                     Constantes.lanzallamas.reproducir();
                 }
             }
@@ -769,16 +839,26 @@ public class MapaTiled {
         }
 
         dibujarCandados(g);
-        
-        dibujarSangre(g);
 
+        dibujarSangre(g);
+        //DEBUG PUERTAS.
+       /* g.setColor(Color.green);
+         for(int r = 0; r < puertas.size(); r++){
+            
+            final PuertaSalida puertaActual = puertas.get(r);
+            
+            
+            final Rectangle area = new Rectangle(puertaActual.getpInicial().x, puertaActual.getpInicial().y, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
+
+            g.drawRect(area.x - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X, area.y- ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y, area.width, area.height);
+        }*/
     }
-    
-    private void dibujarSangre(final Graphics g){
-        if( Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) < 20){
+
+    private void dibujarSangre(final Graphics g) {
+        if (Integer.parseInt(ElementosPrincipales.jugador.obtenerVidaJugador()) < 20) {
             //Mostrar sangre.
             DibujoDebug.dibujarImagen(g, sangre, 0, 0);
-        }else{
+        } else {
         }
     }
 
