@@ -35,7 +35,7 @@ public class GestorPrincipal {
         }
         System.setProperty("sun.java2d.transaccel", "True");
 
-        GestorPrincipal gp = new GestorPrincipal("Storm Bullets Beta", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
+        GestorPrincipal gp = new GestorPrincipal("Storm Bullets", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
 
         gp.iniciarJuego();
         gp.iniciarBuclePrincipal();

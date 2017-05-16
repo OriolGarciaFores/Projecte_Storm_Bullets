@@ -424,7 +424,6 @@ public class MapaTiled {
                         }
 
                         if (ElementosPrincipales.datosMapa.get(h).getNomMapa().equals(puertaActual.getLugar()) && !ElementosPrincipales.datosMapa.get(h).getEstadoPuerta()) {
-                            System.out.println("Cerrada");
                             //Puerta cerrada.
 
                             if (ElementosPrincipales.inventario.obtenerConsumibles().get(0).obtenerCantidad() >= 1) {
