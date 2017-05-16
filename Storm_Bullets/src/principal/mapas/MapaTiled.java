@@ -320,7 +320,7 @@ public class MapaTiled {
                         Enemigo enemigo = RegistroEnemigos.obtenerEnemigo(idEnemigo);
                         enemigo.establecerPosicion(posicionEnemigo.x, posicionEnemigo.y);
 
-                        //enemigosMapa.add(enemigo);
+                        enemigosMapa.add(enemigo);
                     }
                 }
             }
@@ -781,7 +781,7 @@ public class MapaTiled {
 
         dibujarSangre(g);
 
-        g.setColor(Color.green);
+        /*g.setColor(Color.green);
          for(int r = 0; r < puertas.size(); r++){
             
             final PuertaSalida puertaActual = puertas.get(r);
@@ -790,7 +790,7 @@ public class MapaTiled {
             final Rectangle area = new Rectangle(puertaActual.getpInicial().x, puertaActual.getpInicial().y, Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
 
             g.drawRect(area.x - ElementosPrincipales.jugador.obtenerPosicionXint() + Constantes.MARGEN_X, area.y- ElementosPrincipales.jugador.obtenerPosicionYint() + Constantes.MARGEN_Y, area.width, area.height);
-        }
+        }*/
     }
 
     private void dibujarSangre(final Graphics g) {
