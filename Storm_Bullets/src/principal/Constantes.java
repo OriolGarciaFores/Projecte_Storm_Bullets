@@ -106,5 +106,15 @@ public class Constantes {
     public static final String KEY_SONIDO = "sonido";
     public static final String KEY_VOLVER = "volver";
     public static final String KEY_TEXT_IDIOMA = "titulo_idioma";
+    public static final String KEY_NOMBRE = "nombre";
+    public static final String KEY_PUNTUACION = "puntuacion";
+    public static final String KEY_MEJOR_PUNTUACION = "mejor_puntuacion";
+    public static final String KEY_MOVIMIENTO = "movimiento";
+    public static final String KEY_PAUSE = "pause";
+    public static final String KEY_ESPACIO = "espacio";
+    public static final String KEY_TIEMPO = "tiempo";
+    public static final String KEY_RECOGER = "recoger";
+    public static final String KEY_CATALAN = "catalan";
+    
 
 }

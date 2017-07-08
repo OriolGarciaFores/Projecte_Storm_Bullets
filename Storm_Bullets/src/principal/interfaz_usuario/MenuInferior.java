@@ -66,17 +66,17 @@ public class MenuInferior {
     }
 
     private void dibujarPuntuaciones(final Graphics g) {
-        DibujoDebug.dibujarString(g, "Puntuación: " + ElementosPrincipales.jugador.obtenerPuntuacionJugador(), areaInventario.x + 60, areaInventario.y + 35, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_PUNTUACION) + ": " + ElementosPrincipales.jugador.obtenerPuntuacionJugador(), areaInventario.x + 60, areaInventario.y + 35, 12);
         try{
-        DibujoDebug.dibujarString(g, "Mejor Puntuación: " + Top.partidas.get(0).obtenerPuntuacion(), areaInventario.x + 60, areaInventario.y + 50, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_MEJOR_PUNTUACION) + ": " + Top.partidas.get(0).obtenerPuntuacion(), areaInventario.x + 60, areaInventario.y + 50, 12);
         } catch(Exception ex){
             System.out.println("No hay mejor puntuacion.");
-            DibujoDebug.dibujarString(g, "Mejor Puntuación: 0", areaInventario.x + 60, areaInventario.y + 50, 12);
+            DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_MEJOR_PUNTUACION)  + ": 0", areaInventario.x + 60, areaInventario.y + 50, 12);
         }
     }
     
     private void dibujarTiempo(final Graphics g){
-        DibujoDebug.dibujarString(g, "Tiempo: " + Constantes.minutos + ":" + Constantes.segundos, areaInventario.x + 180, areaInventario.y + 35, 12);      
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_TIEMPO) + ": " + Constantes.minutos + ":" + Constantes.segundos, areaInventario.x + 180, areaInventario.y + 35, 12);      
     }
 
     private void dibujarRanurasObjetos(final Graphics g) {
@@ -122,7 +122,7 @@ public class MenuInferior {
             
             DibujoDebug.dibujarImagen(g, objetoActual.obtenerSprite().obtenerImagen(), xActual - 40, areaInventario.y + 4);
             
-            DibujoDebug.dibujarString(g, "ESPACIO", xActual - 40,  areaInventario.y + 40 , 12);
+            DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_ESPACIO), xActual - 40,  areaInventario.y + 40 , 12);
             
 
         }
@@ -143,11 +143,11 @@ public class MenuInferior {
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(a, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 180, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(s, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 140, areaInventario.y + 10);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(d, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 100, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Movimientos", Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_MOVIMIENTO), Constantes.ANCHO_JUEGO - 160, areaInventario.y + 55, 12);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(esc, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 300, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Menu o pause", Constantes.ANCHO_JUEGO - 310, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_PAUSE) + "", Constantes.ANCHO_JUEGO - 310, areaInventario.y + 55, 12);
         DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(e, anchoTecla, anchoTecla), Constantes.ANCHO_JUEGO - 360, areaInventario.y + 10);
-        DibujoDebug.dibujarString(g, "Recojer", Constantes.ANCHO_JUEGO - 360, areaInventario.y + 55, 12);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_RECOGER) + "", Constantes.ANCHO_JUEGO - 360, areaInventario.y + 55, 12);
        // DibujoDebug.dibujarImagen(g, DibujoDebug.imagenRedimensionada(espacio, 128, anchoTecla), Constantes.ANCHO_JUEGO - 500, areaInventario.y + 20);
        // DibujoDebug.dibujarString(g, "Disparar", Constantes.ANCHO_JUEGO - 420, areaInventario.y + 55, 12);
     }

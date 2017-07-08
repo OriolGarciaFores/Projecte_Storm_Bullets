@@ -5,9 +5,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
 import principal.ElementosPrincipales;
+import principal.GestorPrincipal;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
+import principal.idioma.Idioma;
 import principal.maquinaestado.EstadoJuego;
 import principal.maquinaestado.estados.menujuego.EstructuraMenu;
 import principal.maquinaestado.estados.menujuego.SeccionMenu;
@@ -29,12 +31,10 @@ public class Configuracion implements EstadoJuego {
 
         final Rectangle etiquetaVolumen = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
         secciones[0] = new Volumen(ElementosPrincipales.idioma.getProperty(Constantes.KEY_MUSICA) + " " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%", etiquetaVolumen);
 
         final Rectangle etiquetaVolumenSonido = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumen.y + etiquetaVolumen.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        // secciones[0] = new Volumen("Volumen "+ ElementosPrincipales.m.obtenerPorcentajeVolumen()+ "%", etiquetaVolumen);
         secciones[1] = new Volumen(ElementosPrincipales.idioma.getProperty(Constantes.KEY_SONIDO) + " " + Constantes.disparo_pistola.obtenerPorcentaje() + "%", etiquetaVolumenSonido);
 
         final Rectangle etiquetaIdioma = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaVolumenSonido.y + etiquetaVolumenSonido.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
@@ -42,8 +42,11 @@ public class Configuracion implements EstadoJuego {
         if (ElementosPrincipales.settings.getProperty(Constantes.KEY_IDIOMA).equals("es")) {
 
             secciones[2] = new CambioIdioma(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_ESPANOL), etiquetaIdioma);
-        } else {
+        } else if (ElementosPrincipales.settings.getProperty(Constantes.KEY_IDIOMA).equals("en")) {
             secciones[2] = new CambioIdioma(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_INGLES), etiquetaIdioma);
+        } else {
+            secciones[2] = new CambioIdioma(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_CATALAN), etiquetaIdioma);
+
         }
 
         final Rectangle etiquetaVolver = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaIdioma.y + etiquetaIdioma.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
@@ -113,25 +116,18 @@ public class Configuracion implements EstadoJuego {
                 secciones[i].dibujarEtiquetaActiva(g);
                 if (seccionActual == secciones[0] && GestorControles.teclado.derecha.estaPulsada()) {
 
-                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.subirvolumen());
                     Constantes.MUSICA_TITULO.aumentarVolumen(0.8f);
                     Constantes.MUSICA_INGAME.aumentarVolumen(0.8f);
                     Constantes.MUSICA_GAME_OVER.aumentarVolumen(0.8f);
-                    // seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_MUSICA) + " " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
-                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.subirvolumen());
 
-                    //Arreglar cambio de volumen.
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[0] && GestorControles.teclado.izquierda.estaPulsada()) {
 
-                    // ElementosPrincipales.m.cambiarVolumen(ElementosPrincipales.m.bajarVolumen());   
                     Constantes.MUSICA_TITULO.disminuirVolumen(0.8f);
                     Constantes.MUSICA_INGAME.disminuirVolumen(0.8f);
-                    //seccionActual.ModificarNombre("Volumen " + ElementosPrincipales.m.obtenerPorcentajeVolumen() + "%");
                     Constantes.MUSICA_GAME_OVER.disminuirVolumen(0.8f);
                     seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_MUSICA) + " " + Constantes.MUSICA_TITULO.obtenerPorcentaje() + "%");
-                    //ElementosPrincipales.musicaIngame.cambiarVolumen(ElementosPrincipales.musicaIngame.bajarVolumen());
 
                     GestorControles.teclado.izquierda.teclaLiberada();
                 }
@@ -170,7 +166,10 @@ public class Configuracion implements EstadoJuego {
 
                 if (seccionActual == secciones[2] && GestorControles.teclado.derecha.estaPulsada() && !ElementosPrincipales.enPartida) {
 
-                    if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "Español")) {
+                    if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "Català")) {
+                        seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_ESPANOL));
+                        ElementosPrincipales.idioma.cambiarIdioma("es");
+                    } else if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "Español")) {
                         seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_INGLES));
                         ElementosPrincipales.idioma.cambiarIdioma("en");
                     }
@@ -178,11 +177,13 @@ public class Configuracion implements EstadoJuego {
                     GestorControles.teclado.derecha.teclaLiberada();
                 } else if (seccionActual == secciones[2] && GestorControles.teclado.izquierda.estaPulsada() && !ElementosPrincipales.enPartida) {
 
-                    if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "English")) {
+                    if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "Español")) {
+                        seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_CATALAN));
+                        ElementosPrincipales.idioma.cambiarIdioma("cat");
+                    } else if (seccionActual.obtenerNombreSeccion().equals(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + "English")) {
 
                         seccionActual.ModificarNombre(ElementosPrincipales.idioma.getProperty(Constantes.KEY_TEXT_IDIOMA) + " " + ElementosPrincipales.idioma.getProperty(Constantes.KEY_ESPANOL));
                         ElementosPrincipales.idioma.cambiarIdioma("es");
-                        System.out.println(seccionActual.obtenerNombreSeccion());
                     }
 
                     GestorControles.teclado.izquierda.teclaLiberada();
@@ -194,7 +195,8 @@ public class Configuracion implements EstadoJuego {
 
                     } else {
                         ElementosPrincipales.settings.modificarSettings(Constantes.KEY_IDIOMA, ElementosPrincipales.idioma.getIdiomaActual(), "IDIOMA MODIFICADO");
-                        System.exit(0);
+                        ElementosPrincipales.idioma = new Idioma(ElementosPrincipales.settings.getProperty(Constantes.KEY_IDIOMA));
+                        GestorPrincipal.main(null);
                     }
 
                     GestorControles.teclado.config = false;
@@ -203,7 +205,7 @@ public class Configuracion implements EstadoJuego {
 
             } else {
                 secciones[i].dibujarEtiquetaInactiva(g);
-                if(ElementosPrincipales.enPartida){
+                if (ElementosPrincipales.enPartida) {
                     secciones[2].dibujarrEtiquetaBloqueada(g);
                 }
             }

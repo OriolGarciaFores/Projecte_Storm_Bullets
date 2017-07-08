@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import principal.Constantes;
 import principal.ElementosPrincipales;
 import principal.control.GestorControles;
@@ -43,7 +42,7 @@ public class Ranking implements EstadoJuego {
 
         final Rectangle etiqueta = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y + 200, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new Volver("Volver", etiqueta);
+        secciones[0] = new Volver(ElementosPrincipales.idioma.getProperty(Constantes.KEY_VOLVER), etiqueta);
 
         seccionActual = secciones[0];
     }
@@ -64,9 +63,9 @@ public class Ranking implements EstadoJuego {
         //Dibujar todo los datos del ranking, nombre, puntuacion y numeracion.
         //Bucle de dibujar String.
         DibujoDebug.dibujarImagen(g, image, 0, 0);
-        DibujoDebug.dibujarString(g, "Nombre ", Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
-        DibujoDebug.dibujarString(g, "Puntuación ", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
-        DibujoDebug.dibujarString(g, "Tiempo ", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_NOMBRE) + " ", Constantes.CENTRO_VENTANA_X - 300, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_PUNTUACION) + " ", Constantes.CENTRO_VENTANA_X - 100, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
+        DibujoDebug.dibujarString(g, ElementosPrincipales.idioma.getProperty(Constantes.KEY_TIEMPO) + " ", Constantes.CENTRO_VENTANA_X + 200, Constantes.CENTRO_VENTANA_Y - 200, Color.WHITE);
 
         try {
             if (Top.partidas.size() <= max) {

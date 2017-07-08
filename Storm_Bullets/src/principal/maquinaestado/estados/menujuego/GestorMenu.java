@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -25,11 +26,11 @@ public class GestorMenu implements EstadoJuego {
 
         final Rectangle etiquetaMenu = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new MenuConfigurar("Opciones", etiquetaMenu);
+        secciones[0] = new MenuConfigurar(ElementosPrincipales.idioma.getProperty(Constantes.KEY_OPCIONES), etiquetaMenu);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaMenu.y + etiquetaMenu.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[1] = new MenuSalir("Salir", etiquetaSalir);
+        secciones[1] = new MenuSalir(ElementosPrincipales.idioma.getProperty(Constantes.KEY_SALIR), etiquetaSalir);
 
         seccionActual = secciones[0];       
     }
