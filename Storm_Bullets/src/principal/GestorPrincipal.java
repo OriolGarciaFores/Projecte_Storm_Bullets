@@ -98,6 +98,7 @@ public class GestorPrincipal {
     private void actualizar() {
         if (!GestorControles.teclado.tituloActivo && !GestorControles.teclado.menuActivo && !GestorControles.teclado.config && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking && !GestorControles.teclado.muerto) {
             ge.cambiarEstadoActual(1);
+            ElementosPrincipales.enPartida = true;
 
         } else if (!GestorControles.teclado.tituloActivo && GestorControles.teclado.menuActivo && !GestorControles.teclado.nombrarJugador && !GestorControles.teclado.ranking && !GestorControles.teclado.muerto) {
             ge.cambiarEstadoActual(2);

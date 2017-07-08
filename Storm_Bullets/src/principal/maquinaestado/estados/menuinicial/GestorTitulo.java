@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import principal.Constantes;
+import principal.ElementosPrincipales;
 import principal.control.GestorControles;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug;
@@ -30,19 +31,19 @@ public class GestorTitulo implements EstadoJuego {
 
         final Rectangle etiquetaPlay = new Rectangle(Constantes.CENTRO_VENTANA_X, Constantes.CENTRO_VENTANA_Y, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[0] = new Jugar("Jugar", etiquetaPlay);
+        secciones[0] = new Jugar(ElementosPrincipales.idioma.getProperty("jugar"), etiquetaPlay);
 
         final Rectangle etiquetaTop = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaPlay.y + etiquetaPlay.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[1] = new MenuTop("Ranking", etiquetaTop);
+        secciones[1] = new MenuTop(ElementosPrincipales.idioma.getProperty("ranking"), etiquetaTop);
 
         final Rectangle etiquetaConfigurar = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaTop.y + etiquetaTop.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[2] = new MenuConfigurar("Opciones", etiquetaConfigurar);
+        secciones[2] = new MenuConfigurar(ElementosPrincipales.idioma.getProperty("opciones"), etiquetaConfigurar);
 
         final Rectangle etiquetaSalir = new Rectangle(Constantes.CENTRO_VENTANA_X, etiquetaConfigurar.y + etiquetaConfigurar.height, estructuraMenu.ANCHO_ETIQUETAS, estructuraMenu.ALTO_ETIQUETAS);
 
-        secciones[3] = new Exit("Salir", etiquetaSalir);
+        secciones[3] = new Exit(ElementosPrincipales.idioma.getProperty("salir"), etiquetaSalir);
 
         seccionActual = secciones[0];
         //ElementosPrincipales.m.reproducir(Constantes.RUTA_AUDIO_TITULO);

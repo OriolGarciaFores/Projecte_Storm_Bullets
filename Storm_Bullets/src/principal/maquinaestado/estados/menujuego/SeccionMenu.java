@@ -20,12 +20,12 @@ public abstract class SeccionMenu {
     public abstract void dibujar(final Graphics g);
 
     public void dibujarEtiquetaInactiva(final Graphics g) {
-       // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.WHITE);
+        // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.WHITE);
         DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x - 100, etiquetaMenu.y + 20, Color.WHITE);
     }
 
     public void dibujarEtiquetaActiva(final Graphics g) {
-       // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.RED);
+        // DibujoDebug.dibujarRectanguloRelleno(g, etiquetaMenu, Color.RED);
         DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x - 100, etiquetaMenu.y + 20, Color.GREEN);
     }
 
@@ -39,6 +39,10 @@ public abstract class SeccionMenu {
 
     public Rectangle obtenerEtiquetaMenu() {
         return etiquetaMenu;
+    }
+
+    public void dibujarrEtiquetaBloqueada(final Graphics g) {
+        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x - 100, etiquetaMenu.y + 20, Color.BLACK);
     }
 
 }
