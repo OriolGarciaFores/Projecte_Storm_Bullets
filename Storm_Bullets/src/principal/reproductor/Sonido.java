@@ -7,10 +7,12 @@ import principal.herramientas.CargadorRecursos;
 public class Sonido {
 
     final private Clip sonido;
-    private float volumen = -16.0f;
-    private int porcentaje = 80;
+    private float volumen;
+    private int porcentaje;
 
-    public Sonido(final String ruta) {
+    public Sonido(final String ruta, float volumen, int porcentaje) {
+        this.volumen = volumen;
+        this.porcentaje = porcentaje;
         sonido = CargadorRecursos.cargarSonidoCambiarVolumen(ruta, volumen);//-80.0f y 0.0
     }
 
@@ -91,8 +93,12 @@ public class Sonido {
     public float obtenerVolumen() {
         return volumen;
     }
-    
-    public String obtenerPorcentaje(){
-    return "" + porcentaje;
+
+    public String obtenerPorcentaje() {
+        return "" + porcentaje;
+    }
+    public void cargarvolumenSettings(float volumen, int porcentaje){
+        this.volumen = volumen;
+        this.porcentaje = porcentaje;
     }
 }

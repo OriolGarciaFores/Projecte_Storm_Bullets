@@ -190,6 +190,11 @@ public class Configuracion implements EstadoJuego {
                 }
 
                 if (seccionActual == secciones[3] && GestorControles.teclado.accion.estaPulsada()) {
+                    
+                    ElementosPrincipales.settings.modificarSettings(Constantes.KEY_MUSICA_VOLUMEN, "" + Constantes.MUSICA_TITULO.obtenerVolumen(), "MUSICA MODIFICADA");
+                    ElementosPrincipales.settings.modificarSettings(Constantes.KEY_MUSICA_PORCENTAJE, "" + Constantes.MUSICA_TITULO.obtenerPorcentaje(), "MUSICA MODIFICADA");
+                    ElementosPrincipales.settings.modificarSettings(Constantes.KEY_SONIDO_VOLUMEN, "" + Constantes.disparo_pistola.obtenerVolumen(), "SONIDO MODIFICADO");
+                    ElementosPrincipales.settings.modificarSettings(Constantes.KEY_SONIDO_PORCENTAJE, "" + Constantes.disparo_pistola.obtenerPorcentaje(), "SONIDO MODIFICADO");
 
                     if (ElementosPrincipales.settings.getProperty(Constantes.KEY_IDIOMA).equals(ElementosPrincipales.idioma.getIdiomaActual())) {
 

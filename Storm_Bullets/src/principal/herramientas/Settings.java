@@ -30,9 +30,9 @@ public class Settings extends Properties {
         try {
             Files.createFile(path);
             modificarSettings(Constantes.KEY_IDIOMA, "es", "IDIOMA");
-            modificarSettings(Constantes.KEY_MUSICA_VOLUMEN, "16.0f", "MUSICA VOLUMEN");
+            modificarSettings(Constantes.KEY_MUSICA_VOLUMEN, "-16.0f", "MUSICA VOLUMEN");
             modificarSettings(Constantes.KEY_MUSICA_PORCENTAJE, "80", "");
-            modificarSettings(Constantes.KEY_SONIDO_VOLUMEN, "16.0f", "SONIDO VOLUMEN");
+            modificarSettings(Constantes.KEY_SONIDO_VOLUMEN, "-16.0f", "SONIDO VOLUMEN");
             modificarSettings(Constantes.KEY_SONIDO_PORCENTAJE, "80", "SETTINGS DEFAULT");
 
         } catch (IOException ex) {

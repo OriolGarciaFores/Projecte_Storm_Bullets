@@ -73,17 +73,17 @@ public class Constantes {
     public static int minutos = 0;
 
     //SONIDOS.
-    public static final Sonido disparo_pistola = new Sonido("/audio/disparo_pistola.wav");
-    public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav");
-    public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav");
-    public static final Sonido grito_perderVida = new Sonido("/audio/grito.wav");
-    public static final Sonido bola_fuego = new Sonido("/audio/bolaFuego.wav");
-    public static final Sonido lanzallamas = new Sonido("/audio/lanzallamas.wav");
+    public static final Sonido disparo_pistola = new Sonido("/audio/disparo_pistola.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
+    public static final Sonido disparo_rifleAsalto = new Sonido("/audio/AK.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
+    public static final Sonido disparo_francotirador = new Sonido("/audio/disparo_francotirador.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
+    public static final Sonido grito_perderVida = new Sonido("/audio/grito.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
+    public static final Sonido bola_fuego = new Sonido("/audio/bolaFuego.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
+    public static final Sonido lanzallamas = new Sonido("/audio/lanzallamas.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_SONIDO_PORCENTAJE)));
 
     //MUSICA FONDO.
-    public static final Sonido MUSICA_TITULO = new Sonido("/audio/musica_titulo.wav");
-    public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav");
-    public static final Sonido MUSICA_GAME_OVER = new Sonido("/audio/gameOver.wav");
+    public static final Sonido MUSICA_TITULO = new Sonido("/audio/musica_titulo.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_PORCENTAJE)));
+    public static final Sonido MUSICA_INGAME = new Sonido("/audio/musica_ingame.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_PORCENTAJE)));
+    public static final Sonido MUSICA_GAME_OVER = new Sonido("/audio/gameOver.wav", Float.parseFloat(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_VOLUMEN)),Integer.parseInt(ElementosPrincipales.settings.getProperty(Constantes.KEY_MUSICA_PORCENTAJE)));
 
     //HABILIDADES
     public static final String BOLA_FUEGO = "/imagenes/hojasObjetos/bola_fuego.png";
