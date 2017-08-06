@@ -47,8 +47,6 @@ public class Sonido {
             this.volumen += volumen * 10f;
             porcentaje += 10;
         }
-        System.out.println(this.volumen);
-        System.out.println(porcentaje + "%");
         cambiarVolumen(this.volumen);
 
     }
@@ -61,8 +59,6 @@ public class Sonido {
             this.volumen -= volumen * 10f;
             porcentaje -= 10;
         }
-        System.out.println(this.volumen);
-        System.out.println(porcentaje + "%");
         cambiarVolumen(this.volumen);
 
     }

@@ -155,8 +155,6 @@
     "mapa":"mapa1.csv",
     "xinicial": 68,
     "yinicial": 372,
-    "xfinal": 94,
-    "yfinal": 394,
     "xaparicion": 663,
     "yaparicion": 236,
     "estado":"abierta"

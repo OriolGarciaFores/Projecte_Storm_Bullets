@@ -37,7 +37,7 @@ public class Constantes {
     public static final String RUTA_MAPA7 = "/texto/mapa7.csv";
     public static final String RUTA_MAPA_BOSS = "/texto/mapa_boss.csv";
     public static final String RUTA_MAPA_SALIDA = "/texto/mapa_salida.csv";
-    public static final String RUTA_MAPA_HIELO = "/texto/mapa_hielo.csv";
+    public static final String RUTA_MAPA_HIELO = "/texto/mapa1_1.csv";
     //FI MAPAS.
 
     public static final String RUTA_BALA = "/imagenes/hojasObjetos/bala.png";
@@ -58,6 +58,7 @@ public class Constantes {
     public static String RUTA_SLIME = "/imagenes/hojasPersonajes/slime.png";
     public static String RUTA_FANTASMA = "/imagenes/hojasPersonajes/fantasma.png";
     public static String RUTA_DEMONIO = "/imagenes/hojasPersonajes/boss.png";
+    public static String RUTA_LOBO = "/imagenes/hojasPersonajes/lobo.png";
 
     //Imagenes de los controles del juego.
     public static final String RUTA_IMAGEN_W = "/imagenes/fondos/w.jpg";

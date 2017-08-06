@@ -20,6 +20,8 @@ public class RegistroEnemigos {
             case 4:
                 enemigo = new Demonio(idEnemigo, "Demonio", 200, 1, 50);//500
                 break;
+            case 5:
+                enemigo = new Lobo(idEnemigo, "Lobo", 50, 1, 20);
         }
 
         return enemigo;

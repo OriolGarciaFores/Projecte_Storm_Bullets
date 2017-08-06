@@ -461,6 +461,7 @@ public class MapaTiled {
 
                     }
                 }else{
+                    //ESCALERA  DATOS MAPA CLEAR
                     ElementosPrincipales.jugador.perderVida(50);
                     break;
                 }

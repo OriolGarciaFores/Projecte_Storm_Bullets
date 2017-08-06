@@ -1,0 +1,127 @@
+{ "height":10,
+ "layers":[
+        {
+         "data":[24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 22, 22, 22, 22, 24, 24, 22, 22, 22, 22, 22, 22, 22, 22, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 21, 21, 21, 21, 21, 21, 21, 21, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+         "height":10,
+         "name":"Capa 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"Capa 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"Colisiones",
+         "objects":[
+                {
+                 "height":95,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":318,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "height":223,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":31,
+                 "x":287,
+                 "y":95
+                }, 
+                {
+                 "height":225,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30,
+                 "x":-1,
+                 "y":93
+                }, 
+                {
+                 "height":29,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":259,
+                 "x":27,
+                 "y":290
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":5,
+ "orientation":"orthogonal",
+ "renderorder":"left-up",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "columns":10,
+         "firstgid":1,
+         "image":"1.png",
+         "imageheight":320,
+         "imagewidth":320,
+         "margin":0,
+         "name":"1",
+         "spacing":0,
+         "tilecount":100,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "version":1,
+ "width":10,
+"nameMap":"mapa1_1",
+"puerta": "abierta",
+"start":
+{
+    "x": 128,
+    "y": 192
+},
+"salidas":
+[
+{
+    "mapa":"mapa1_2.csv",
+    "xinicial": 128,
+    "yinicial": 64,
+    "xaparicion": 384,
+    "yaparicion": 576,
+    "estado":"abierta"
+}
+],
+"candados":
+[
+{
+    "x":0,
+    "y":0
+}
+]
+}
