@@ -91,7 +91,7 @@ public class Enemigo {
         if (this instanceof Demonio) {
             dibujarBarraVida(g, Constantes.CENTRO_VENTANA_X / 2, Constantes.CENTRO_VENTANA_Y + 170);
         }
-        // DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
+         DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
         /* DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_IZQUIERDA());//Area deberia dibujar al enemigo.
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ABAJO());
         DibujoDebug.dibujarRectanguloContorno(g, obtenerLIMITE_ARRIBA());
