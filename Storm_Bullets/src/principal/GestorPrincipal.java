@@ -66,6 +66,7 @@ public class GestorPrincipal {
 
         double tiempoTranscurrido;
         double delta = 0;
+         double delta2 = 0;
 
         while (enFuncionamiento) {
 
@@ -81,8 +82,8 @@ public class GestorPrincipal {
 
                 delta--;
 
-            }
-            dibujar();
+            }         
+                dibujar();
             framesAcumulados++;
 
             if (System.nanoTime() - referenciaContador > NS_POR_SEGUNDO) {
