@@ -66,7 +66,6 @@ public class GestorPrincipal {
 
         double tiempoTranscurrido;
         double delta = 0;
-         double delta2 = 0;
 
         while (enFuncionamiento) {
 
