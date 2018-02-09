@@ -14,7 +14,7 @@ public class ElementosPrincipales {
     public static Settings settings = new Settings();
     public static Idioma idioma = new Idioma(settings.getProperty("idioma"));
     public static ArrayList<DatosMapas> datosMapa = new ArrayList<>();
-    public static MapaTiled mapa = new MapaTiled(Constantes.RUTA_MAPA_HIELO);
+    public static MapaTiled mapa = new MapaTiled(Constantes.RUTA_MAPA);
     
     public static Jugador jugador = new Jugador();
     public static Inventario inventario = new Inventario();

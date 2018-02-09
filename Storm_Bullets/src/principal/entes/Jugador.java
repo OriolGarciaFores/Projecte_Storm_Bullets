@@ -123,11 +123,11 @@ public class Jugador {
             return;
         }
         
-        if ((velocidadX != 0 && velocidadY == 0) || (velocidadX == 0 && velocidadY != 0)) {
+     //   if ((velocidadX != 0 && velocidadY == 0) || (velocidadX == 0 && velocidadY != 0)) {
             mover(velocidadX, velocidadY);
-        } else {
+       // } else {
             //izquierda y arriba.
-            if (velocidadX == -1 && velocidadY == -1) {
+          /*  if (velocidadX == -1 && velocidadY == -1) {
                 if (GestorControles.teclado.izquierda.obtenerUltimaPulsacion() > GestorControles.teclado.arriba.obtenerUltimaPulsacion()) {
                     mover(velocidadX, 0);
                 } else {
@@ -157,9 +157,9 @@ public class Jugador {
                 } else {
                     mover(0, velocidadY);
                 }
-            }
+            }*/
             
-        }
+      //  }
         
     }
     
